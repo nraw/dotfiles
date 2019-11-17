@@ -1,0 +1,28 @@
+{
+    "telemetry.enableTelemetry": false,
+    "files.autoSave": "afterDelay",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "python.jediEnabled": false,
+    "python.terminal.launchArgs": [
+        "-m",
+        "IPython",
+        "--no-autoindent"
+    ],
+    "python.dataScience.sendSelectionToInteractiveWindow": false,
+    "macros": {  // update: requires macros extension by publisher:"geddski" 
+        "pythonExecSelectionAndCursorDown": [
+            "python.execSelectionInTerminal", 
+            //"vscode.window.activeTextEditor.show()",
+            "cursorDown" 
+        ]
+    },
+    "workbench.settings.enableNaturalLanguageSearch": false,
+    "workbench.enableExperiments": false,
+    "terminal.integrated.rendererType": "dom",
+    "explorer.confirmDelete": false,
+    "keyboard.dispatch": "keyCode",
+    "vsicons.dontShowNewVersionMessage": true, // vim escape
+    "yaml.format.enable": true,
+    "yaml.schemaStore.enable": true
+}
