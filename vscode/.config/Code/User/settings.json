@@ -24,5 +24,6 @@
     "keyboard.dispatch": "keyCode",
     "vsicons.dontShowNewVersionMessage": true, // vim escape
     "yaml.format.enable": true,
-    "yaml.schemaStore.enable": true
+    "yaml.schemaStore.enable": true,
+    "explorer.confirmDragAndDrop": false
 }

@@ -11,6 +11,8 @@ call plug#begin(g:plugged_home)
   " FZF <3
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
   Plug 'junegunn/fzf.vim'
+  " Highlighting removed after moving
+  Plug 'romainl/vim-cool'
   " Git
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-unimpaired'  " ]q ]Q cnext, ]a next, ]b bnext, ]<Space> newline
@@ -52,6 +54,12 @@ syntax enable
 " No to auto folding
 set nofoldenable
 set diffopt+=context:99999
+
+" Open buffer at last location
+autocmd BufReadPost *
+  \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+  \ |   exe "normal! g`\""
+  \ | end
 
 " Add subdirectories to path
 set path+=**
