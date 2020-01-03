@@ -108,6 +108,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# Autojump
 [[ -s /home/nraw/.autojump/etc/profile.d/autojump.sh ]] && source /home/nraw/.autojump/etc/profile.d/autojump.sh
 
 # Virtualenv
@@ -130,6 +131,11 @@ fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 source <(kubectl completion bash)
+source <(argo completion bash)
 
 export NVM_DIR="/home/nraw/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+
+export VISUAL=nvim
+export EDITOR="$VISUAL"
