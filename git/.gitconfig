@@ -2,7 +2,7 @@
 	name = nraw
 	email = marsic.andrej@gmail.com
 [credential]
-	helper = cache
+	helper = store
 [core]  
     editor = nvim 
 	excludesfile = /home/nraw/.gitignore
