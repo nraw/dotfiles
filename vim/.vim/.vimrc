@@ -18,9 +18,6 @@ call plug#begin(g:plugged_home)
   " Git
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-unimpaired'  " ]q ]Q cnext, ]a next, ]b bnext, ]<Space> newline
-  " Python
-  Plug 'wmvanvliet/jupyter-vim'
-  Plug 'kassio/neoterm'  " Tnew, TREPL...
   " Indentation
   Plug 'michaeljsmith/vim-indent-object'  " vai,  dii
   " syntax check
@@ -77,12 +74,6 @@ set path+=**
 let mapleader=" "
 let maplocalleader = ','
 nnoremap <SPACE> <Nop>
-
-"split navigations
-" nnoremap <C-J> <C-W><C-J>
-" nnoremap <C-K> <C-W><C-K>
-" nnoremap <C-L> <C-W><C-L>
-" nnoremap <C-H> <C-W><C-H>
 
 " terminal commands
 tnoremap <C-H> <C-\><C-n><C-w>h
@@ -194,18 +185,12 @@ let g:airline#extensions#ale#enabled = 1
 let airline#extensions#ale#error_symbol = 'E:'
 let airline#extensions#ale#warning_symbol = 'W:'
 
-" Neoterm
-let g:neoterm_default_mod='belowright' " open terminal in bottom split
-let g:neoterm_size=16 " terminal split size
-let g:neoterm_autoscroll=1 " scroll to the bottom when running a command
-let g:neoterm_repl_python='bpython'
-
-nnoremap <A-e> :TREPLSendLine<CR><Esc>j
-inoremap <A-e> <Esc>:TREPLSendLine<CR>j
-vnoremap <A-e> :TREPLSendSelection<CR><Esc>
-
-nnoremap <C-e> :TREPLSendFile<CR><Esc>
-inoremap <C-e> <Esc>:TREPLSendFile<CR>
+" Slimux
+map <Leader>s :SlimuxREPLSendLine<CR>
+vmap <Leader>s :SlimuxREPLSendSelection<CR>
+map <Leader>b :SlimuxREPLSendBuffer<CR>
+map <Leader>a :SlimuxShellLast<CR>
+map <Leader>k :SlimuxSendKeysLast<CR>
 
 " Vimux
 " Prompt for a command to run
@@ -220,20 +205,6 @@ map <Leader>vz :VimuxZoomRunner<CR>
 " K equals Ggrep
 nnoremap <silent> K :Ggrep <cword><CR>
 
-" Jupyter-vim
-nnoremap <leader>R       :JupyterRunFile<CR>
-nnoremap <leader>I       :JupyterImportThisFile<CR>
-" Change rrent file
-nnoremap <leader>d       :JupyterCd %:p:h<CR>
-" Send jue
-nnoremap <leader>X       :JupyterSendCell<CR>
-nnoremap <leader>E       :JupyterSendRange<CR>
-nmap     <leader>e       <Plug>JupyterRunTextObj
-vmap     <leader>e       <Plug>JupyterRunVisual
-nnoremap <leader>U       :JupyterUpdateShell<CR>
-" Debuggi
-nnoremap <leader>b       :PythonSetBreak<CR>
-
 " Comments
 let g:NERDSpaceDelims = 1 " Add spaces after comment delimiters by default
 
@@ -247,6 +218,9 @@ nmap ga <Plug>(EasyAlign)
 :command Json :%!python -m json.tool
 :command E :edit .
 :command RC :edit ~/.vim/.vimrc
+
+" Disable quote concealing in JSON files
+let g:vim_json_conceal=0
 
 " fugitive bug fix
 autocmd BufNewFile,BufRead fugitive://* set bufhidden=delete
