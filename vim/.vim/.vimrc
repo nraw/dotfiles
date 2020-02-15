@@ -11,6 +11,8 @@ call plug#begin(g:plugged_home)
   " FZF <3
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
   Plug 'junegunn/fzf.vim'
+  " Tags
+  Plug 'ludovicchabant/vim-gutentags'
   " Highlighting removed after moving
   Plug 'romainl/vim-cool'
   " Git
@@ -18,7 +20,7 @@ call plug#begin(g:plugged_home)
   Plug 'tpope/vim-unimpaired'  " ]q ]Q cnext, ]a next, ]b bnext, ]<Space> newline
   " Python
   Plug 'wmvanvliet/jupyter-vim'
-  Plug 'kassio/neoterm'
+  Plug 'kassio/neoterm'  " Tnew, TREPL...
   " Indentation
   Plug 'michaeljsmith/vim-indent-object'  " vai,  dii
   " syntax check
@@ -41,6 +43,13 @@ call plug#begin(g:plugged_home)
   " Surrounding
   Plug 'machakann/vim-sandwich' " saiw(, sdb and srb
   Plug 'vim-scripts/ReplaceWithRegister' " griw to replace with copy
+  " Tmux
+  Plug 'christoomey/vim-tmux-navigator'
+  Plug 'benmills/vimux'
+  Plug 'esamattis/slimux'
+  " Plug 'greghor/vim-pyShell'
+  " Potential
+  " Tmuxinator
 call plug#end()
 
 filetype plugin indent on
@@ -70,10 +79,10 @@ let maplocalleader = ','
 nnoremap <SPACE> <Nop>
 
 "split navigations
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-L> <C-W><C-L>
+" nnoremap <C-H> <C-W><C-H>
 
 " terminal commands
 tnoremap <C-H> <C-\><C-n><C-w>h
@@ -86,6 +95,8 @@ autocmd BufEnter term://* startinsert
 
 set splitbelow
 set splitright
+" vv to generate new vertical split
+nnoremap <silent> vv <C-w>v
 
 " colorscheme
 let base16colorspace=256
@@ -149,24 +160,24 @@ noremap <F3> :Autoformat<CR>
 
 " Tweaks for browsing
 let g:netrw_banner=0        " disable annoying banner
-let g:netrw_browse_split=4  " open in prior window
-let g:netrw_altv=1          " open splits to the right
+" let g:netrw_browse_split=4  " open in prior window
+" let g:netrw_altv=1          " open splits to the right
 let g:netrw_liststyle=3     " tree view
 
 " NCM2
-" augroup NCM2
-    " autocmd!
-    " " enable ncm2 for all buffers
-    " autocmd BufEnter * call ncm2#enable_for_buffer()
-    " " :help Ncm2PopupOpen for more information
-    " set completeopt=noinsert,menuone,noselect
-    " " When the <Enter> key is pressed while the popup menu is visible, it only
-    " " hides the menu. Use this mapping to close the menu and also start a new line.
-    " inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
-    " " Use <TAB> to select the popup menu:
-    " inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-    " inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" augroup END
+augroup NCM2
+    autocmd!
+    " enable ncm2 for all buffers
+    autocmd BufEnter * call ncm2#enable_for_buffer()
+    " :help Ncm2PopupOpen for more information
+    set completeopt=noinsert,menuone,noselect
+    " When the <Enter> key is pressed while the popup menu is visible, it only
+    " hides the menu. Use this mapping to close the menu and also start a new line.
+    inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+    " Use <TAB> to select the popup menu:
+    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+augroup END
 
 " Ale
 let g:ale_lint_on_enter = 0
@@ -196,6 +207,19 @@ vnoremap <A-e> :TREPLSendSelection<CR><Esc>
 nnoremap <C-e> :TREPLSendFile<CR><Esc>
 inoremap <C-e> <Esc>:TREPLSendFile<CR>
 
+" Vimux
+" Prompt for a command to run
+map <leader>vp :VimuxPromptCommand<CR>
+" Run last command executed by VimuxRunCommand
+map <Leader>vl :VimuxRunLastCommand<CR>
+" Inspect runner pane
+map <Leader>vi :VimuxInspectRunner<CR>
+" Zoom the tmux runner pane
+map <Leader>vz :VimuxZoomRunner<CR>
+
+" K equals Ggrep
+nnoremap <silent> K :Ggrep <cword><CR>
+
 " Jupyter-vim
 nnoremap <leader>R       :JupyterRunFile<CR>
 nnoremap <leader>I       :JupyterImportThisFile<CR>
@@ -222,6 +246,7 @@ nmap ga <Plug>(EasyAlign)
 
 :command Json :%!python -m json.tool
 :command E :edit .
+:command RC :edit ~/.vim/.vimrc
 
 " fugitive bug fix
 autocmd BufNewFile,BufRead fugitive://* set bufhidden=delete
