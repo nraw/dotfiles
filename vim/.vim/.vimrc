@@ -218,6 +218,8 @@ nmap ga <Plug>(EasyAlign)
 :command Json :%!python -m json.tool
 :command E :edit .
 :command RC :edit ~/.vim/.vimrc
+:command Dot :GFiles ~/dotfiles
+
 
 " Disable quote concealing in JSON files
 let g:vim_json_conceal=0
