@@ -1,4 +1,5 @@
-alias nrawpi='ssh 192.168.0.129 -l pi'
+alias nrawpi='ssh 192.168.0.94 -l pi'
+alias nrawpi3='ssh 192.168.0.129 -l pi'
 alias nrawzero='ssh 192.168.0.108 -l pi'
 alias nrawpisftp='sftp pi@192.168.0.129'
 alias dush='du -sh *'
