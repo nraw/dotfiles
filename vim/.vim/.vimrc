@@ -37,7 +37,6 @@ call plug#begin(g:plugged_home)
   Plug 'Chiel92/vim-autoformat'
   " Others
   Plug 'scrooloose/nerdcommenter' " <leader>c<space>
-  Plug 'ctrlpvim/ctrlp.vim' " Find anything with ctrl+p
   Plug 'junegunn/vim-easy-align' " Aligning with gaip + whatever
   Plug 'mechatroner/rainbow_csv'
   " Surrounding
@@ -46,7 +45,8 @@ call plug#begin(g:plugged_home)
   " Tmux
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'benmills/vimux'
-  Plug 'esamattis/slimux'
+  " Plug 'esamattis/slimux'
+  Plug 'lotabout/slimux'
   " Plug 'greghor/vim-pyShell'
   " Vim Wiki
   Plug 'vimwiki/vimwiki'
@@ -171,7 +171,7 @@ set inccommand=split
 noremap <F3> :Autoformat<CR>
 
 " Tweaks for browsing
-let g:netrw_banner=0        " disable annoying banner
+" let g:netrw_banner=0        " disable annoying banner
 " let g:netrw_browse_split=4  " open in prior window
 " let g:netrw_altv=1          " open splits to the right
 let g:netrw_liststyle=3     " tree view
@@ -232,7 +232,7 @@ map <leader>vp :VimuxPromptCommand<CR>
 map <Leader>vl :VimuxRunLastCommand<CR>
 " Inspect runner pane
 map <Leader>vi :VimuxInspectRunner<CR>
-" Zoom the tmux runner pane
+" Zoom the tmux runner pane (tmux: ctrl+a z)
 map <Leader>vz :VimuxZoomRunner<CR>
 
 " K equals Ggrep
