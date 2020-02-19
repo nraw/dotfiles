@@ -7,10 +7,11 @@ call plug#begin(g:plugged_home)
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   " Better Visual Guide
-  Plug 'Yggdroot/indentLine'
+  " Plug 'Yggdroot/indentLine'
   " FZF <3
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
   Plug 'junegunn/fzf.vim'
+  Plug 'jesseleite/vim-agriculture'
   " Tags
   Plug 'ludovicchabant/vim-gutentags'
   " Highlighting removed after moving
@@ -45,6 +46,12 @@ call plug#begin(g:plugged_home)
   Plug 'benmills/vimux'
   Plug 'esamattis/slimux'
   " Plug 'greghor/vim-pyShell'
+  " Vim Wiki
+  Plug 'vimwiki/vimwiki'
+  Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+  " Plug 'michal-h21/vim-zettel'
+  Plug 'xarthurx/taskwarrior.vim'
+  Plug 'tbabej/taskwiki'
   " Potential
   " Tmuxinator
 call plug#end()
@@ -83,6 +90,9 @@ tnoremap <C-L> <C-\><C-n><C-w>l
 autocmd BufEnter term://* startinsert
 "To map <Esc> to exit terminal-mode:
 :tnoremap <Esc> <C-\><C-n>
+
+" change directory to the file being edited
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 set splitbelow
 set splitright
@@ -214,11 +224,31 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+" vimwiki settings
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+" instant markdown
+let g:instant_markdown_autostart = 0
+let g:instant_markdown_port = 9898
+:nmap <Leader>wp :InstantMarkdownPreview<CR>
+command! Diary VimwikiDiaryIndex
+augroup vimwikigroup
+    autocmd!
+    " automatically update links on read diary
+    autocmd BufRead,BufNewFile diary.md VimwikiDiaryGenerateLinks
+augroup end
+" Zettel
+" let g:zettel_fzf_command = "rg"
+" TaskWiki
+let g:taskwiki_disable_concealcursor = "yes"
+let g:taskwiki_markup_syntax='markdown'
+
 
 :command Json :%!python -m json.tool
 :command E :edit .
 :command RC :edit ~/.vim/.vimrc
-:command Dot :GFiles ~/dotfiles
+:command Notes :Files ~/vimwiki
+:command RGN :RgRaw "" ~/vimwiki
 
 
 " Disable quote concealing in JSON files
