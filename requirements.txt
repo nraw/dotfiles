@@ -145,7 +145,7 @@ h2==2.6.2
 h5py==2.9.0
 hpack==3.0.0
 html5lib==0.999999999
-httpie==0.9.8
+httpie==1.0.3
 httplib2==0.12.1
 humanize==0.5.1
 hyper==0.7.0
