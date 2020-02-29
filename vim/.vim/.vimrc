@@ -18,6 +18,7 @@ call plug#begin(g:plugged_home)
   Plug 'romainl/vim-cool'
   " Git
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb'
   Plug 'tpope/vim-unimpaired'  " ]q ]Q cnext, ]a next, ]b bnext, ]<Space> newline
   " Indentation
   Plug 'michaeljsmith/vim-indent-object'  " vai,  dii
