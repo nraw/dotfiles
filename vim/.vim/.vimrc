@@ -58,6 +58,7 @@ call plug#begin(g:plugged_home)
   " snippets
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
+  Plug 'mbbill/undotree' " F5
   " Potential
   " Tmuxinator
 call plug#end()
@@ -82,6 +83,10 @@ autocmd BufReadPost *
 
 " Add subdirectories to path
 set path+=**
+
+" Maintain undo history between sessions
+set undofile 
+set undodir=~/.vim/undodir
 
 " Map leader
 let mapleader=" "
@@ -276,6 +281,10 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-n>"
 let g:UltiSnipsExpandTrigger="<Plug>(ultisnips_expand)"
 let g:ultisnips_python_style="google"
+
+" Undotree
+nnoremap <F5> :UndotreeToggle<cr>
+
 
 " Useful Commands
 :command Json :%!python -m json.tool
