@@ -292,6 +292,7 @@ nnoremap <F5> :UndotreeToggle<cr>
 :command RC :edit ~/.vim/.vimrc
 :command Notes :Files ~/vimwiki
 :command RGN :RgRaw "" ~/vimwiki
+:nnoremap <leader><leader> :Commands<CR>
 
 
 " Disable quote concealing in JSON files
