@@ -52,6 +52,7 @@ call plug#begin(g:plugged_home)
   " Plug 'michal-h21/vim-zettel'
   Plug 'xarthurx/taskwarrior.vim'
   Plug 'tbabej/taskwiki'
+  Plug 'Shougo/echodoc.vim'
   " Potential
   " Tmuxinator
 call plug#end()
@@ -179,6 +180,14 @@ augroup NCM2
     inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 augroup END
+set shortmess+=c
+
+" Echodoc
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'floating'
+" " To use a custom highlight for the float window,
+" " change Pmenu to your highlight group
+highlight link EchoDocFloat Pmenu
 
 " Ale
 let g:ale_lint_on_enter = 0
