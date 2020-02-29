@@ -3,9 +3,11 @@ let g:plugged_home = '~/.vim/plugged'
 " Plugins List
 call plug#begin(g:plugged_home)
   " UI related
-  Plug 'chriskempson/base16-vim'
+  " Plug 'chriskempson/base16-vim'
+  Plug 'kristijanhusak/vim-hybrid-material'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+  Plug 'bling/vim-bufferline'
   " Better Visual Guide
   " Plug 'Yggdroot/indentLine'
   " FZF <3
@@ -13,7 +15,7 @@ call plug#begin(g:plugged_home)
   Plug 'junegunn/fzf.vim'
   Plug 'jesseleite/vim-agriculture'
   " Tags
-  Plug 'ludovicchabant/vim-gutentags'
+  " Plug 'ludovicchabant/vim-gutentags'
   " Highlighting removed after moving
   Plug 'romainl/vim-cool'
   " Git
@@ -31,6 +33,7 @@ call plug#begin(g:plugged_home)
   Plug 'ncm2/ncm2-path'
   Plug 'ncm2/ncm2-jedi'
   Plug 'ncm2/ncm2-ultisnips'
+  Plug 'davidhalter/jedi-vim'
   " Docstrings
   " Plug 'heavenshell/vim-pydocstring'  " damn the ctrl l mapping
   " Formater
@@ -111,9 +114,18 @@ set splitright
 nnoremap <silent> vv <C-w>v
 
 " colorscheme
-let base16colorspace=256
-colorscheme base16-gruvbox-dark-hard
+" let base16colorspace=256
+" colorscheme base16-gruvbox-dark-hard
+
+" vim-hybrid-material
+colorscheme hybrid_reverse
 set background=dark
+let g:enable_bold_font = 1
+let g:enable_italic_font = 1
+let g:hybrid_transparent_background = 1
+if (has("nvim"))
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
 
 " True Color Support if it's avaiable in terminal
 if has("termguicolors")
@@ -134,7 +146,7 @@ endif
 
 set number
 " relative numbers just dont work on the pc..
-set relativenumber
+" set relativenumber
 
 " Mouse feature
 set mouse=a
@@ -199,6 +211,10 @@ let ncm2#complete_length = [[1, 1]]
 " Use new fuzzy based matches
 let g:ncm2#matcher = 'substrfuzzy'
 
+" jedi
+let g:jedi#completions_enabled = 0
+
+
 " Echodoc
 let g:echodoc#enable_at_startup = 1
 let g:echodoc#type = 'floating'
@@ -217,6 +233,7 @@ let g:ale_linters = {'python': ['flake8']}
 let g:ale_fixers = {'python': ['black', 'isort']}
 
 " Airline
+let g:airline_theme = "hybrid"
 let g:airline_left_sep  = ''
 let g:airline_right_sep = ''
 let g:airline#extensions#ale#enabled = 1
@@ -302,6 +319,7 @@ nnoremap <F5> :UndotreeToggle<cr>
 :nnoremap <leader><leader> :Commands<CR>
 
 nnoremap <C-p> :Files<CR>
+nnoremap <C-e> :Buffers<CR>
 
 " Disable quote concealing in JSON files
 let g:vim_json_conceal=0
