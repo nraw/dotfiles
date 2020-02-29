@@ -288,5 +288,13 @@ let g:ultisnips_python_style="google"
 " Disable quote concealing in JSON files
 let g:vim_json_conceal=0
 
-" fugitive bug fix
+" fugitive 
+" deletes hidden buffers
 autocmd BufNewFile,BufRead fugitive://* set bufhidden=delete
+" adds branch to statusline
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+" .. to go back, doesn't work tho :D
+autocmd User fugitive 
+  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+  \   nnoremap <buffer> .. :edit %:h<CR> |
+  \ endif
