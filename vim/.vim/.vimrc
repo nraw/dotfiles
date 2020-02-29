@@ -296,7 +296,7 @@ nnoremap <F5> :UndotreeToggle<cr>
 " Useful Commands
 :command Json :%!python -m json.tool
 :command E :edit .
-:command RC :edit ~/.vim/.vimrc
+:command RC :edit ~/dotfiles/vim/.vim/.vimrc
 :command Notes :Files ~/vimwiki
 :command RGN :RgRaw "" ~/vimwiki
 :nnoremap <leader><leader> :Commands<CR>
