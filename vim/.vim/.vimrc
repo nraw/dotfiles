@@ -227,6 +227,11 @@ nmap ga <Plug>(EasyAlign)
 " vimwiki settings
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
+"
+" Removes <CR> behaviour from random md files
+let g:vimwiki_global_ext = 0
+let g:vimwiki_table_mappings = 0
+
 " instant markdown
 let g:instant_markdown_autostart = 0
 let g:instant_markdown_port = 9898
