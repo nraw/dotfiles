@@ -167,6 +167,9 @@ set shiftwidth=4
 " Live substitution
 set inccommand=split
 
+" Crontab bug
+autocmd filetype crontab setlocal nobackup nowritebackup
+
 " vim-autoformat
 noremap <F3> :Autoformat<CR>
 
@@ -204,12 +207,14 @@ let g:echodoc#type = 'floating'
 highlight link EchoDocFloat Pmenu
 
 " Ale
-let g:ale_lint_on_enter = 0
+let g:ale_lint_on_enter = 1
+let g:ale_fix_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {'python': ['flake8']}
+let g:ale_fixers = {'python': ['black', 'isort']}
 
 " Airline
 let g:airline_left_sep  = ''
@@ -285,6 +290,8 @@ let g:ultisnips_python_style="google"
 " Undotree
 nnoremap <F5> :UndotreeToggle<cr>
 
+" Kedro
+:command -nargs=1 Node :e src/ccn_team_predict/nodes/<args>
 
 " Useful Commands
 :command Json :%!python -m json.tool
@@ -302,8 +309,8 @@ let g:vim_json_conceal=0
 " fugitive 
 " deletes hidden buffers
 autocmd BufNewFile,BufRead fugitive://* set bufhidden=delete
-" adds branch to statusline
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+" adds branch to statusline
 " .. to go back, doesn't work tho :D
 autocmd User fugitive 
   \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
