@@ -29,6 +29,7 @@ call plug#begin(g:plugged_home)
   Plug 'ncm2/ncm2-bufword'
   Plug 'ncm2/ncm2-path'
   Plug 'ncm2/ncm2-jedi'
+  Plug 'ncm2/ncm2-ultisnips'
   " Docstrings
   " Plug 'heavenshell/vim-pydocstring'  " damn the ctrl l mapping
   " Formater
@@ -53,6 +54,9 @@ call plug#begin(g:plugged_home)
   Plug 'xarthurx/taskwarrior.vim'
   Plug 'tbabej/taskwiki'
   Plug 'Shougo/echodoc.vim'
+  " snippets
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
   " Potential
   " Tmuxinator
 call plug#end()
@@ -255,13 +259,24 @@ augroup vimwikigroup
     " automatically update links on read diary
     autocmd BufRead,BufNewFile diary.md VimwikiDiaryGenerateLinks
 augroup end
+
 " Zettel
 " let g:zettel_fzf_command = "rg"
+
 " TaskWiki
 let g:taskwiki_disable_concealcursor = "yes"
 let g:taskwiki_markup_syntax='markdown'
 
+inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
 
+let g:UltiSnipsRemoveSelectModeMappings = 0
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-n>"
+let g:UltiSnipsExpandTrigger="<Plug>(ultisnips_expand)"
+let g:ultisnips_python_style="google"
+
+" Useful Commands
 :command Json :%!python -m json.tool
 :command E :edit .
 :command RC :edit ~/.vim/.vimrc
