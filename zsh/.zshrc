@@ -100,11 +100,8 @@ export VISUAL=nvim
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
+. ~/.zsh_aliases
 
-alias n="nvim"
-alias lg="git lg"
-alias py="python3"
-alias lsd='ls -d "$PWD"/*'
 #export nb2py=jupyter nbconvert --to script *.ipynb
 # Virtual env wrapper
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
