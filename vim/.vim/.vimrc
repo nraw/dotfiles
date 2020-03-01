@@ -308,7 +308,9 @@ let g:ultisnips_python_style="google"
 nnoremap <F5> :UndotreeToggle<cr>
 
 " Kedro
-:command -nargs=1 Node :e src/ccn_team_predict/nodes/<args>
+:command -nargs=1 Node :e src/ccn_team_predict/nodes/<args>.py
+:command -nargs=1 Pipeline :e src/ccn_team_predict/pipelines/<args>.py
+xnoremap <leader>o <esc>:'<,'>!xargs -I _ kedropipe _ <CR>
 
 " Useful Commands
 :command Json :%!python -m json.tool
