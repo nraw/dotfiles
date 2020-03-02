@@ -3,3 +3,4 @@ alias lg="git lg"
 alias py="python3"
 alias lsd='ls -d "$PWD"/*'
 alias kp='xargs -I _ kedropipe _'
+alias pp='pwd | pbcopy'
