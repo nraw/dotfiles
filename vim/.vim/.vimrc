@@ -62,6 +62,7 @@ call plug#begin(g:plugged_home)
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
   Plug 'mbbill/undotree' " F5
+  Plug 'dbeniamine/cheat.sh-vim' " <leader> KP / KE / :Cheat
   " Potential
   " Tmuxinator
 call plug#end()
