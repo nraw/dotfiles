@@ -118,7 +118,7 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 source $HOME/.local/bin/virtualenvwrapper.sh
 
 # Local pypiserver
-# export PIP_EXTRA_INDEX_URL=http://localhost:8080/simple/
+# export PIP_EXTRA_INDEX_URL=http://localhost:9191/simple/
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
