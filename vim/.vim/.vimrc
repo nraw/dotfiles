@@ -35,7 +35,7 @@ call plug#begin(g:plugged_home)
   Plug 'ncm2/ncm2-path'
   Plug 'ncm2/ncm2-jedi'
   Plug 'ncm2/ncm2-ultisnips'
-  Plug 'davidhalter/jedi-vim'
+  " Plug 'davidhalter/jedi-vim'
   " Docstrings
   " Plug 'heavenshell/vim-pydocstring'  " damn the ctrl l mapping
   " Formater
@@ -317,18 +317,20 @@ let g:ultisnips_python_style="google"
 nnoremap <F5> :UndotreeToggle<cr>
 
 " Kedro
-:command -nargs=1 Node :e src/ccn_team_predict/nodes/<args>.py
-:command -nargs=1 Pipeline :e src/ccn_team_predict/pipelines/<args>.py
+:command! -nargs=1 Node :e src/ccn_team_predict/nodes/<args>.py
+:command! -nargs=1 Pipeline :e src/ccn_team_predict/pipelines/<args>.py
 xnoremap <leader>o <esc>:'<,'>!xargs -I _ kedropipe _ <CR>
 
 " Useful Commands
-:command Json :%!python -m json.tool
-:command E :edit .
-:command RC :edit ~/dotfiles/vim/.vim/.vimrc
-:command Notes :Files ~/vimwiki
-:command RGN :RgRaw "" ~/vimwiki
-" :nnoremap <leader> :Commands<CR>
+:command! Json :%!python -m json.tool
+:command! E :edit .
+:command! RC :edit ~/dotfiles/vim/.vim/.vimrc
+:command! Notes :Files ~/vimwiki
+:command! RGN :RgRaw "" ~/vimwiki
+:command! Re :so $MYVIMRC
 
+" FZF
+nnoremap ,, :Commands<CR>
 nnoremap <C-p> :Files<CR>
 nnoremap <C-e> :Buffers<CR>
 
