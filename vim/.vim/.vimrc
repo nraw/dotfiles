@@ -16,6 +16,8 @@ call plug#begin(g:plugged_home)
   Plug 'jesseleite/vim-agriculture'
   " Tags
   " Plug 'ludovicchabant/vim-gutentags'
+  " Moving around
+  Plug 'easymotion/vim-easymotion'
   " Highlighting removed after moving
   Plug 'romainl/vim-cool'
   " Git
@@ -63,6 +65,7 @@ call plug#begin(g:plugged_home)
   Plug 'honza/vim-snippets'
   Plug 'mbbill/undotree' " F5
   Plug 'dbeniamine/cheat.sh-vim' " <leader> KP / KE / :Cheat
+  Plug 'jpalardy/vim-slime'
   " Potential
   " Tmuxinator
 call plug#end()
@@ -176,6 +179,9 @@ set smartcase                     " turn on smartcase
 set expandtab
 set tabstop=4
 set shiftwidth=4
+
+" Not for yaml though
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " Live substitution
 set inccommand=split
@@ -321,7 +327,7 @@ xnoremap <leader>o <esc>:'<,'>!xargs -I _ kedropipe _ <CR>
 :command RC :edit ~/dotfiles/vim/.vim/.vimrc
 :command Notes :Files ~/vimwiki
 :command RGN :RgRaw "" ~/vimwiki
-:nnoremap <leader><leader> :Commands<CR>
+" :nnoremap <leader> :Commands<CR>
 
 nnoremap <C-p> :Files<CR>
 nnoremap <C-e> :Buffers<CR>
