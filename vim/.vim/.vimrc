@@ -368,6 +368,7 @@ xnoremap <leader>o <esc>:'<,'>!xargs -I _ kedropipe _ <CR>
 :command! RC :edit ~/dotfiles/vim/.vim/.vimrc
 :command! Notes :Files ~/vimwiki
 :command! RGN :RgRaw "" ~/vimwiki
+:command Date :r !date +"\%F"
 :command! Re :so $MYVIMRC
 :command! Date :r !date +"\%F"
 
