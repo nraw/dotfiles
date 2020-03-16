@@ -4,3 +4,4 @@ alias py="python3"
 alias lsd='ls -d "$PWD"/*'
 alias kp='xargs -I _ kedropipe _'
 alias pp='pwd | pbcopy'
+alias ma='cat Makefile'
