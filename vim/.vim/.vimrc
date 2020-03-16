@@ -88,7 +88,7 @@ autocmd BufReadPost *
 set path+=**
 
 " Maintain undo history between sessions
-set undofile 
+set undofile
 set undodir=~/.vim/undodir
 
 " Map leader
@@ -328,13 +328,13 @@ nnoremap <C-e> :Buffers<CR>
 " Disable quote concealing in JSON files
 let g:vim_json_conceal=0
 
-" fugitive 
+" fugitive
 " deletes hidden buffers
 autocmd BufNewFile,BufRead fugitive://* set bufhidden=delete
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 " adds branch to statusline
 " .. to go back, doesn't work tho :D
-autocmd User fugitive 
+autocmd User fugitive
   \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
   \   nnoremap <buffer> .. :edit %:h<CR> |
   \ endif
