@@ -16,6 +16,8 @@ call plug#begin(g:plugged_home)
   Plug 'jesseleite/vim-agriculture'
   " Tags
   " Plug 'ludovicchabant/vim-gutentags'
+  " Moving around
+  Plug 'easymotion/vim-easymotion'
   " Highlighting removed after moving
   Plug 'romainl/vim-cool'
   " Git
@@ -175,6 +177,9 @@ set smartcase                     " turn on smartcase
 set expandtab
 set tabstop=4
 set shiftwidth=4
+
+" Not for yaml though
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " Live substitution
 set inccommand=split
