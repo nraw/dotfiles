@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=100000
+HISTFILESIZE=20000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -117,6 +117,9 @@ export VIRTUALENV_PYTHON=/usr/bin/python3
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 source $HOME/.local/bin/virtualenvwrapper.sh
 
+# Local pypiserver
+# export PIP_EXTRA_INDEX_URL=http://localhost:9191/simple/
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -139,3 +142,8 @@ export NVM_DIR="/home/nraw/.nvm"
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+
+complete -C /usr/bin/mc mc
+
+
+source "/home/nraw/.local/etc/bash_completion.d/dephell.bash-completion"

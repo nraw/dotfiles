@@ -65,6 +65,8 @@ call plug#begin(g:plugged_home)
   Plug 'honza/vim-snippets'
   Plug 'mbbill/undotree' " F5
   Plug 'norcalli/nvim-colorizer.lua'
+  Plug 'dbeniamine/cheat.sh-vim' " <leader> KP / KE / :Cheat
+  Plug 'jpalardy/vim-slime'
   " Potential
   " Tmuxinator
 call plug#end()
@@ -198,6 +200,7 @@ noremap <F3> :Autoformat<CR>
 let g:netrw_liststyle=3     " tree view
 
 " NCM2
+let g:python3_host_prog = "/usr/bin/python3"
 augroup NCM2
     autocmd!
     " enable ncm2 for all buffers
@@ -326,7 +329,7 @@ xnoremap <leader>o <esc>:'<,'>!xargs -I _ kedropipe _ <CR>
 :command Notes :Files ~/vimwiki
 :command RGN :RgRaw "" ~/vimwiki
 :command Date :r !date +"\%F"
-:nnoremap <leader><leader> :Commands<CR>
+" :nnoremap <leader> :Commands<CR>
 
 nnoremap <C-p> :Files<CR>
 nnoremap <C-e> :Buffers<CR>
