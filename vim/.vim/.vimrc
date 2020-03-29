@@ -68,6 +68,7 @@ call plug#begin(g:plugged_home)
   Plug 'dbeniamine/cheat.sh-vim' " <leader> KP / KE / :Cheat
   Plug 'troydm/zoomwintab.vim'
   Plug 'machakann/vim-swap'  " g<, g>, gs on parameters in functions
+  Plug 'norcalli/nvim-colorizer.lua'
   " Potential
   " Tmuxinator
 call plug#end()
