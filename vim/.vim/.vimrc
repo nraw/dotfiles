@@ -64,6 +64,7 @@ call plug#begin(g:plugged_home)
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
   Plug 'mbbill/undotree' " F5
+  Plug 'norcalli/nvim-colorizer.lua'
   " Potential
   " Tmuxinator
 call plug#end()
