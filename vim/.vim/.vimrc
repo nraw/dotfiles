@@ -82,10 +82,12 @@ set nofoldenable
 set diffopt+=context:99999
 
 " Open buffer at last location
-autocmd BufReadPost *
-  \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-  \ |   exe "normal! g`\""
-  \ | end
+augroup ReopenBuffer
+    autocmd BufReadPost *
+      \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+      \ |   exe "normal! g`\""
+      \ | end
+augroup END
 
 " Add subdirectories to path
 set path+=**
@@ -95,7 +97,7 @@ set undofile
 set undodir=~/.vim/undodir
 
 " Map leader
-let mapleader=" "
+let mapleader=' '
 let maplocalleader = ','
 nnoremap <SPACE> <Nop>
 
@@ -112,7 +114,9 @@ tnoremap <C-H> <C-\><C-n><C-w>h
 tnoremap <C-J> <C-\><C-n><C-w>j
 tnoremap <C-K> <C-\><C-n><C-w>k
 tnoremap <C-L> <C-\><C-n><C-w>l
-autocmd BufEnter term://* startinsert
+augroup Term
+    autocmd BufEnter term://* startinsert
+augroup END
 "To map <Esc> to exit terminal-mode:
 :tnoremap <Esc> <C-\><C-n>
 
@@ -140,16 +144,16 @@ set background=dark
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1
 let g:hybrid_transparent_background = 1
-if (has("nvim"))
+if (has('nvim'))
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
 " True Color Support if it's avaiable in terminal
-if has("termguicolors")
+if has('termguicolors')
     set termguicolors
 endif
 
-if has("gui_running")
+if has('gui_running')
   set guicursor=n-v-c-sm:block,i-ci-ve:block,r-cr-o:blocks
 endif
 
@@ -206,13 +210,17 @@ set tabstop=4
 set shiftwidth=4
 
 " Not for yaml though
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+augroup YAML
+    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+augroup END
 
 " Live substitution
 set inccommand=split
 
 " Crontab bug
-autocmd filetype crontab setlocal nobackup nowritebackup
+augroup crontab
+    autocmd filetype crontab setlocal nobackup nowritebackup
+augroup END
 
 " vim-autoformat
 noremap <F3> :Autoformat<CR>
@@ -224,7 +232,7 @@ noremap <F3> :Autoformat<CR>
 let g:netrw_liststyle=3     " tree view
 
 " NCM2
-let g:python3_host_prog = "/usr/bin/python3"
+let g:python3_host_prog = '/usr/bin/python3'
 augroup NCM2
     autocmd!
     " enable ncm2 for all buffers
@@ -246,7 +254,7 @@ let g:ncm2#matcher = 'substrfuzzy'
 
 " jedi
 let g:jedi#completions_enabled = 0
-let g:jedi#goto_stubs_command = ""
+let g:jedi#goto_stubs_command = ''
 
 
 " Echodoc
@@ -264,10 +272,10 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {'python': ['flake8']}
-let g:ale_fixers = {'python': ['black', 'isort']}
+let g:ale_fixers = {'python': ['black', 'isort'], 'sh': ['shfmt'], 'yaml': ['prettier'], 'markdown': ['prettier']}
 
 " Airline
-let g:airline_theme = "hybrid"
+let g:airline_theme = 'hybrid'
 let g:airline_left_sep  = ''
 let g:airline_right_sep = ''
 let g:airline#extensions#ale#enabled = 1
@@ -326,17 +334,17 @@ augroup end
 " let g:zettel_fzf_command = "rg"
 
 " TaskWiki
-let g:taskwiki_disable_concealcursor = "yes"
+let g:taskwiki_disable_concealcursor = 'yes'
 let g:taskwiki_markup_syntax='markdown'
 
 inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
 
 let g:UltiSnipsRemoveSelectModeMappings = 0
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-n>"
-let g:UltiSnipsExpandTrigger="<Plug>(ultisnips_expand)"
-let g:ultisnips_python_style="google"
+let g:UltiSnipsJumpForwardTrigger='<c-b>'
+let g:UltiSnipsJumpBackwardTrigger='<c-n>'
+let g:UltiSnipsExpandTrigger='<Plug>(ultisnips_expand)'
+let g:ultisnips_python_style='google'
 
 " Undotree
 nnoremap <F5> :UndotreeToggle<cr>
@@ -364,11 +372,16 @@ let g:vim_json_conceal=0
 
 " fugitive 
 " deletes hidden buffers
-autocmd BufNewFile,BufRead fugitive://* set bufhidden=delete
+augroup Hidden
+    autocmd BufNewFile,BufRead fugitive://* set bufhidden=delete
+augroup END
+
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 " adds branch to statusline
 " .. to go back, doesn't work tho :D
-autocmd User fugitive 
-  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
-  \   nnoremap <buffer> .. :edit %:h<CR> |
-  \ endif
+augroup branches
+    autocmd User fugitive 
+      \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+      \   nnoremap <buffer> .. :edit %:h<CR> |
+      \ endif
+augroup END
