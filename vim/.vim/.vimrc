@@ -172,8 +172,7 @@ set mouse=a
 set backspace=indent,eol,start
 
 " Copy selection
-set clipboard=unnamed
-:vmap <C-C> "+y
+set clipboard=unnamedplus
 
 " Some nifty macro shortcuts
 nnoremap Q @q
