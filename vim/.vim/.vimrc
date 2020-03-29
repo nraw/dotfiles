@@ -65,7 +65,6 @@ call plug#begin(g:plugged_home)
   Plug 'honza/vim-snippets'
   Plug 'mbbill/undotree' " F5
   Plug 'dbeniamine/cheat.sh-vim' " <leader> KP / KE / :Cheat
-  Plug 'jpalardy/vim-slime'
   " Potential
   " Tmuxinator
 call plug#end()
@@ -100,6 +99,14 @@ let mapleader=" "
 let maplocalleader = ','
 nnoremap <SPACE> <Nop>
 
+" Remap start and end
+xnoremap H ^
+xnoremap L $
+
+" Useful for prosaic texts
+nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+
 " terminal commands
 tnoremap <C-H> <C-\><C-n><C-w>h
 tnoremap <C-J> <C-\><C-n><C-w>j
@@ -114,8 +121,11 @@ nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 set splitbelow
 set splitright
-" vv to generate new vertical split
-nnoremap <silent> vv <C-w>v
+
+" - and _ to generate splits
+nnoremap <silent> - <C-w>s
+nnoremap <silent> _ <C-w>v
+
 
 " colorscheme
 " let base16colorspace=256
@@ -161,6 +171,19 @@ set backspace=indent,eol,start
 " Copy selection
 set clipboard=unnamed
 :vmap <C-C> "+y
+
+" Some nifty macro shortcuts
+nnoremap Q @q
+nnoremap <Leader>Q :%norm @q<CR>
+nnoremap <Leader>qp "qp
+nnoremap <Leader>qy "qdd
+
+" Do not redraw until macro is finished
+set lazyredraw
+
+" Remapping s to behave like d, fights with sandwich
+xnoremap s "_d
+nnoremap ss "_dd
 
 " Clear highlight with ctrl+l
 " nnoremap <silent> <C-l> :noh<CR>
