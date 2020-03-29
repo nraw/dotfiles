@@ -119,6 +119,9 @@ autocmd BufEnter term://* startinsert
 " change directory to the file being edited
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
+" Sudo write a non-sudo file
+cmap w!! w !sudo tee % >/dev/null
+
 set splitbelow
 set splitright
 
