@@ -15,3 +15,4 @@ alias n="nvim"
 alias lsd='ls -d "$PWD"/*'
 alias kp='xargs -I _ kedropipe _'
 alias pp='pwd | xclip'
+alias re='exec bash'
