@@ -65,6 +65,8 @@ call plug#begin(g:plugged_home)
   Plug 'honza/vim-snippets'
   Plug 'mbbill/undotree' " F5
   Plug 'dbeniamine/cheat.sh-vim' " <leader> KP / KE / :Cheat
+  Plug 'troydm/zoomwintab.vim'
+  Plug 'machakann/vim-swap'  " g<, g>, gs on parameters in functions
   " Potential
   " Tmuxinator
 call plug#end()
@@ -102,12 +104,23 @@ let maplocalleader = ','
 nnoremap <SPACE> <Nop>
 
 " Remap start and end
-xnoremap H ^
-xnoremap L $
+nnoremap H ^
+nnoremap L $
 
 " Useful for prosaic texts
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
 nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+
+" Keep visual after move
+vnoremap < <gv
+vnoremap > >gv
+
+" New lines map to unimpaired
+map <leader>o ] 
+map <leader>O [ 
+
+" map U to undo till last save
+nnoremap U :earlier 1f<CR>
 
 " terminal commands
 tnoremap <C-H> <C-\><C-n><C-w>h
@@ -133,6 +146,8 @@ set splitright
 nnoremap <silent> - <C-w>s
 nnoremap <silent> _ <C-w>v
 
+" Easymotion F
+nmap F <Plug>(easymotion-prefix)s
 
 " colorscheme
 " let base16colorspace=256
@@ -181,7 +196,7 @@ set clipboard=unnamedplus
 " Some nifty macro shortcuts
 nnoremap Q @q
 nnoremap <Leader>Q :%norm @q<CR>
-nnoremap <Leader>qp "qp
+nnoremap <Leader>qp o<esc>"qp
 nnoremap <Leader>qy "qdd
 
 " Do not redraw until macro is finished
@@ -221,9 +236,6 @@ set inccommand=split
 augroup crontab
     autocmd filetype crontab setlocal nobackup nowritebackup
 augroup END
-
-" vim-autoformat
-noremap <F3> :Autoformat<CR>
 
 " Tweaks for browsing
 " let g:netrw_banner=0        " disable annoying banner
@@ -305,12 +317,6 @@ nnoremap <silent> K :Ggrep <cword><CR>
 " Comments
 let g:NERDSpaceDelims = 1 " Add spaces after comment delimiters by default
 
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
 " vimwiki settings
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
@@ -349,6 +355,8 @@ let g:ultisnips_python_style='google'
 " Undotree
 nnoremap <F5> :UndotreeToggle<cr>
 
+" Zoom on tab
+nnoremap <Leader>z :ZoomWinTabToggle<CR>
 " Kedro
 :command! -nargs=1 Node :e src/ccn_team_predict/nodes/<args>.py
 :command! -nargs=1 Pipeline :e src/ccn_team_predict/pipelines/<args>.py
