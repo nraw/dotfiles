@@ -103,8 +103,8 @@ let maplocalleader = ','
 nnoremap <SPACE> <Nop>
 
 " Remap start and end
-xnoremap H ^
-xnoremap L $
+nnoremap H ^
+nnoremap L $
 
 " Useful for prosaic texts
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
