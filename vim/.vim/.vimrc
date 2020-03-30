@@ -200,7 +200,6 @@ noremap <F3> :Autoformat<CR>
 let g:netrw_liststyle=3     " tree view
 
 " NCM2
-let g:python3_host_prog = "/usr/bin/python3"
 augroup NCM2
     autocmd!
     " enable ncm2 for all buffers
