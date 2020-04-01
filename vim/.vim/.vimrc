@@ -148,12 +148,9 @@ set splitright
 nnoremap <silent> - <C-w>s
 nnoremap <silent> _ <C-w>v
 
-<<<<<<< HEAD
 " Easymotion F
 nmap F <Plug>(easymotion-prefix)s
 
-=======
->>>>>>> re-added jedi
 " colorscheme
 " let base16colorspace=256
 " colorscheme base16-gruvbox-dark-hard
