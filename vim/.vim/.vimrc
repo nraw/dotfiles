@@ -35,7 +35,7 @@ call plug#begin(g:plugged_home)
   Plug 'ncm2/ncm2-path'
   Plug 'ncm2/ncm2-jedi'
   Plug 'ncm2/ncm2-ultisnips'
-  " Plug 'davidhalter/jedi-vim'
+  Plug 'davidhalter/jedi-vim'
   " Docstrings
   " Plug 'heavenshell/vim-pydocstring'  " damn the ctrl l mapping
   " Formater
@@ -148,9 +148,12 @@ set splitright
 nnoremap <silent> - <C-w>s
 nnoremap <silent> _ <C-w>v
 
+<<<<<<< HEAD
 " Easymotion F
 nmap F <Plug>(easymotion-prefix)s
 
+=======
+>>>>>>> re-added jedi
 " colorscheme
 " let base16colorspace=256
 " colorscheme base16-gruvbox-dark-hard
