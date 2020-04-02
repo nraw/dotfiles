@@ -67,6 +67,7 @@ call plug#begin(g:plugged_home)
   Plug 'dbeniamine/cheat.sh-vim' " <leader> KP / KE / :Cheat
   Plug 'troydm/zoomwintab.vim'
   Plug 'machakann/vim-swap'  " g<, g>, gs on parameters in functions
+  Plug 'mcchrish/nnn.vim'
   " Potential
   " Tmuxinator
 call plug#end()
@@ -357,6 +358,10 @@ nnoremap <F5> :UndotreeToggle<cr>
 
 " Zoom on tab
 nnoremap <Leader>z :ZoomWinTabToggle<CR>
+
+" nnn
+" let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
+
 " Kedro
 :command! -nargs=1 Node :e src/ccn_team_predict/nodes/<args>.py
 :command! -nargs=1 Pipeline :e src/ccn_team_predict/pipelines/<args>.py
