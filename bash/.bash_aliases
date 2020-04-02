@@ -9,6 +9,7 @@ alias mount_drive='sshfs pi@192.168.0.94:/media/pi/Elements /mnt/Elements'
 alias xc='xclip -sel clip'
 alias l='exa -l --git'
 alias lg='git lg'
+alias nG='nvim +:G'
 alias nn='nvim -c "Notes"'
 alias dot='nvim ~/dotfiles/$(cd ~/dotfiles && git ls-files | fzf)'
 alias n="nvim"
