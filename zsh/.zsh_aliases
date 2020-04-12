@@ -1,4 +1,5 @@
 alias n="nvim"
+alias nu="nvim -u 'no-config'"
 alias lg="git lg"
 alias nn='nvim -c "Notes"'
 alias dot='nvim ~/dotfiles/$(cd ~/dotfiles && git ls-files | fzf)'
@@ -9,3 +10,4 @@ alias pp='pwd | pbcopy'
 alias ma='cat Makefile'
 alias nG='n -c ":G"'
 alias re='exec zsh'
+alias tn='tmux new -s'
