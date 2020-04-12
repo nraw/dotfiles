@@ -132,3 +132,6 @@ bindkey '\ei' fzf-locate-widget
 
 # Created by `userpath` on 2020-03-17 13:05:08
 export PATH="$PATH:/Users/andrej_marsic/.local/bin"
+
+# box autocomplete setup
+BOX_AC_ZSH_SETUP_PATH=/Users/andrej_marsic/Library/Caches/@box/cli/autocomplete/zsh_setup && test -f $BOX_AC_ZSH_SETUP_PATH && source $BOX_AC_ZSH_SETUP_PATH;
