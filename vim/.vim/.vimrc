@@ -302,7 +302,7 @@ map <Leader>s :SlimuxREPLSendLine<CR>
 vmap <Leader>s :SlimuxREPLSendSelection<CR>
 map <Leader>b :SlimuxREPLSendBuffer<CR>
 map <Leader>a :SlimuxShellLast<CR>
-map <Leader>k :SlimuxSendKeysLast<CR>
+" map <Leader>k :SlimuxSendKeysLast<CR>
 
 " Vimux
 " Prompt for a command to run
@@ -364,6 +364,7 @@ nnoremap <Leader>z :ZoomWinTabToggle<CR>
 :command! -nargs=1 Node :e src/ccn_team_predict/nodes/<args>.py
 :command! -nargs=1 Pipeline :e src/ccn_team_predict/pipelines/<args>.py
 xnoremap <leader>o <esc>:'<,'>!xargs -I _ kedropipe _ <CR>
+nnoremap <leader>kn :.w !xargs -I _ kedro_new_node _ <CR>
 
 " Useful Commands
 :command! Json :%!python -m json.tool
