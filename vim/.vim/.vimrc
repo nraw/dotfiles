@@ -219,6 +219,7 @@ set noswapfile
 " Search configuration
 set ignorecase                    " ignore case when searching
 set smartcase                     " turn on smartcase
+nnoremap <leader>/ :%s/
 
 " Tab and Indent configuration
 set expandtab
