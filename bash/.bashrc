@@ -111,6 +111,9 @@ fi
 # Autojump
 [[ -s /home/nraw/.autojump/etc/profile.d/autojump.sh ]] && source /home/nraw/.autojump/etc/profile.d/autojump.sh
 
+# nnn
+export NNN_USE_EDITOR=1
+
 # Virtualenv
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENV_PYTHON=/usr/bin/python3
