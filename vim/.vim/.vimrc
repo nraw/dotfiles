@@ -35,7 +35,7 @@ call plug#begin(g:plugged_home)
   Plug 'ncm2/ncm2-path'
   Plug 'ncm2/ncm2-jedi'
   Plug 'ncm2/ncm2-ultisnips'
-  " Plug 'davidhalter/jedi-vim'
+  Plug 'davidhalter/jedi-vim'
   " Docstrings
   " Plug 'heavenshell/vim-pydocstring'  " damn the ctrl l mapping
   " Formater
@@ -64,10 +64,12 @@ call plug#begin(g:plugged_home)
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
   Plug 'mbbill/undotree' " F5
+  Plug 'norcalli/nvim-colorizer.lua'
   Plug 'dbeniamine/cheat.sh-vim' " <leader> KP / KE / :Cheat
   Plug 'troydm/zoomwintab.vim'
   Plug 'machakann/vim-swap'  " g<, g>, gs on parameters in functions
   Plug 'mcchrish/nnn.vim'
+  Plug 'norcalli/nvim-colorizer.lua'
   " Potential
   " Tmuxinator
 call plug#end()
@@ -96,7 +98,7 @@ augroup END
 set path+=**
 
 " Maintain undo history between sessions
-set undofile 
+set undofile
 set undodir=~/.vim/undodir
 
 " Map leader
@@ -107,6 +109,8 @@ nnoremap <SPACE> <Nop>
 " Remap start and end
 nnoremap H ^
 nnoremap L $
+vnoremap H ^
+vnoremap L $
 
 " Useful for prosaic texts
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
@@ -138,7 +142,7 @@ augroup END
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " Sudo write a non-sudo file
-cmap w!! w !sudo tee % >/dev/null
+cmap W w !sudo tee % >/dev/null
 
 set splitbelow
 set splitright
@@ -246,7 +250,6 @@ augroup END
 let g:netrw_liststyle=3     " tree view
 
 " NCM2
-let g:python3_host_prog = '/usr/bin/python3'
 augroup NCM2
     autocmd!
     " enable ncm2 for all buffers
@@ -301,7 +304,7 @@ map <Leader>s :SlimuxREPLSendLine<CR>
 vmap <Leader>s :SlimuxREPLSendSelection<CR>
 map <Leader>b :SlimuxREPLSendBuffer<CR>
 map <Leader>a :SlimuxShellLast<CR>
-map <Leader>k :SlimuxSendKeysLast<CR>
+map <Leader>ak :SlimuxSendKeysLast<CR>
 
 " Vimux
 " Prompt for a command to run
@@ -366,7 +369,11 @@ nnoremap <Leader>z :ZoomWinTabToggle<CR>
 " Kedro
 :command! -nargs=1 Node :e src/ccn_team_predict/nodes/<args>.py
 :command! -nargs=1 Pipeline :e src/ccn_team_predict/pipelines/<args>.py
-xnoremap <leader>o <esc>:'<,'>!xargs -I _ kedropipe _ <CR>
+xnoremap <leader>ko <esc>:'<,'>!xargs -I _ kedropipe _ <CR>
+nnoremap <leader>kn :.w !xargs -I _ kedro_new_node _ <CR>
+augroup Catalog
+    autocmd BufNewFile,BufRead catalog.yml UltiSnipsAddFiletypes catalog
+augroup END
 
 " Useful Commands
 :command! Json :%!python -m json.tool
@@ -374,7 +381,10 @@ xnoremap <leader>o <esc>:'<,'>!xargs -I _ kedropipe _ <CR>
 :command! RC :edit ~/dotfiles/vim/.vim/.vimrc
 :command! Notes :Files ~/vimwiki
 :command! RGN :RgRaw "" ~/vimwiki
+:command! Date :r !date +"\%F"
 :command! Re :so $MYVIMRC
+:command! Date :r !date +"\%F"
+:command! Box :!box_dump %
 
 " FZF
 nnoremap ,, :Commands<CR>
@@ -384,7 +394,7 @@ nnoremap <C-e> :Buffers<CR>
 " Disable quote concealing in JSON files
 let g:vim_json_conceal=0
 
-" fugitive 
+" fugitive
 " deletes hidden buffers
 augroup Hidden
     autocmd BufNewFile,BufRead fugitive://* set bufhidden=delete
