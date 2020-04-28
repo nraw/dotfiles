@@ -71,6 +71,7 @@ call plug#begin(g:plugged_home)
   Plug 'norcalli/nvim-colorizer.lua'
   " Potential
   " Tmuxinator
+  Plug '/Users/andrej_marsic/code/research/kedro/ncm2-kedro_datasets'
 call plug#end()
 
 filetype plugin indent on
@@ -141,7 +142,7 @@ augroup END
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " Sudo write a non-sudo file
-cmap w!! w !sudo tee % >/dev/null
+cmap W w !sudo tee % >/dev/null
 
 set splitbelow
 set splitright
@@ -302,7 +303,7 @@ map <Leader>s :SlimuxREPLSendLine<CR>
 vmap <Leader>s :SlimuxREPLSendSelection<CR>
 map <Leader>b :SlimuxREPLSendBuffer<CR>
 map <Leader>a :SlimuxShellLast<CR>
-" map <Leader>k :SlimuxSendKeysLast<CR>
+map <Leader>ak :SlimuxSendKeysLast<CR>
 
 " Vimux
 " Prompt for a command to run
@@ -363,8 +364,11 @@ nnoremap <Leader>z :ZoomWinTabToggle<CR>
 " Kedro
 :command! -nargs=1 Node :e src/ccn_team_predict/nodes/<args>.py
 :command! -nargs=1 Pipeline :e src/ccn_team_predict/pipelines/<args>.py
-xnoremap <leader>o <esc>:'<,'>!xargs -I _ kedropipe _ <CR>
+xnoremap <leader>ko <esc>:'<,'>!xargs -I _ kedropipe _ <CR>
 nnoremap <leader>kn :.w !xargs -I _ kedro_new_node _ <CR>
+augroup Catalog
+    autocmd BufNewFile,BufRead catalog.yml UltiSnipsAddFiletypes catalog
+augroup END
 
 " Useful Commands
 :command! Json :%!python -m json.tool
