@@ -363,8 +363,6 @@ nnoremap <F5> :UndotreeToggle<cr>
 " Zoom on tab
 nnoremap <Leader>z :ZoomWinTabToggle<CR>
 " Kedro
-:command! -nargs=1 Node :e src/ccn_team_predict/nodes/<args>.py
-:command! -nargs=1 Pipeline :e src/ccn_team_predict/pipelines/<args>.py
 xnoremap <leader>ko <esc>:'<,'>!xargs -I _ kedropipe _ <CR>
 nnoremap <leader>kn :.w !xargs -I _ kedro_new_node _ <CR>
 augroup Catalog
