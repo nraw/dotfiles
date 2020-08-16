@@ -186,7 +186,7 @@ endif
 
 " Scroll a bit before cutting off
 if !&scrolloff
-  set scrolloff=1
+  set scrolloff=5
 endif
 if !&sidescrolloff
   set sidescrolloff=5
@@ -198,6 +198,13 @@ set number
 
 " Mouse feature
 set mouse=a
+
+" Speed up scrolling
+" set ttyfast
+
+" Map the <Space> key to toggle a selected fold opened/closed.
+nnoremap <silent> <Leader>f @=(foldlevel('.')?'za':"\<Leader>")<CR>
+vnoremap <Leader>f zf
 
 " Backspace
 set backspace=indent,eol,start
@@ -310,6 +317,7 @@ let g:airline_right_sep = ''
 let g:airline#extensions#ale#enabled = 1
 let airline#extensions#ale#error_symbol = 'E:'
 let airline#extensions#ale#warning_symbol = 'W:'
+let g:airline_powerline_fonts = 1
 
 " Bufferline
 let g:bufferline_show_bufnr = 1
@@ -356,7 +364,7 @@ let g:vimwiki_table_mappings = 0
 " instant markdown
 let g:instant_markdown_autostart = 0
 let g:instant_markdown_port = 9898
-:nmap <Leader>wp :InstantMarkdownPreview<CR>
+:nmap <Leader>md :InstantMarkdownPreview<CR>
 command! Diary VimwikiDiaryIndex
 augroup vimwikigroup
     autocmd!
@@ -401,7 +409,7 @@ augroup END
 :command! E :edit .
 :command! RC :edit ~/dotfiles/vim/.vim/.vimrc
 :command! Notes :Files ~/vimwiki
-:command! RGN :RgRaw "" ~/vimwiki
+:command! Nnr :RgRaw "" ~/vimwiki
 :command! Date :r !date +"\%F"
 :command! Re :so $MYVIMRC
 :command! Box :!box_dump %
