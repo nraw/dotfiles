@@ -124,8 +124,8 @@ vnoremap < <gv
 vnoremap > >gv
 
 " New lines map to unimpaired
-map <leader>o ] 
-map <leader>O [ 
+map <leader>o ]
+map <leader>O [
 
 " map U to undo till last save
 nnoremap U :earlier 1f<CR>
@@ -294,6 +294,11 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {'python': ['flake8']}
 let g:ale_fixers = {'python': ['black', 'isort'], 'sh': ['shfmt'], 'yaml': ['prettier'], 'markdown': ['prettier']}
 
+nnoremap <silent> ]e :ALENextWrap<cr>
+nnoremap <silent> [e :ALEPreviousWrap<cr>
+nnoremap <silent> [E :ALEFirst<cr>
+nnoremap <silent> ]E :ALELast<cr>
+
 " Airline
 let g:airline_theme = 'hybrid'
 let g:airline_left_sep  = ''
@@ -301,6 +306,12 @@ let g:airline_right_sep = ''
 let g:airline#extensions#ale#enabled = 1
 let airline#extensions#ale#error_symbol = 'E:'
 let airline#extensions#ale#warning_symbol = 'W:'
+
+" Bufferline
+let g:bufferline_show_bufnr = 1
+let g:bufferline_rotate = 1
+let g:bufferline_fixed_index = 0 "always first
+let g:bufferline_active_buffer_left = '*'
 
 " Slimux
 map <Leader>s :SlimuxREPLSendLine<CR>
@@ -405,11 +416,11 @@ augroup Hidden
     autocmd BufNewFile,BufRead fugitive://* set bufhidden=delete
 augroup END
 
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 " adds branch to statusline
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 " .. to go back, doesn't work tho :D
 augroup branches
-    autocmd User fugitive 
+    autocmd User fugitive
       \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
       \   nnoremap <buffer> .. :edit %:h<CR> |
       \ endif
