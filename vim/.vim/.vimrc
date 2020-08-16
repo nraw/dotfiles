@@ -13,20 +13,23 @@ call plug#begin(g:plugged_home)
   " FZF <3
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
   Plug 'junegunn/fzf.vim'
-  Plug 'jesseleite/vim-agriculture'
-  " Tags
-  " Plug 'ludovicchabant/vim-gutentags'
+  Plug 'jesseleite/vim-agriculture' " :RgRaw
   " Moving around
   Plug 'easymotion/vim-easymotion'
+  Plug 'tpope/vim-unimpaired'  " ]q ]Q cnext, ]a next, ]b bnext, ]<Space> newline
+  Plug 'michaeljsmith/vim-indent-object'  " vai,  dii
+  Plug 'vim-scripts/ReplaceWithRegister' " griw to replace word with copy
+  Plug 'troydm/zoomwintab.vim' " <leader>z
+  Plug 'machakann/vim-swap'  " g<, g>, gs on parameters in functions
   " Highlighting removed after moving
   Plug 'romainl/vim-cool'
   " Git
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
-  Plug 'tpope/vim-unimpaired'  " ]q ]Q cnext, ]a next, ]b bnext, ]<Space> newline
   Plug 'airblade/vim-gitgutter'
-  " Indentation
-  Plug 'michaeljsmith/vim-indent-object'  " vai,  dii
+  " Tests
+  Plug 'tpope/vim-dispatch'
+  Plug 'vim-test/vim-test'
   " syntax check
   Plug 'w0rp/ale'
   " Autocomplete
@@ -37,17 +40,21 @@ call plug#begin(g:plugged_home)
   Plug 'ncm2/ncm2-jedi'
   Plug 'ncm2/ncm2-ultisnips'
   Plug 'davidhalter/jedi-vim'
-  " Docstrings
+  Plug 'Shougo/echodoc.vim'
+  Plug 'dbeniamine/cheat.sh-vim' " <leader> KP / KE / :Cheat
+  " Comments and Docstrings
+  Plug 'scrooloose/nerdcommenter' " <leader>c<space>
+  Plug 'kkoomen/vim-doge'
   " Plug 'heavenshell/vim-pydocstring'  " damn the ctrl l mapping
   " Formater
   Plug 'Chiel92/vim-autoformat'
   " Others
-  Plug 'scrooloose/nerdcommenter' " <leader>c<space>
   Plug 'junegunn/vim-easy-align' " Aligning with gaip + whatever
+  " Colors
   Plug 'mechatroner/rainbow_csv'
+  Plug 'norcalli/nvim-colorizer.lua'
   " Surrounding
   Plug 'machakann/vim-sandwich' " saiw(, sdb and srb
-  Plug 'vim-scripts/ReplaceWithRegister' " griw to replace with copy
   " Tmux
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'benmills/vimux'
@@ -60,20 +67,17 @@ call plug#begin(g:plugged_home)
   " Plug 'michal-h21/vim-zettel'
   " Plug 'xarthurx/taskwarrior.vim'
   " Plug 'tbabej/taskwiki'
-  Plug 'Shougo/echodoc.vim'
-  " snippets
+  " Snippets
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
+  " Better understanding
   Plug 'mbbill/undotree' " F5
-  Plug 'norcalli/nvim-colorizer.lua'
-  Plug 'dbeniamine/cheat.sh-vim' " <leader> KP / KE / :Cheat
-  Plug 'troydm/zoomwintab.vim'
-  Plug 'machakann/vim-swap'  " g<, g>, gs on parameters in functions
-  Plug 'mcchrish/nnn.vim'
   Plug 'junegunn/vim-peekaboo'
-  Plug 'kkoomen/vim-doge'
+  " File manager integration
+  Plug 'mcchrish/nnn.vim'
   " Potential
   " Tmuxinator
+  " Personal
   Plug '/Users/andrej_marsic/code/research/kedro/ncm2-kedro_datasets'
 call plug#end()
 
