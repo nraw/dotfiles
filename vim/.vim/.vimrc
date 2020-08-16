@@ -69,7 +69,8 @@ call plug#begin(g:plugged_home)
   Plug 'troydm/zoomwintab.vim'
   Plug 'machakann/vim-swap'  " g<, g>, gs on parameters in functions
   Plug 'mcchrish/nnn.vim'
-  Plug 'norcalli/nvim-colorizer.lua'
+  Plug 'junegunn/vim-peekaboo'
+  Plug 'kkoomen/vim-doge'
   " Potential
   " Tmuxinator
 call plug#end()
@@ -306,6 +307,10 @@ map <Leader>b :SlimuxREPLSendBuffer<CR>
 map <Leader>a :SlimuxShellLast<CR>
 map <Leader>ak :SlimuxSendKeysLast<CR>
 
+" Last python command
+map <Leader>ll :r !last_python<CR>
+map <Leader>la :r !last_python_find<CR>
+
 " Vimux
 " Prompt for a command to run
 map <leader>vp :VimuxPromptCommand<CR>
@@ -383,7 +388,6 @@ augroup END
 :command! RGN :RgRaw "" ~/vimwiki
 :command! Date :r !date +"\%F"
 :command! Re :so $MYVIMRC
-:command! Date :r !date +"\%F"
 :command! Box :!box_dump %
 
 " FZF
