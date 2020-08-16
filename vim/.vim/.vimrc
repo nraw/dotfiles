@@ -24,6 +24,7 @@ call plug#begin(g:plugged_home)
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
   Plug 'tpope/vim-unimpaired'  " ]q ]Q cnext, ]a next, ]b bnext, ]<Space> newline
+  Plug 'airblade/vim-gitgutter'
   " Indentation
   Plug 'michaeljsmith/vim-indent-object'  " vai,  dii
   " syntax check
