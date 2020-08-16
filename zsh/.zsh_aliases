@@ -3,6 +3,7 @@ alias nu="nvim -u 'no-config'"
 alias lg="git lg"
 alias nn='nvim -c "Notes"'
 alias dot='nvim ~/dotfiles/$(cd ~/dotfiles && git ls-files | fzf)'
+alias nrc='nvim ~/.vim/.vimrc'
 alias py="python3"
 alias lsd='ls -d "$PWD"/*'
 alias kp='xargs -I _ kedropipe _'
