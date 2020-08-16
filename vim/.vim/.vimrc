@@ -24,6 +24,7 @@ call plug#begin(g:plugged_home)
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
   Plug 'tpope/vim-unimpaired'  " ]q ]Q cnext, ]a next, ]b bnext, ]<Space> newline
+  Plug 'airblade/vim-gitgutter'
   " Indentation
   Plug 'michaeljsmith/vim-indent-object'  " vai,  dii
   " syntax check
@@ -68,7 +69,9 @@ call plug#begin(g:plugged_home)
   Plug 'dbeniamine/cheat.sh-vim' " <leader> KP / KE / :Cheat
   Plug 'troydm/zoomwintab.vim'
   Plug 'machakann/vim-swap'  " g<, g>, gs on parameters in functions
-  Plug 'norcalli/nvim-colorizer.lua'
+  Plug 'mcchrish/nnn.vim'
+  Plug 'junegunn/vim-peekaboo'
+  Plug 'kkoomen/vim-doge'
   " Potential
   " Tmuxinator
   Plug '/Users/andrej_marsic/code/research/kedro/ncm2-kedro_datasets'
@@ -223,6 +226,7 @@ set noswapfile
 " Search configuration
 set ignorecase                    " ignore case when searching
 set smartcase                     " turn on smartcase
+nnoremap <leader>/ :%s/
 
 " Tab and Indent configuration
 set expandtab
@@ -305,6 +309,10 @@ map <Leader>b :SlimuxREPLSendBuffer<CR>
 map <Leader>a :SlimuxShellLast<CR>
 map <Leader>ak :SlimuxSendKeysLast<CR>
 
+" Last python command
+map <Leader>ll :r !last_python<CR>
+map <Leader>la :r !last_python_find<CR>
+
 " Vimux
 " Prompt for a command to run
 map <leader>vp :VimuxPromptCommand<CR>
@@ -362,6 +370,10 @@ nnoremap <F5> :UndotreeToggle<cr>
 
 " Zoom on tab
 nnoremap <Leader>z :ZoomWinTabToggle<CR>
+
+" nnn
+" let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
+
 " Kedro
 xnoremap <leader>ko <esc>:'<,'>!xargs -I _ kedropipe _ <CR>
 nnoremap <leader>kn :.w !xargs -I _ kedro_new_node _ <CR>
@@ -377,7 +389,6 @@ augroup END
 :command! RGN :RgRaw "" ~/vimwiki
 :command! Date :r !date +"\%F"
 :command! Re :so $MYVIMRC
-:command! Date :r !date +"\%F"
 :command! Box :!box_dump %
 
 " FZF

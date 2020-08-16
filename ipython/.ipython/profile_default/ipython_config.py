@@ -204,7 +204,7 @@ c.TerminalIPythonApp.extensions = [
 # c.InteractiveShell.autocall = 0
 
 ## Autoindent IPython code entered interactively.
-# c.InteractiveShell.autoindent = True
+c.InteractiveShell.autoindent = False
 
 ## Enable magic commands to be called without the leading %.
 # c.InteractiveShell.automagic = True
