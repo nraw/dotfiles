@@ -320,6 +320,7 @@ nnoremap <silent> K :Ggrep <cword><CR>
 
 " Comments
 let g:NERDSpaceDelims = 1 " Add spaces after comment delimiters by default
+let g:NERDDefaultAlign = 'left'
 
 " vimwiki settings
 let g:vimwiki_list = [{'path': '~/vimwiki/',
