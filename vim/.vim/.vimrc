@@ -57,8 +57,8 @@ call plug#begin(g:plugged_home)
   Plug 'vimwiki/vimwiki'
   Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
   " Plug 'michal-h21/vim-zettel'
-  Plug 'xarthurx/taskwarrior.vim'
-  Plug 'tbabej/taskwiki'
+  " Plug 'xarthurx/taskwarrior.vim'
+  " Plug 'tbabej/taskwiki'
   Plug 'Shougo/echodoc.vim'
   " snippets
   Plug 'SirVer/ultisnips'
