@@ -416,7 +416,7 @@ tensorboard==2.1.0
 tensorflow==2.1.0
 tensorflow-estimator==2.1.0
 tensorflow-estimator-2.0-preview==1.14.0.dev2019030800
-tensorflow-gpu==1.13.1
+tensorflow-gpu==1.15.4
 tensorflow-hub==0.6.0
 termcolor==1.1.0
 terminado==0.8.2
