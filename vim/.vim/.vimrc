@@ -45,6 +45,7 @@ call plug#begin(g:plugged_home)
   Plug 'scrooloose/nerdcommenter' " <leader>c<space>
   Plug 'junegunn/vim-easy-align' " Aligning with gaip + whatever
   Plug 'mechatroner/rainbow_csv'
+  Plug 'tpope/vim-dispatch'
   " Surrounding
   Plug 'machakann/vim-sandwich' " saiw(, sdb and srb
   Plug 'vim-scripts/ReplaceWithRegister' " griw to replace with copy
@@ -142,9 +143,6 @@ augroup END
 
 " change directory to the file being edited
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
-
-" Sudo write a non-sudo file
-cmap W w !sudo tee % >/dev/null
 
 set splitbelow
 set splitright
@@ -414,3 +412,8 @@ augroup branches
       \   nnoremap <buffer> .. :edit %:h<CR> |
       \ endif
 augroup END
+
+" Translate
+nnoremap <leader>ts :.w !xargs -I _ ./sub.sh _ <CR>
+nnoremap <leader>tr :.w !xargs -I _ docker run --rm soimort/translate-shell --theme none _ <CR>
+nnoremap <leader>tb :.w !xargs -I _ docker run --rm soimort/translate-shell -b _ <CR>
