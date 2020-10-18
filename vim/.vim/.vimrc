@@ -26,7 +26,10 @@ call plug#begin(g:plugged_home)
   " Git
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
+  Plug 'tpope/vim-unimpaired'  " ]q ]Q cnext, ]a next, ]b bnext, ]<Space> newline
   Plug 'airblade/vim-gitgutter'
+  " Indentation
+  Plug 'michaeljsmith/vim-indent-object'  " vai,  dii
   " Tests
   Plug 'tpope/vim-dispatch'
   Plug 'vim-test/vim-test'
@@ -46,15 +49,21 @@ call plug#begin(g:plugged_home)
   Plug 'scrooloose/nerdcommenter' " <leader>c<space>
   Plug 'kkoomen/vim-doge'
   " Plug 'heavenshell/vim-pydocstring'  " damn the ctrl l mapping
+  " LSP
+  " Plug 'neovim/nvim-lspconfig'
+  " Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
   " Formater
   Plug 'Chiel92/vim-autoformat'
   " Others
+  Plug 'scrooloose/nerdcommenter' " <leader>c<space>
   Plug 'junegunn/vim-easy-align' " Aligning with gaip + whatever
   " Colors
   Plug 'mechatroner/rainbow_csv'
   Plug 'norcalli/nvim-colorizer.lua'
+  Plug 'tpope/vim-dispatch'
   " Surrounding
   Plug 'machakann/vim-sandwich' " saiw(, sdb and srb, sdf, saiwf
+  Plug 'vim-scripts/ReplaceWithRegister' " griw to replace with copy
   " Tmux
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'benmills/vimux'
@@ -284,17 +293,17 @@ let ncm2#complete_length = [[1, 1]]
 " Use new fuzzy based matches
 let g:ncm2#matcher = 'substrfuzzy'
 
+" LSP
+" let g:LanguageClient_serverCommands = {'python': ['pyls'], 'yaml': ['yaml-language-server']}
+
+" nnoremap <silent> gk :call LanguageClient#textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
 " jedi
 let g:jedi#completions_enabled = 0
 let g:jedi#goto_stubs_command = ''
 
-
-" Echodoc
-let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'floating'
-" " To use a custom highlight for the float window,
-" " change Pmenu to your highlight group
-highlight link EchoDocFloat Pmenu
 
 " Ale
 let g:ale_lint_on_enter = 1
@@ -352,6 +361,12 @@ map <Leader>vz :VimuxZoomRunner<CR>
 
 " K equals Ggrep
 nnoremap <silent> K :Ggrep <cword><CR>
+
+" Dispatch
+autocmd FileType python let b:dispatch = 'python3 %'
+" Add python errorformat
+set errorformat+=%*\\sFile\ \"%f\"\\,\ line\ %l\\,\ %m,%*\\sFile\ \"%f\"\\,\ line\ %l
+nnoremap <Leader>cp :cexpr system("xclip -o -sel clip")<CR>
 
 " Comments
 let g:NERDSpaceDelims = 1 " Add spaces after comment delimiters by default
@@ -445,3 +460,8 @@ augroup branches
       \   nnoremap <buffer> .. :edit %:h<CR> |
       \ endif
 augroup END
+
+" Translate
+nnoremap <leader>ts :.w !xargs -I _ ./sub.sh _ <CR>
+nnoremap <leader>tr :.w !xargs -I _ docker run --rm soimort/translate-shell --theme none _ <CR>
+nnoremap <leader>tb :.w !xargs -I _ docker run --rm soimort/translate-shell -b _ <CR>
