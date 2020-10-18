@@ -1,5 +1,5 @@
 # Set vi keybindings
-import sys
+import sys; sys.path.append('src')
 
 from prompt_toolkit.key_binding.vi_state import InputMode, ViState
 

@@ -21,6 +21,7 @@ call plug#begin(g:plugged_home)
   Plug 'vim-scripts/ReplaceWithRegister' " griw to replace word with copy
   Plug 'troydm/zoomwintab.vim' " <leader>z
   Plug 'machakann/vim-swap'  " g<, g>, gs on parameters in functions
+  Plug 'tpope/vim-eunuch'  " Move, Rename, Delete
   " Highlighting removed after moving
   Plug 'romainl/vim-cool'
   " Git
@@ -317,20 +318,26 @@ let g:airline_right_sep = ''
 let g:airline#extensions#ale#enabled = 1
 let airline#extensions#ale#error_symbol = 'E:'
 let airline#extensions#ale#warning_symbol = 'W:'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_powerline_fonts = 1
 
 " Bufferline
-let g:bufferline_show_bufnr = 1
-let g:bufferline_rotate = 1
-let g:bufferline_fixed_index = 0 "always first
-let g:bufferline_active_buffer_left = '*'
+" let g:bufferline_show_bufnr = 1
+" let g:bufferline_rotate = 1
+" let g:bufferline_fixed_index = 0 "always first
+" let g:bufferline_active_buffer_left = '*'
 
 " Slimux
 map <Leader>s :SlimuxREPLSendLine<CR>
 vmap <Leader>s :SlimuxREPLSendSelection<CR>
 map <Leader>b :SlimuxREPLSendBuffer<CR>
-map <Leader>a :SlimuxShellLast<CR>
-map <Leader>ak :SlimuxSendKeysLast<CR>
+" map <Leader>a :SlimuxShellLast<CR>
+" map <Leader>ak :SlimuxSendKeysLast<CR>
+
+" Custom Slimux
+map <Leader>ee :norm ^viW s<CR>
 
 " Last python command
 map <Leader>ll :r !last_python<CR>
