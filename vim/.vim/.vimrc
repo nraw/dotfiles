@@ -433,6 +433,9 @@ augroup Hidden
     autocmd BufNewFile,BufRead fugitive://* set bufhidden=delete
 augroup END
 
+" Enterprise
+let g:github_enterprise_urls = ['https://githuben.intranet.mckinsey.com']
+
 " adds branch to statusline
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 " .. to go back, doesn't work tho :D
