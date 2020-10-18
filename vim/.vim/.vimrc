@@ -442,7 +442,7 @@ nnoremap <C-e> :Buffers<CR>
 " Disable quote concealing in JSON files
 let g:vim_json_conceal=0
 
-" fugitive
+" Fugitive
 " deletes hidden buffers
 augroup Hidden
     autocmd BufNewFile,BufRead fugitive://* set bufhidden=delete
@@ -453,6 +453,12 @@ let g:github_enterprise_urls = ['https://githuben.intranet.mckinsey.com']
 
 " adds branch to statusline
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
+" Fugitive Conflict Resolution (besides do and dp)
+nnoremap <leader>gd :Gdiffsplit!<CR>
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>
+
 " .. to go back, doesn't work tho :D
 augroup branches
     autocmd User fugitive
