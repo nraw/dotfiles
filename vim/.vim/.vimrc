@@ -54,7 +54,7 @@ call plug#begin(g:plugged_home)
   Plug 'mechatroner/rainbow_csv'
   Plug 'norcalli/nvim-colorizer.lua'
   " Surrounding
-  Plug 'machakann/vim-sandwich' " saiw(, sdb and srb
+  Plug 'machakann/vim-sandwich' " saiw(, sdb and srb, sdf, saiwf
   " Tmux
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'benmills/vimux'
@@ -413,10 +413,11 @@ augroup END
 :command! E :edit .
 :command! RC :edit ~/dotfiles/vim/.vim/.vimrc
 :command! Notes :Files ~/vimwiki
-:command! Nnr :RgRaw "" ~/vimwiki
+:command! Nnr :RgRaw -L "" ~/vimwiki
 :command! Date :r !date +"\%F"
 :command! Re :so $MYVIMRC
-:command! Box :!box_dump %
+:command! Box :exec "!box_dump % | pbcopy"
+nnoremap <leader>ks :Start! ks % <CR>
 
 " FZF
 nnoremap ,, :Commands<CR>
