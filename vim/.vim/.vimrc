@@ -306,6 +306,9 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {'python': ['flake8']}
 let g:ale_fixers = {'python': ['black', 'isort'], 'sh': ['shfmt'], 'yaml': ['prettier'], 'markdown': ['prettier']}
 
+command! ALEDisableFixers let g:ale_fix_on_save=0
+command! ALEEnableFixers  let g:ale_fix_on_save=1
+
 nnoremap <silent> ]e :ALENextWrap<cr>
 nnoremap <silent> [e :ALEPreviousWrap<cr>
 nnoremap <silent> [E :ALEFirst<cr>
