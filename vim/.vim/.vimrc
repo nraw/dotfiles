@@ -7,7 +7,6 @@ call plug#begin(g:plugged_home)
   Plug 'kristijanhusak/vim-hybrid-material'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'bling/vim-bufferline'
   " Better Visual Guide
   " Plug 'Yggdroot/indentLine'
   " FZF <3
@@ -323,12 +322,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_powerline_fonts = 1
-
-" Bufferline
-" let g:bufferline_show_bufnr = 1
-" let g:bufferline_rotate = 1
-" let g:bufferline_fixed_index = 0 "always first
-" let g:bufferline_active_buffer_left = '*'
 
 " Slimux
 map <Leader>s :SlimuxREPLSendLine<CR>
