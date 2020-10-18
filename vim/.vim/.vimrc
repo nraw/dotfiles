@@ -37,6 +37,9 @@ call plug#begin(g:plugged_home)
   Plug 'ncm2/ncm2-jedi'
   Plug 'ncm2/ncm2-ultisnips'
   Plug 'davidhalter/jedi-vim'
+  " LSP
+  " Plug 'neovim/nvim-lspconfig'
+  " Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
   " Docstrings
   " Plug 'heavenshell/vim-pydocstring'  " damn the ctrl l mapping
   " Formater
@@ -61,7 +64,6 @@ call plug#begin(g:plugged_home)
   " Plug 'michal-h21/vim-zettel'
   Plug 'xarthurx/taskwarrior.vim'
   Plug 'tbabej/taskwiki'
-  Plug 'Shougo/echodoc.vim'
   " snippets
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
@@ -269,17 +271,17 @@ let ncm2#complete_length = [[1, 1]]
 " Use new fuzzy based matches
 let g:ncm2#matcher = 'substrfuzzy'
 
+" LSP
+" let g:LanguageClient_serverCommands = {'python': ['pyls'], 'yaml': ['yaml-language-server']}
+
+" nnoremap <silent> gk :call LanguageClient#textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
 " jedi
 let g:jedi#completions_enabled = 0
 let g:jedi#goto_stubs_command = ''
 
-
-" Echodoc
-let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'floating'
-" " To use a custom highlight for the float window,
-" " change Pmenu to your highlight group
-highlight link EchoDocFloat Pmenu
 
 " Ale
 let g:ale_lint_on_enter = 1
@@ -322,6 +324,12 @@ map <Leader>vz :VimuxZoomRunner<CR>
 
 " K equals Ggrep
 nnoremap <silent> K :Ggrep <cword><CR>
+
+" Dispatch
+autocmd FileType python let b:dispatch = 'python3 %'
+" Add python errorformat
+set errorformat+=%*\\sFile\ \"%f\"\\,\ line\ %l\\,\ %m,%*\\sFile\ \"%f\"\\,\ line\ %l
+nnoremap <Leader>cp :cexpr system("xclip -o -sel clip")<CR>
 
 " Comments
 let g:NERDSpaceDelims = 1 " Add spaces after comment delimiters by default
