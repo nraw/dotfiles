@@ -156,6 +156,10 @@ set splitright
 nnoremap <silent> - <C-w>s
 nnoremap <silent> _ <C-w>v
 
+" Additional operators
+:onoremap in( :<c-u>normal! f(vi(<cr>
+:onoremap = :<c-u>normal! ^f=lv$h<cr>
+
 " Easymotion F
 nmap F <Plug>(easymotion-prefix)s
 
