@@ -21,6 +21,7 @@ call plug#begin(g:plugged_home)
   Plug 'troydm/zoomwintab.vim' " <leader>z
   Plug 'machakann/vim-swap'  " g<, g>, gs on parameters in functions
   Plug 'tpope/vim-eunuch'  " Move, Rename, Delete
+  Plug 'wellle/targets.vim'
   " Highlighting removed after moving
   Plug 'romainl/vim-cool'
   " Git
@@ -60,7 +61,9 @@ call plug#begin(g:plugged_home)
   " Colors
   Plug 'mechatroner/rainbow_csv'
   Plug 'norcalli/nvim-colorizer.lua'
+  " Errors and Execution
   Plug 'tpope/vim-dispatch'
+  Plug 'drmingdrmer/vim-toggle-quickfix'
   " Surrounding
   Plug 'machakann/vim-sandwich' " saiw(, sdb and srb, sdf, saiwf
   Plug 'vim-scripts/ReplaceWithRegister' " griw to replace with copy
@@ -165,8 +168,11 @@ nnoremap <silent> - <C-w>s
 nnoremap <silent> _ <C-w>v
 
 " Additional operators
-:onoremap in( :<c-u>normal! f(vi(<cr>
-:onoremap = :<c-u>normal! ^f=lv$h<cr>
+onoremap = :<c-u>normal! ^f=wv$h<cr>
+xnoremap il $o^
+onoremap il :normal vil<CR>
+xnoremap al $o0
+onoremap al :normal val<CR>
 
 " Easymotion F
 nmap F <Plug>(easymotion-prefix)s
@@ -344,6 +350,15 @@ map <Leader>b :SlimuxREPLSendBuffer<CR>
 
 " Custom Slimux
 map <Leader>ee :norm ^viW s<CR>
+map <Leader>ew :norm viW s<CR>
+map <Leader>ec :call SlimuxSendCommand(expand('<cword>') . '.columns')<CR>
+map <Leader>ep :call SlimuxSendCommand('print(' . expand('<cword>') . ')')<CR>
+map <Leader>ev :call SlimuxSendCommand('from visidata import view_pandas as vd; vd(' . expand('<cword>') . ')')<CR>
+map <Leader>ei :call SlimuxSendCommand(expand('<cword>') . '.info()')<CR>
+map <Leader>et :call SlimuxSendCommand(expand('<cword>') . '.iloc[0].T')<CR>
+map <Leader>e? :call SlimuxSendCommand(expand('<cword>') . '??')<CR>
+map <Leader>ed :call SlimuxSendCommand('%debug')<CR>
+
 
 " Last python command
 map <Leader>ll :r !last_python<CR>
@@ -366,7 +381,8 @@ nnoremap <silent> K :Ggrep <cword><CR>
 autocmd FileType python let b:dispatch = 'python3 %'
 " Add python errorformat
 set errorformat+=%*\\sFile\ \"%f\"\\,\ line\ %l\\,\ %m,%*\\sFile\ \"%f\"\\,\ line\ %l
-nnoremap <Leader>cp :cexpr system("xclip -o -sel clip")<CR>
+nnoremap <Leader>cp :cexpr system("pbpaste")<CR>
+:nmap <leader>\ <Plug>window:quickfix:loop
 
 " Comments
 let g:NERDSpaceDelims = 1 " Add spaces after comment delimiters by default
@@ -389,6 +405,12 @@ augroup vimwikigroup
     autocmd!
     " automatically update links on read diary
     autocmd BufRead,BufNewFile diary.md VimwikiDiaryGenerateLinks
+augroup end
+
+" Vimwiki autosave
+augroup vimwikisave
+    autocmd!
+    autocmd BufWritePost */vimwiki/** execute ':silent ! nohup $(if git rev-parse --git-dir > /dev/null 2>&1 ; then git add . && git commit -m "Auto-commit: saved %" && git push; fi > /dev/null 2>&1) &'
 augroup end
 
 " Zettel
@@ -430,6 +452,7 @@ augroup END
 :command! Notes :Files ~/vimwiki
 :command! Nnr :RgRaw -L "" ~/vimwiki
 :command! Date :r !date +"\%F"
+:command! Event :read !icalBuddy -n -li 1 -ps '/ | /' -b '\# ' -nnr -ea -nc -eed -nrd -tf "\%Y-\%b-\%d" -iep title,datetime,attendees -po title,datetime eventsToday
 :command! Re :so $MYVIMRC
 :command! Box :exec "!box_dump % | pbcopy"
 nnoremap <leader>ks :Start! ks % <CR>
