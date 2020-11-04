@@ -350,14 +350,22 @@ map <Leader>b :SlimuxREPLSendBuffer<CR>
 
 " Custom Slimux
 map <Leader>ee :norm ^viW s<CR>
-map <Leader>ew :norm viW s<CR>
-map <Leader>ec :call SlimuxSendCommand(expand('<cword>') . '.columns')<CR>
-map <Leader>ep :call SlimuxSendCommand('print(' . expand('<cword>') . ')')<CR>
-map <Leader>ev :call SlimuxSendCommand('from visidata import view_pandas as vd; vd(' . expand('<cword>') . ')')<CR>
-map <Leader>ei :call SlimuxSendCommand(expand('<cword>') . '.info()')<CR>
-map <Leader>et :call SlimuxSendCommand(expand('<cword>') . '.iloc[0].T')<CR>
+map <Leader>ew :norm viw s<CR>
+map <Leader>e= :norm ^f=wv$h s<CR>
 map <Leader>e? :call SlimuxSendCommand(expand('<cword>') . '??')<CR>
+map <Leader>ec :call SlimuxSendCommand(expand('<cword>') . '.columns')<CR>
 map <Leader>ed :call SlimuxSendCommand('%debug')<CR>
+map <Leader>eh :call SlimuxSendCommand(expand('<cword>') . '.head()')<CR>
+map <Leader>ei :call SlimuxSendCommand(expand('<cword>') . '.info()')<CR>
+map <Leader>el :call SlimuxSendCommand('len(' . expand('<cword>') . ')')<CR>
+map <Leader>en :call SlimuxSendCommand('next(iter(' . expand('<cword>') . '))')<CR>
+map <Leader>ep :call SlimuxSendCommand('print(' . expand('<cword>') . ')')<CR>
+map <Leader>er :call SlimuxSendCommand('%run ' . expand('%'))<CR>
+map <Leader>es :call SlimuxSendCommand(expand('<cword>') . '.size()')<CR>
+map <Leader>et :call SlimuxSendCommand(expand('<cword>') . '.iloc[0].T')<CR>
+map <Leader>ev :call SlimuxSendCommand('from visidata import view_pandas as vd; vd(' . expand('<cword>') . ')')<CR>
+map <Leader>e_ :call SlimuxSendCommand(expand('<cword>') . ' = _')<CR>
+
 
 
 " Last python command
@@ -381,6 +389,7 @@ nnoremap <silent> K :Ggrep <cword><CR>
 autocmd FileType python let b:dispatch = 'python3 %'
 " Add python errorformat
 set errorformat+=%*\\sFile\ \"%f\"\\,\ line\ %l\\,\ %m,%*\\sFile\ \"%f\"\\,\ line\ %l
+set errorformat+=%*\\s%f\(%l\)
 nnoremap <Leader>cp :cexpr system("pbpaste")<CR>
 :nmap <leader>\ <Plug>window:quickfix:loop
 
@@ -410,7 +419,7 @@ augroup end
 " Vimwiki autosave
 augroup vimwikisave
     autocmd!
-    autocmd BufWritePost */vimwiki/** execute ':silent ! nohup $(if git rev-parse --git-dir > /dev/null 2>&1 ; then git add . && git commit -m "Auto-commit: saved %" && git push; fi > /dev/null 2>&1) &'
+    autocmd BufWritePost */vimwiki/** execute ':silent ! cd ~/vimwiki && nohup $(if git rev-parse --git-dir > /dev/null 2>&1 ; then git add . && git commit -m "Auto-commit: saved %" && git push; fi > /dev/null 2>&1) &'
 augroup end
 
 " Zettel
@@ -441,6 +450,7 @@ nnoremap <Leader>z :ZoomWinTabToggle<CR>
 " Kedro
 xnoremap <leader>ko <esc>:'<,'>!xargs -I _ kedropipe _ <CR>
 nnoremap <leader>kn :.w !xargs -I _ kedro_new_node _ <CR>
+nnoremap <leader>kc :.w !xargs -I _ kedro_add_catalog _ <CR>
 augroup Catalog
     autocmd BufNewFile,BufRead catalog.yml UltiSnipsAddFiletypes catalog
 augroup END
