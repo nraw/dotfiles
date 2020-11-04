@@ -48,10 +48,10 @@ spoon.SpoonInstall:andUse("MiroWindowsManager",
         fn = function(lol)
             hs.window.animationDuration = 0.0
             lol:bindHotkeys({
-              up = {"cmd", "k"},
-              right = {"cmd", "l"},
-              down = {"cmd", "j"},
-              left = {"cmd", "h"},
+              up = {{"cmd", "shift", "alt"}, "k"},
+              right = {{"cmd","shift"}, "l"},
+              down = {{"cmd", "shift", "alt"}, "j"},
+              left = {{"cmd","shift"}, "h"},
               fullscreen = {{"cmd", "shift"}, "k"}
             })
         end
@@ -59,24 +59,10 @@ spoon.SpoonInstall:andUse("MiroWindowsManager",
 )
 
 -- Move to next screen
-hs.hotkey.bind({"cmd", "shift"}, "l", function()
+hs.hotkey.bind({"cmd", "shift"}, "j", function()
   local win = hs.window.focusedWindow();
   if not win then return end
 win:moveToScreen(win:screen():next())
-end)
-
--- Move to previous screen
-hs.hotkey.bind({"cmd", "shift"}, "h", function()
-  local win = hs.window.focusedWindow();
-  if not win then return end
-win:moveToScreen(win:screen():previous())
-end)
-
--- Hide
-hs.hotkey.bind({"cmd", "shift"}, "j", function()
-    local win = hs.window.focusedWindow();
-    if not win then return end
-win:minimize()
 end)
 
 ------ Slight focus window highlight -----
@@ -110,6 +96,11 @@ hs.hotkey.bind('alt','tab',function()switcher_space:next()end, nil, function()sw
 hs.hotkey.bind('alt-shift','tab',function()switcher_space:previous()end, nil, function()switcher_space:previous()end)
 ---hs.hotkey.bind('alt-shift','tab',switcher_space.previousWindow,nil,switcher_space.previousWindow)
 
+hs.hotkey.bind({"cmd", "shift"}, '1', function()hs.application.launchOrFocus('iTerm')end)
+hs.hotkey.bind({"cmd", "shift"}, '2', function()hs.application.launchOrFocus('Google Chrome')end)
+-- hs.hotkey.bind({"cmd", "shift"}, '3', function()hs.application.launchOrFocus('Slack')end)
+-- hs.hotkey.bind({"cmd", "shift"}, '4', function()hs.application.launchOrFocus('Outlook')end)
+-- hs.hotkey.bind({"cmd", "shift"}, '5', function()hs.application.launchOrFocus('zoom.us')end)
 
 ------ HeadphoneAutoPause --------
 spoon.SpoonInstall:andUse("HeadphoneAutoPause",
