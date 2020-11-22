@@ -91,7 +91,7 @@ syntax on
 syntax enable
 
 " No to auto folding
-set nofoldenable
+" set nofoldenable
 set diffopt+=context:99999
 
 " Open buffer at last location
