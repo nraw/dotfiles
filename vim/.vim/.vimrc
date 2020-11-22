@@ -553,6 +553,9 @@ augroup END
 :command! Re :so $MYVIMRC
 :command! Box :!box_dump %
 
+" Random maps
+nnoremap <leader>ka :!kubectl apply -f %
+
 " FZF
 nnoremap ,, :Commands<CR>
 nnoremap <C-p> :Files<CR>
