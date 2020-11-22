@@ -7,7 +7,7 @@ call plug#begin(g:plugged_home)
   Plug 'kristijanhusak/vim-hybrid-material'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'bling/vim-bufferline'
+  " Plug 'bling/vim-bufferline'
   " Better Visual Guide
   " Plug 'Yggdroot/indentLine'
   " FZF <3
