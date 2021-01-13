@@ -36,6 +36,8 @@ call plug#begin(g:plugged_home)
   Plug 'vim-test/vim-test'
   " syntax check
   Plug 'w0rp/ale'
+  " Additional syntax
+  Plug 'cespare/vim-toml'
   " Autocomplete
   Plug 'ncm2/ncm2'
   Plug 'roxma/nvim-yarp'
@@ -365,6 +367,8 @@ map <Leader>es :call SlimuxSendCommand(expand('<cword>') . '.size()')<CR>
 map <Leader>et :call SlimuxSendCommand(expand('<cword>') . '.iloc[0].T')<CR>
 map <Leader>ev :call SlimuxSendCommand('from visidata import view_pandas as vd; vd(' . expand('<cword>') . ')')<CR>
 map <Leader>e_ :call SlimuxSendCommand(expand('<cword>') . ' = _')<CR>
+map <Leader>ekl :call SlimuxSendCommand(expand('<cword>') . '=catalog.load("' . expand('<cword>') . '")')<CR>
+map <Leader>eks :call SlimuxSendCommand('catalog.save("' . expand('<cword>') . '",' . expand('<cword>') . ')')<CR>
 
 
 
@@ -471,6 +475,7 @@ nnoremap <leader>ks :Start! ks % <CR>
 nnoremap ,, :Commands<CR>
 nnoremap <C-p> :Files<CR>
 nnoremap <C-e> :Buffers<CR>
+nnoremap <C-n> :Notes<CR>
 
 " Disable quote concealing in JSON files
 let g:vim_json_conceal=0
