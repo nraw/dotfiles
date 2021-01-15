@@ -256,6 +256,7 @@ set noswapfile
 set ignorecase                    " ignore case when searching
 set smartcase                     " turn on smartcase
 nnoremap <leader>/ :%s/
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 " Tab and Indent configuration
 set expandtab
