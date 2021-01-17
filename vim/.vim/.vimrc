@@ -553,6 +553,7 @@ augroup END
 :command! Re :so $MYVIMRC
 :command! Box :!box_dump %
 :command! -nargs=1 Pic :r !save_pic <args>
+:command! OCR :r !ocr
 
 " Random maps
 nnoremap <leader>ka :!kubectl apply -f %
