@@ -81,6 +81,9 @@ call plug#begin(g:plugged_home)
   " Plug 'michal-h21/vim-zettel'
   " Plug 'xarthurx/taskwarrior.vim'
   " Plug 'tbabej/taskwiki'
+  " Front End
+  Plug 'mattn/emmet-vim'
+  Plug 'AndrewRadev/tagalong.vim'
   " Snippets
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
@@ -510,3 +513,9 @@ augroup END
 nnoremap <leader>ts :.w !xargs -I _ ./sub.sh _ <CR>
 nnoremap <leader>tr :.w !xargs -I _ docker run --rm soimort/translate-shell --theme none _ <CR>
 nnoremap <leader>tb :.w !xargs -I _ docker run --rm soimort/translate-shell -b _ <CR>
+
+" Front End
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+let g:user_emmet_leader_key=','
+let g:tagalong_verbose = 1
