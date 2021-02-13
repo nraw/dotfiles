@@ -58,7 +58,7 @@ configparser==4.0.2
 contextlib2==0.5.5
 cookiecutter==1.7.0
 coverage==4.5.2
-cryptography==2.8
+cryptography==3.2
 cufflinks==0.15
 cupshelpers==1.0
 curtsies==0.3.0
