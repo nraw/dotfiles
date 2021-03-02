@@ -6,6 +6,10 @@ hs.ipc.cliInstall()
 -- https://github.com/Hammerspoon/Spoons/raw/master/Spoons/SpoonInstall.spoon.zip
 hs.loadSpoon("SpoonInstall")
 
+------- Current Zoom  -------
+hs.hotkey.bind({"alt", "shift"}, 'z', function()
+    hs.execute("zoom", true)
+end)
 
 ------- ClipboardTool -------
 spoon.SpoonInstall:andUse("ClipboardTool",
