@@ -3,21 +3,15 @@ let g:plugged_home = '~/.vim/plugged'
 " Plugins List
 call plug#begin(g:plugged_home)
   " UI related
-  " Plug 'chriskempson/base16-vim'
   Plug 'kristijanhusak/vim-hybrid-material'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  " Better Visual Guide
-  " Plug 'Yggdroot/indentLine'
   " FZF <3
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
   Plug 'junegunn/fzf.vim'
   Plug 'jesseleite/vim-agriculture' " :RgRaw
   " Moving around
-  Plug 'easymotion/vim-easymotion'
   Plug 'tpope/vim-unimpaired'  " ]q ]Q cnext, ]a next, ]b bnext, ]<Space> newline
-  Plug 'michaeljsmith/vim-indent-object'  " vai,  dii
-  Plug 'vim-scripts/ReplaceWithRegister' " griw to replace word with copy
   Plug 'troydm/zoomwintab.vim' " <leader>z
   Plug 'machakann/vim-swap'  " g<, g>, gs on parameters in functions
   Plug 'tpope/vim-eunuch'  " Move, Rename, Delete
@@ -27,14 +21,16 @@ call plug#begin(g:plugged_home)
   " Git
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
-  Plug 'tpope/vim-unimpaired'  " ]q ]Q cnext, ]a next, ]b bnext, ]<Space> newline
+  Plug 'shumphrey/fugitive-gitlab.vim'
   Plug 'airblade/vim-gitgutter'
   " Indentation
   Plug 'michaeljsmith/vim-indent-object'  " vai,  dii
+  Plug 'junegunn/vim-easy-align' " Aligning with gaip + whatever
   " Tests
   Plug 'tpope/vim-dispatch'
   Plug 'vim-test/vim-test'
-  " syntax check
+  Plug 'drmingdrmer/vim-toggle-quickfix'
+  " Linting
   Plug 'w0rp/ale'
   " Additional syntax
   Plug 'cespare/vim-toml'
@@ -46,53 +42,55 @@ call plug#begin(g:plugged_home)
   Plug 'ncm2/ncm2-jedi'
   Plug 'ncm2/ncm2-ultisnips'
   Plug 'davidhalter/jedi-vim'
-  Plug 'Shougo/echodoc.vim'
-  Plug 'dbeniamine/cheat.sh-vim' " <leader> KP / KE / :Cheat
+  Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
+  " Snippets
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
+  " Refactoring
+  Plug 'apalmer1377/factorus'
+  " Help
+  Plug 'dbeniamine/cheat.sh-vim' " <leader> KB / :Cheat
   " Comments and Docstrings
   Plug 'scrooloose/nerdcommenter' " <leader>c<space>
-  Plug 'kkoomen/vim-doge'
-  " Plug 'heavenshell/vim-pydocstring'  " damn the ctrl l mapping
-  " LSP
-  " Plug 'neovim/nvim-lspconfig'
-  " Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
-  " Formater
-  Plug 'Chiel92/vim-autoformat'
-  " Others
-  Plug 'scrooloose/nerdcommenter' " <leader>c<space>
-  Plug 'junegunn/vim-easy-align' " Aligning with gaip + whatever
   " Colors
   Plug 'mechatroner/rainbow_csv'
   Plug 'norcalli/nvim-colorizer.lua'
-  " Errors and Execution
-  Plug 'tpope/vim-dispatch'
-  Plug 'drmingdrmer/vim-toggle-quickfix'
   " Surrounding
   Plug 'machakann/vim-sandwich' " saiw(, sdb and srb, sdf, saiwf
-  Plug 'vim-scripts/ReplaceWithRegister' " griw to replace with copy
   " Tmux
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'benmills/vimux'
   " Plug 'esamattis/slimux'
   Plug 'lotabout/slimux'
-  " Plug 'greghor/vim-pyShell'
   " Vim Wiki
   Plug 'vimwiki/vimwiki'
   Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
-  " Plug 'michal-h21/vim-zettel'
-  " Plug 'xarthurx/taskwarrior.vim'
-  " Plug 'tbabej/taskwiki'
   " Front End
-  Plug 'mattn/emmet-vim'
-  Plug 'AndrewRadev/tagalong.vim'
-  " Snippets
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
+  Plug 'mattn/emmet-vim' " div>ul>li*3 ,,
+  Plug 'AndrewRadev/tagalong.vim' " changes ending tags
+  Plug 'rstacruz/vim-ultisnips-css'
   " Better understanding
   Plug 'mbbill/undotree' " F5
   Plug 'junegunn/vim-peekaboo'
   " File manager integration
   Plug 'mcchrish/nnn.vim'
+  " Collaboration
   " Potential
+  " Plug 'Yggdroot/indentLine'
+  " Plug 'easymotion/vim-easymotion'
+  " Plug 'vim-scripts/ReplaceWithRegister' " griw to replace word with copy
+  " Plug 'Shougo/echodoc.vim'
+  " Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
+  " Plug 'heavenshell/vim-pydocstring'  " damn the ctrl l mapping
+  " Plug 'sheerun/vim-polyglot'
+  " LSP
+  " Plug 'neovim/nvim-lspconfig'
+  " Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
+  " Plug 'vim-scripts/ReplaceWithRegister' " griw to replace with copy
+  " Plug 'michal-h21/vim-zettel'
+  " Plug 'xarthurx/taskwarrior.vim'
+  " Plug 'tbabej/taskwiki'
+  " Plug 'wellle/context.vim'
   " Tmuxinator
   " Personal
   Plug '/Users/andrej_marsic/code/research/kedro/ncm2-kedro_datasets'
@@ -106,6 +104,10 @@ filetype plugin indent on
 syntax on
 syntax enable
 
+" Autoread in case file has changed
+set autoread
+set updatetime=150
+
 " No to auto folding
 set nofoldenable
 set diffopt+=context:99999
@@ -117,9 +119,6 @@ augroup ReopenBuffer
       \ |   exe "normal! g`\""
       \ | end
 augroup END
-
-" Add subdirectories to path
-set path+=**
 
 " Maintain undo history between sessions
 set undofile
@@ -135,6 +134,9 @@ nnoremap H ^
 nnoremap L $
 vnoremap H ^
 vnoremap L $
+
+" Yank map
+nnoremap Y y$
 
 " Useful for prosaic texts
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
@@ -220,9 +222,6 @@ set number
 " Mouse feature
 set mouse=a
 
-" Speed up scrolling
-" set ttyfast
-
 " Map the <Space> key to toggle a selected fold opened/closed.
 nnoremap <silent> <Leader>f @=(foldlevel('.')?'za':"\<Leader>")<CR>
 vnoremap <Leader>f zf
@@ -246,11 +245,6 @@ set lazyredraw
 xnoremap s "_d
 nnoremap ss "_dd
 
-" Clear highlight with ctrl+l
-" nnoremap <silent> <C-l> :noh<CR>
-" if maparg('<C-L>', 'n') ==# ''
-  " nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-" endif
 " Backups
 set noshowmode
 set noswapfile
@@ -259,17 +253,12 @@ set noswapfile
 set ignorecase                    " ignore case when searching
 set smartcase                     " turn on smartcase
 nnoremap <leader>/ :%s/
-vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+vnoremap & y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 " Tab and Indent configuration
 set expandtab
-set tabstop=4
-set shiftwidth=4
-
-" Not for yaml though
-augroup YAML
-    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-augroup END
+set tabstop=2
+set shiftwidth=2
 
 " Live substitution
 set inccommand=split
@@ -280,10 +269,13 @@ augroup crontab
 augroup END
 
 " Tweaks for browsing
-" let g:netrw_banner=0        " disable annoying banner
-" let g:netrw_browse_split=4  " open in prior window
-" let g:netrw_altv=1          " open splits to the right
 let g:netrw_liststyle=3     " tree view
+
+" Targets settings
+" Remove vi=
+autocmd User targets#mappings#user call targets#mappings#extend({
+    \ '=': {},
+    \ })
 
 " NCM2
 augroup NCM2
@@ -304,6 +296,18 @@ let ncm2#popup_delay = 5
 let ncm2#complete_length = [[1, 1]]
 " Use new fuzzy based matches
 let g:ncm2#matcher = 'substrfuzzy'
+let g:ncm2_jedi#call_sig_hint = 0
+
+au User Ncm2Plugin call ncm2#register_source({
+    \ 'name' : 'css',
+    \ 'priority': 9,
+    \ 'subscope_enable': 1,
+    \ 'scope': ['css','scss'],
+    \ 'mark': 'css',
+    \ 'word_pattern': '[\w\-]+',
+    \ 'complete_pattern': ':\s*',
+    \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
+    \ })
 
 " LSP
 " let g:LanguageClient_serverCommands = {'python': ['pyls'], 'yaml': ['yaml-language-server']}
@@ -313,19 +317,25 @@ let g:ncm2#matcher = 'substrfuzzy'
 " nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " jedi
+" Disable completions but keep other features
 let g:jedi#completions_enabled = 0
+" Remove goto_stubs as it's set to <leader>s
 let g:jedi#goto_stubs_command = ''
 
 
 " Ale
 let g:ale_lint_on_enter = 1
 let g:ale_fix_on_save = 1
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_linters = {'python': ['flake8']}
-let g:ale_fixers = {'python': ['black', 'isort'], 'sh': ['shfmt'], 'yaml': ['prettier'], 'markdown': ['prettier']}
+let g:ale_lint_on_text_changed = 'always'
+let g:ale_echo_msg_format = '%linter% | %severity% | %s '
+let g:ale_fixers = {
+ \ 'python': ['black', 'isort'],
+ \ 'sh': ['shfmt'], 
+ \ 'yaml': ['prettier'], 
+ \ 'css': ['prettier'],  
+ \ 'javascript': ['prettier'],  
+ \ 'html': ['prettier'],  
+ \ 'markdown': ['prettier']}
 
 command! ALEDisableFixers let g:ale_fix_on_save=0
 command! ALEEnableFixers  let g:ale_fix_on_save=1
@@ -334,6 +344,12 @@ nnoremap <silent> ]e :ALENextWrap<cr>
 nnoremap <silent> [e :ALEPreviousWrap<cr>
 nnoremap <silent> [E :ALEFirst<cr>
 nnoremap <silent> ]E :ALELast<cr>
+
+" Ale frontend
+let g:ale_css_stylelint_use_global = 1
+let g:ale_css_stylelint_options = '--config ~/.config/.stylelintrc.json'
+let g:ale_javascript_eslint_use_global = 1
+let g:ale_javascript_eslint_options = '--config ~/.config/.eslintrc.json'
 
 " Airline
 let g:airline_theme = 'hybrid'
@@ -363,6 +379,7 @@ map <Leader>ec :call SlimuxSendCommand(expand('<cword>') . '.columns')<CR>
 map <Leader>ed :call SlimuxSendCommand('%debug')<CR>
 map <Leader>eh :call SlimuxSendCommand(expand('<cword>') . '.head()')<CR>
 map <Leader>ei :call SlimuxSendCommand(expand('<cword>') . '.info()')<CR>
+map <Leader>ek :call SlimuxSendCommand(expand('<cword>') . '.keys()')<CR>
 map <Leader>el :call SlimuxSendCommand('len(' . expand('<cword>') . ')')<CR>
 map <Leader>en :call SlimuxSendCommand('next(iter(' . expand('<cword>') . '))')<CR>
 map <Leader>ep :call SlimuxSendCommand('print(' . expand('<cword>') . ')')<CR>
@@ -437,12 +454,13 @@ augroup end
 let g:taskwiki_disable_concealcursor = 'yes'
 let g:taskwiki_markup_syntax='markdown'
 
+" Press enter to expand selection
 inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
 
 let g:UltiSnipsRemoveSelectModeMappings = 0
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsJumpForwardTrigger='<c-b>'
-let g:UltiSnipsJumpBackwardTrigger='<c-n>'
+let g:UltiSnipsJumpForwardTrigger='<c-n>'
+let g:UltiSnipsJumpBackwardTrigger='<c-b>'
 let g:UltiSnipsExpandTrigger='<Plug>(ultisnips_expand)'
 let g:ultisnips_python_style='google'
 
@@ -453,7 +471,12 @@ nnoremap <F5> :UndotreeToggle<cr>
 nnoremap <Leader>z :ZoomWinTabToggle<CR>
 
 " nnn
-" let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
+let g:nnn#set_default_mappings = 0
+let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
+let g:nnn#action = {
+      \ '<c-t>': 'tab split',
+      \ '<c-x>': 'split',
+      \ '<c-v>': 'vsplit' }
 
 " Kedro
 xnoremap <leader>ko <esc>:'<,'>!xargs -I _ kedropipe _ <CR>
@@ -468,7 +491,7 @@ augroup END
 :command! E :edit .
 :command! RC :edit ~/dotfiles/vim/.vim/.vimrc
 :command! Notes :Files ~/vimwiki
-:command! Nnr :RgRaw -L "" ~/vimwiki
+:command! NNR :RgRaw -L "" ~/vimwiki
 :command! Date :r !date +"\%F"
 :command! Event :read !icalBuddy -n -li 1 -ps '/ | /' -b '\# ' -nnr -ea -nc -eed -nrd -tf "\%Y-\%b-\%d" -iep title,datetime,attendees -po title,datetime eventsToday
 :command! Re :so $MYVIMRC
@@ -480,6 +503,8 @@ nnoremap ,, :Commands<CR>
 nnoremap <C-p> :Files<CR>
 nnoremap <C-e> :Buffers<CR>
 nnoremap <C-n> :Notes<CR>
+nnoremap <leader>yp :!yp -p 1<CR>
+" nnoremap <leader>ypf :Start yp --f=true<CR>
 
 " Disable quote concealing in JSON files
 let g:vim_json_conceal=0
@@ -492,22 +517,12 @@ augroup END
 
 " Enterprise
 let g:github_enterprise_urls = ['https://githuben.intranet.mckinsey.com']
-
-" adds branch to statusline
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+let g:fugitive_gitlab_domains = ['https://git.msv.mckinsey.com']
 
 " Fugitive Conflict Resolution (besides do and dp)
 nnoremap <leader>gd :Gdiffsplit!<CR>
-nnoremap gdh :diffget //2<CR>
-nnoremap gdl :diffget //3<CR>
-
-" .. to go back, doesn't work tho :D
-augroup branches
-    autocmd User fugitive
-      \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
-      \   nnoremap <buffer> .. :edit %:h<CR> |
-      \ endif
-augroup END
+" nnoremap gdh :diffget //2<CR>
+" nnoremap gdl :diffget //3<CR>
 
 " Translate
 nnoremap <leader>ts :.w !xargs -I _ ./sub.sh _ <CR>
@@ -515,6 +530,9 @@ nnoremap <leader>tr :.w !xargs -I _ docker run --rm soimort/translate-shell --th
 nnoremap <leader>tb :.w !xargs -I _ docker run --rm soimort/translate-shell -b _ <CR>
 
 " Front End
+" Colorizer
+lua require'colorizer'.setup()
+
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 let g:user_emmet_leader_key=','
