@@ -138,3 +138,4 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 
 # box autocomplete setup
 BOX_AC_ZSH_SETUP_PATH=/Users/andrej_marsic/Library/Caches/@box/cli/autocomplete/zsh_setup && test -f $BOX_AC_ZSH_SETUP_PATH && source $BOX_AC_ZSH_SETUP_PATH;
+[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
