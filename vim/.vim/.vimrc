@@ -503,7 +503,7 @@ nnoremap ,, :Commands<CR>
 nnoremap <C-p> :Files<CR>
 nnoremap <C-e> :Buffers<CR>
 nnoremap <C-n> :Notes<CR>
-nnoremap <leader>yp :!yp -p 1<CR>
+nnoremap <leader>yp :Start! yp -p 1<CR>
 " nnoremap <leader>ypf :Start yp --f=true<CR>
 
 " Disable quote concealing in JSON files
