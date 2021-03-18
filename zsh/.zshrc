@@ -95,8 +95,7 @@ fzf-locate-widget() {
 zle     -N    fzf-locate-widget
 bindkey '\ei' fzf-locate-widget
 
-# Created by `userpath` on 2020-03-17 13:05:08
-export PATH="$PATH:/Users/andrej_marsic/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 # Brew shouldn't upgrade everything every time I want to install something
 export HOMEBREW_NO_AUTO_UPDATE=1
