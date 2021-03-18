@@ -5,18 +5,34 @@
 autoload -Uz vcs_info
 precmd() { vcs_info }
 
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' stagedstr 'green'
-zstyle ':vcs_info:*' unstagedstr 'blue' 
-zstyle ':vcs_info:git:*' formats '%c%u%m %F{%c%u%m}%b%f '
-# zstyle ':vcs_info:*' formats "%u%c%m"
+zstyle ':vcs_info:git:*' formats '%F{%m}%b%f '
+zstyle ':vcs_info:git:*' actionformats '%F{%m}%b%f|%a '
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 
 +vi-git-untracked() {
   if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]]
-     git status --porcelain | grep -m 1 '^??' &>/dev/null
   then
-    hook_com[misc]='red'
+    st=$(git status --porcelain)
+    if echo $st | grep -m 1 '^UU' &>/dev/null
+    then
+      hook_com[misc]='magenta'
+    elif echo $st | grep -m 1 '^??' &>/dev/null
+    then
+      hook_com[misc]='red'
+    elif echo $st | grep -m 1 '^ M' &>/dev/null
+    then
+      hook_com[misc]='red'
+    elif echo $st | grep -m 1 '^M' &>/dev/null
+    then
+      hook_com[misc]='yellow'
+    elif echo $st | grep -m 1 '^A' &>/dev/null
+    then
+      hook_com[misc]='yellow'
+    else
+      hook_com[misc]='green'
+    fi
+  else
+    hook_com[misc]='white'
   fi
 }
 
