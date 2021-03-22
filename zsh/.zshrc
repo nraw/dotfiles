@@ -40,6 +40,17 @@ setopt PROMPT_SUBST
 PROMPT='%F{%(?.blue.red)}%~%f ${vcs_info_msg_0_}$ '
 # '%F{%(?.blue.red)}%~%f'
 
+# History
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000000
+# Append immediately
+setopt INC_APPEND_HISTORY
+# Add timestamps
+export HISTTIMEFORMAT="[%F %T] "
+setopt EXTENDED_HISTORY
+# No duplicates
+setopt HIST_FIND_NO_DUPS
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
