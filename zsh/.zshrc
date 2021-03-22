@@ -117,3 +117,6 @@ BOX_AC_ZSH_SETUP_PATH=/Users/andrej_marsic/Library/Caches/@box/cli/autocomplete/
 
 # Fix backspace
 bindkey -v '^?' backward-delete-char
+
+# FASD
+eval "$(fasd --init auto)"
