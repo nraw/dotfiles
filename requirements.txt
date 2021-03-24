@@ -357,7 +357,7 @@ resampy==0.2.1
 retrying==1.3.3
 rexpy==0.0.0
 rope==0.12.0
-rsa==4.0
+rsa==4.1
 rshell==0.0.26
 ruamel.yaml==0.16.5
 ruamel.yaml.clib==0.2.0
