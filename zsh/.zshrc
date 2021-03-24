@@ -38,7 +38,6 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 
 setopt PROMPT_SUBST
 PROMPT='%F{%(?.blue.red)}%~%f ${vcs_info_msg_0_}$ '
-# '%F{%(?.blue.red)}%~%f'
 
 # History
 export HISTFILESIZE=1000000000
@@ -62,10 +61,7 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='nvim'
 fi
-
 export VISUAL=nvim
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
@@ -80,11 +76,6 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # Aliases
 . ~/.zsh_aliases
 
-# Virtual env wrapper
-# export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-# export WORKON_HOME=$HOME/.virtualenvs
-# export PROJECT_HOME=$HOME/code
-# source /usr/local/bin/virtualenvwrapper.sh
 
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
@@ -95,18 +86,8 @@ complete -o nospace -C /usr/local/bin/vault vault
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# ALT-I - Paste the selected entry from locate output into the command line
-fzf-locate-widget() {
-  local selected
-  if selected=$(locate / | fzf -q "$LBUFFER"); then
-    LBUFFER=$selected
-  fi
-  zle redisplay
-}
-zle     -N    fzf-locate-widget
-bindkey '\ei' fzf-locate-widget
-
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/bin"
 
 # Brew shouldn't upgrade everything every time I want to install something
 export HOMEBREW_NO_AUTO_UPDATE=1
