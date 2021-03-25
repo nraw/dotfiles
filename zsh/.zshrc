@@ -101,8 +101,12 @@ bindkey -v '^?' backward-delete-char
 
 # Vi mode stuff
 
+# edit command by pressing esc + v
 autoload edit-command-line; zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
+
+# Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
+export KEYTIMEOUT=1
 
 # FASD
 eval "$(fasd --init auto)"
