@@ -99,5 +99,10 @@ BOX_AC_ZSH_SETUP_PATH=/Users/andrej_marsic/Library/Caches/@box/cli/autocomplete/
 # Fix backspace
 bindkey -v '^?' backward-delete-char
 
+# Vi mode stuff
+
+autoload edit-command-line; zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
 # FASD
 eval "$(fasd --init auto)"
