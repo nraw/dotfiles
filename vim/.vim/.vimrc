@@ -503,6 +503,8 @@ augroup END
 :command! Re :so $MYVIMRC
 :command! Box :exec "!box_dump % | pbcopy"
 nnoremap <leader>ks :Start! ks % <CR>
+:command! -nargs=1 Pic :r !save_pic <args>
+:command! OCR :r !ocr
 
 " FZF
 nnoremap ,, :Commands<CR>
