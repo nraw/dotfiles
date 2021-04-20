@@ -288,7 +288,7 @@ ptpython==3.0.0
 ptyprocess==0.6.0
 PuLP==2.0
 pushbullet.py==0.11.0
-py==1.8.0
+py==1.10.0
 pyalsaaudio==0.8.4
 pyarrow==0.15.1
 pyasn1==0.4.5
