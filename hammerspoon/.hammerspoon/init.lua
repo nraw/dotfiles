@@ -115,3 +115,5 @@ spoon.SpoonInstall:andUse("HeadphoneAutoPause",
         end
     }
 )
+----------------- GRID STUFF ---------
+hs.grid.setMargins({w=9, h=9})
