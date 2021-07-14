@@ -40,8 +40,9 @@ setopt PROMPT_SUBST
 PROMPT='%F{%(?.blue.red)}%~%f ${vcs_info_msg_0_}$ '
 
 # History
-export HISTFILESIZE=1000000000
-export HISTSIZE=1000000000
+HISTFILE=~/.zsh_history
+HISTSIZE=1000000000
+SAVEHIST=$HISTSIZE
 # Append immediately
 setopt INC_APPEND_HISTORY
 # Add timestamps
@@ -49,6 +50,7 @@ export HISTTIMEFORMAT="[%F %T] "
 setopt EXTENDED_HISTORY
 # No duplicates
 setopt HIST_FIND_NO_DUPS
+export HISTTIMEFORMAT="%F %T "
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -103,7 +105,8 @@ bindkey -v '^?' backward-delete-char
 
 # edit command by pressing esc + v
 autoload edit-command-line; zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
+# bindkey -M vicmd v edit-command-line
+bindkey "^X^E" edit-command-line
 
 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 export KEYTIMEOUT=1
