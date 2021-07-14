@@ -187,6 +187,13 @@ onoremap il :normal vil<CR>
 xnoremap al $o0
 onoremap al :normal val<CR>
 
+" Do not add regular n and N for search into jumplist
+nnoremap <silent> n :<C-u>execute "keepjumps norm! " . v:count1 . "n"<CR>
+nnoremap <silent> N :<C-u>execute "keepjumps norm! " . v:count1 . "N"<CR>
+" Their counterparts here
+nnoremap <leader>n n
+nnoremap <leader>N N
+
 " Easymotion F
 nmap F <Plug>(easymotion-prefix)s
 
@@ -370,6 +377,7 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_powerline_fonts = 1
 
 " Slimux
+let g:slimux_select_from_current_window = 1
 map <Leader>s :SlimuxREPLSendLine<CR>
 vmap <Leader>s :SlimuxREPLSendSelection<CR>
 map <Leader>b :SlimuxREPLSendBuffer<CR>
