@@ -84,27 +84,12 @@ hs.hotkey.bind({"alt", "shift", "cmd", "ctrl"},'k',function()hs.window.focusedWi
 hs.hotkey.bind({"alt", "shift", "cmd", "ctrl"},'j',function()hs.window.focusedWindow():focusWindowSouth(nil, true, true)end)
 
 
---------- Switcher -----------
-switcher_space = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):setDefaultFilter{})
-switcher_space.ui.fontName = 'Monaco'
-switcher_space.ui.textSize = 15
-switcher_space.ui.showTitles = false
-
-hs.window.switcher.ui.ThumbnailSize = 256
-hs.window.switcher.ui.showSelectedThumbnail = false
-hs.window.switcher.ui.showSelectedTitle = false
--- alternatively, call .nextWindow() or .previousWindow() directly (same as hs.window.switcher.new():next())
-hs.hotkey.bind('alt','tab',function()switcher_space:next()end, nil, function()switcher_space:next()end)
---hs.hotkey.bind('alt','tab',switcher_space.nextWindow,nil,switcher_space.nextWindow)
--- you can also bind to `repeatFn` for faster traversing
-hs.hotkey.bind('alt-shift','tab',function()switcher_space:previous()end, nil, function()switcher_space:previous()end)
----hs.hotkey.bind('alt-shift','tab',switcher_space.previousWindow,nil,switcher_space.previousWindow)
-
-hs.hotkey.bind({"cmd", "shift"}, '1', function()hs.application.launchOrFocus('iTerm')end)
-hs.hotkey.bind({"cmd", "shift"}, '2', function()hs.application.launchOrFocus('Google Chrome')end)
--- hs.hotkey.bind({"cmd", "shift"}, '3', function()hs.application.launchOrFocus('Slack')end)
--- hs.hotkey.bind({"cmd", "shift"}, '4', function()hs.application.launchOrFocus('Outlook')end)
--- hs.hotkey.bind({"cmd", "shift"}, '5', function()hs.application.launchOrFocus('zoom.us')end)
+--------- Apps focus -----------
+hs.hotkey.bind({"alt"}, '1', function()hs.application.launchOrFocus('Alacritty')end)
+hs.hotkey.bind({"alt"}, '2', function()hs.application.launchOrFocus('Google Chrome')end)
+hs.hotkey.bind({"alt"}, '3', function()hs.application.launchOrFocus('Slack')end)
+hs.hotkey.bind({"alt"}, '4', function()hs.application.launchOrFocus('Microsoft Outlook')end)
+hs.hotkey.bind({"alt"}, '5', function()hs.application.launchOrFocus('zoom.us')end)
 
 ------ HeadphoneAutoPause --------
 spoon.SpoonInstall:andUse("HeadphoneAutoPause",
