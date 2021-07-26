@@ -65,6 +65,11 @@ else
 fi
 export VISUAL=nvim
 
+# locales
+
+export LC_ALL="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
