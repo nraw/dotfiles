@@ -187,7 +187,7 @@ jupyter-core==4.6.1
 jupyter-highlight-selected-word==0.2.0
 jupyter-latex-envs==1.4.6
 jupyter-nbextensions-configurator==0.4.1
-jupyterlab==0.31.1
+jupyterlab==1.2.21
 jupyterlab-launcher==0.10.5
 kedro==0.15.5
 kedro-docker==0.1.1
