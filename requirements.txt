@@ -413,7 +413,7 @@ tb-nightly==1.14.0a20190308
 tdda==1.0.31
 tempora==1.14
 tensorboard==2.1.0
-tensorflow==2.1.0
+tensorflow==2.5.1
 tensorflow-estimator==2.1.0
 tensorflow-estimator-2.0-preview==1.14.0.dev2019030800
 tensorflow-gpu==1.13.1
