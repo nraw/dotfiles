@@ -139,6 +139,9 @@ fi
 source <(kubectl completion bash)
 source <(argo completion bash)
 
+alias k=kubectl
+complete -F __start_kubectl k
+
 export NVM_DIR="/home/nraw/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
