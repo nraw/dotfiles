@@ -39,7 +39,8 @@ call plug#begin(g:plugged_home)
   " Plug 'davidhalter/jedi-vim'
   " Coc
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
+  " Go
+  Plug 'fatih/vim-go'
   " LSP
   " Plug 'neovim/nvim-lspconfig'
   " Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
@@ -78,6 +79,8 @@ call plug#begin(g:plugged_home)
   Plug 'mcchrish/nnn.vim'
   Plug 'junegunn/vim-peekaboo'
   Plug 'kkoomen/vim-doge'
+  Plug 'janko-m/vim-test'
+  Plug 'tpope/vim-projectionist'
   " Potential
   " Tmuxinator
 call plug#end()
