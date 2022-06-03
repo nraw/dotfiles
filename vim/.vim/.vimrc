@@ -72,6 +72,8 @@ call plug#begin(g:plugged_home)
   " Vim Wiki
   Plug 'vimwiki/vimwiki'
   Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+  " Terraform
+  Plug 'hashivim/vim-terraform'
   " Front End
   Plug 'mattn/emmet-vim' " div>ul>li*3 ,,
   Plug 'AndrewRadev/tagalong.vim' " changes ending tags
