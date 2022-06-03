@@ -612,10 +612,10 @@ mouse:
 # in the order they were defined in.
 key_bindings:
   # hexdump and ctrl+D to see hex in Mac
-  - { key: T,     mods: Command,       chars: "\x01\x63" }  # New window
-  - { key: W,     mods: Command,       chars: "\x01\x26" }  # Kill window
-  - { key: Tab,     mods: Control,       chars: "\x01\x6e" }  # Next window
-  - { key: Tab,     mods: Control|Shift,       chars: "\x01\x70" }  # Prev window
+  - { key: T,        mods: Command,       chars: "\x01\x63" }  # New window
+  - { key: W,        mods: Command,       chars: "\x01\x26" }  # Kill window
+  - { key: Tab,      mods: Control,       chars: "\x01\x6e" }  # Next window
+  - { key: Tab,      mods: Control|Shift, chars: "\x01\x70" }  # Prev window
   - { key: Key1,     mods: Command,       chars: "\x01\x31" }  # X-th window
   - { key: Key2,     mods: Command,       chars: "\x01\x32" }  # X-th window
   - { key: Key3,     mods: Command,       chars: "\x01\x33" }  # X-th window
@@ -625,7 +625,8 @@ key_bindings:
   - { key: Key7,     mods: Command,       chars: "\x01\x37" }  # X-th window
   - { key: Key8,     mods: Command,       chars: "\x01\x38" }  # X-th window
   - { key: Key9,     mods: Command,       chars: "\x01\x39" }  # X-th window
-  - { key: Escape,     mods: Command,       chars: "\x01\x5b" }  # Tmux Vi mode
+  - { key: Escape,   mods: Command,       chars: "\x01\x5b" }  # Tmux Vi mode
+  - { key: E,        mods: Command,       chars: "\x01\x05" }  # Tmux pane fzf
 
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
