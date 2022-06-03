@@ -112,6 +112,7 @@ bindkey -v '^?' backward-delete-char
 autoload edit-command-line; zle -N edit-command-line
 # bindkey -M vicmd v edit-command-line
 bindkey "^X^E" edit-command-line
+bindkey -M viins '\e.' insert-last-word
 
 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 export KEYTIMEOUT=1
