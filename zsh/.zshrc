@@ -41,7 +41,7 @@ PROMPT='%F{%(?.blue.red)}%~%f ${vcs_info_msg_0_}$ '
 
 # History
 HISTFILE=~/.zsh_history
-HISTSIZE=1000000000
+HISTSIZE=10000000
 SAVEHIST=$HISTSIZE
 # Append immediately
 setopt INC_APPEND_HISTORY
@@ -118,3 +118,9 @@ export KEYTIMEOUT=1
 
 # FASD
 eval "$(fasd --init auto)"
+
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export WORKON_HOME=~/.venv
+
+# added by Snowflake SnowSQL installer v1.2
+export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
