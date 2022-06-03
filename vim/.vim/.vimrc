@@ -138,6 +138,9 @@ let mapleader=' '
 let maplocalleader = ','
 nnoremap <SPACE> <Nop>
 
+" Path to clipboard
+command! CopyPath let @+ = expand('%:p')
+
 " Remap start and end
 nnoremap H ^
 nnoremap L $
