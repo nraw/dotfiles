@@ -510,7 +510,7 @@ augroup Catalog
 augroup END
 
 " Useful Commands
-:command! Json :%!python -m json.tool
+:command! Json :%!python3 -m json.tool
 :command! E :edit .
 :command! RC :edit ~/dotfiles/vim/.vim/.vimrc
 :command! Notes :Files ~/vimwiki
@@ -519,6 +519,7 @@ augroup END
 :command! Event :read !icalBuddy -n -li 1 -ps '/ | /' -b '\# ' -nnr -ea -nc -eed -nrd -tf "\%Y-\%b-\%d" -iep title,datetime,attendees -po title,datetime eventsToday
 :command! Re :so $MYVIMRC
 :command! Box :exec "!box_dump % | pbcopy"
+" kube_sync current file
 nnoremap <leader>ks :Start! ks % <CR>
 :command! -nargs=1 Pic :r !save_pic <args>
 :command! OCR :r !ocr
