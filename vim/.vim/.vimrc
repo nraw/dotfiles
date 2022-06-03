@@ -402,14 +402,17 @@ map <Leader>ei :call SlimuxSendCommand(expand('<cword>') . '.info()')<CR>
 map <Leader>ek :call SlimuxSendCommand(expand('<cword>') . '.keys()')<CR>
 map <Leader>el :call SlimuxSendCommand('len(' . expand('<cword>') . ')')<CR>
 map <Leader>en :call SlimuxSendCommand('next(iter(' . expand('<cword>') . '))')<CR>
-map <Leader>ep :call SlimuxSendCommand('print(' . expand('<cword>') . ')')<CR>
+map <Leader>ep :call SlimuxSendCommand(getline('.') . 'pass')<CR>
 map <Leader>er :call SlimuxSendCommand('%run ' . expand('%'))<CR>
 map <Leader>es :call SlimuxSendCommand(expand('<cword>') . '.size()')<CR>
-map <Leader>et :call SlimuxSendCommand(expand('<cword>') . '.iloc[0].T')<CR>
+map <Leader>e1 :call SlimuxSendCommand(expand('<cword>') . '.iloc[0]')<CR>
 map <Leader>ev :call SlimuxSendCommand('from visidata import view_pandas as vd; vd(' . expand('<cword>') . ')')<CR>
 map <Leader>e_ :call SlimuxSendCommand(expand('<cword>') . ' = _')<CR>
 map <Leader>ekl :call SlimuxSendCommand(expand('<cword>') . '=catalog.load("' . expand('<cword>') . '")')<CR>
 map <Leader>eks :call SlimuxSendCommand('catalog.save("' . expand('<cword>') . '",' . expand('<cword>') . ')')<CR>
+map <Leader>eF :norm V[[O][ s<CR>
+map <Leader>ef :norm V[[%jO][k s<CR>
+nnoremap <Leader>ea /if __name__ == "__main__":<CR> <bar> kVgg :SlimuxREPLSendSelection<CR>
 
 
 
