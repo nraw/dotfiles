@@ -28,6 +28,7 @@ call plug#begin(g:plugged_home)
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
   Plug 'shumphrey/fugitive-gitlab.vim'
+  Plug 'junegunn/gv.vim'  " :GV
   Plug 'airblade/vim-gitgutter'
   " Indentation
   Plug 'michaeljsmith/vim-indent-object'  " vai,  dii
