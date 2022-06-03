@@ -80,7 +80,7 @@ call plug#begin(g:plugged_home)
   Plug 'rstacruz/vim-ultisnips-css'
   " Better understanding
   Plug 'mbbill/undotree' " F5
-  Plug 'junegunn/vim-peekaboo'
+  " Plug 'junegunn/vim-peekaboo'
   " File manager integration
   Plug 'mcchrish/nnn.vim'
   " Collaboration
