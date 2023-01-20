@@ -26,6 +26,7 @@ call plug#begin(g:plugged_home)
   Plug 'romainl/vim-cool'
   " Git
   Plug 'tpope/vim-fugitive'
+  Plug 'sodapopcan/vim-twiggy'
   Plug 'tpope/vim-rhubarb'
   Plug 'shumphrey/fugitive-gitlab.vim'
   Plug 'junegunn/gv.vim'  " :GV
@@ -66,12 +67,14 @@ call plug#begin(g:plugged_home)
   Plug 'machakann/vim-sandwich' " saiw(, sdb and srb, sdf, saiwf
   " Tmux
   Plug 'christoomey/vim-tmux-navigator'
-  Plug 'benmills/vimux'
+  " Plug 'benmills/vimux'
   " Plug 'esamattis/slimux'
   Plug 'lotabout/slimux'
   " Vim Wiki
   Plug 'vimwiki/vimwiki'
   Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+  " Images
+  Plug 'img-paste-devs/img-paste.vim'
   " Terraform
   Plug 'hashivim/vim-terraform'
   " Front End
@@ -354,7 +357,11 @@ let g:ale_fixers = {
  \ 'css': ['prettier'],  
  \ 'javascript': ['prettier'],  
  \ 'html': ['prettier'],  
+ \ 'sql': ['sqlfmt'],  
  \ 'markdown': ['prettier']}
+
+let g:ale_python_flake8_options = '--max-line-length=100'
+let g:ale_sql_sqlfmt_options = ''
 
 command! ALEDisableFixers let g:ale_fix_on_save=0
 command! ALEEnableFixers  let g:ale_fix_on_save=1
@@ -509,6 +516,10 @@ augroup Catalog
     autocmd BufNewFile,BufRead catalog.yml UltiSnipsAddFiletypes catalog
 augroup END
 
+" mdip image paste
+let g:mdip_imgdir = 'img'
+let g:mdip_imgname = 'image'
+
 " Useful Commands
 :command! Json :%!python3 -m json.tool
 :command! E :edit .
@@ -526,6 +537,8 @@ nnoremap <leader>ks :Start! ks % <CR>
 
 " FZF
 nnoremap ,, :Commands<CR>
+nnoremap ,. :History:<CR>
+nnoremap ,/ :Rg<CR>
 nnoremap <C-p> :Files<CR>
 nnoremap <C-e> :Buffers<CR>
 nnoremap <C-n> :Notes<CR>
@@ -543,10 +556,12 @@ augroup END
 
 " Enterprise
 let g:github_enterprise_urls = ['https://githuben.intranet.mckinsey.com']
-let g:fugitive_gitlab_domains = ['https://git.msv.mckinsey.com']
+let g:fugitive_gitlab_domains = ['https://git.msv.mckinsey.com', 'https://gitlab.tools.leapx.digital']
 
 " Fugitive Conflict Resolution (besides do and dp)
 nnoremap <leader>gd :Gdiffsplit!<CR>
+nnoremap <leader>P :Git push<CR>
+nnoremap <leader>p :Git pull<CR>
 " nnoremap gdh :diffget //2<CR>
 " nnoremap gdl :diffget //3<CR>
 
