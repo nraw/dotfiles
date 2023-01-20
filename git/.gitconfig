@@ -36,3 +36,5 @@
     branch = auto 
    [branch]  
     autosetuprebase = always 
+[safe]
+	directory = /private/tmp
