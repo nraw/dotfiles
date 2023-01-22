@@ -54,6 +54,8 @@ call plug#begin(g:plugged_home)
   " Snippets
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
+  Plug 'srydell/vim-skeleton'
+  Plug 'tpope/vim-projectionist'
   " Refactoring
   Plug 'apalmer1377/factorus'
   " Help
@@ -314,7 +316,7 @@ augroup NCM2
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 augroup END
 set shortmess+=c
-let ncm2#popup_delay = 5
+let ncm2#popup_delay = 3
 let ncm2#complete_length = [[1, 1]]
 " Use new fuzzy based matches
 let g:ncm2#matcher = 'substrfuzzy'
@@ -394,6 +396,7 @@ let g:slimux_select_from_current_window = 1
 map <Leader>s :SlimuxREPLSendLine<CR>
 vmap <Leader>s :SlimuxREPLSendSelection<CR>
 map <Leader>b :SlimuxREPLSendBuffer<CR>
+map <Leader>eq :SlimuxGlobalConfigure<CR>
 " map <Leader>a :SlimuxShellLast<CR>
 " map <Leader>ak :SlimuxSendKeysLast<CR>
 
@@ -489,8 +492,8 @@ inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
 
 let g:UltiSnipsRemoveSelectModeMappings = 0
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsJumpForwardTrigger='<c-n>'
-let g:UltiSnipsJumpBackwardTrigger='<c-b>'
+let g:UltiSnipsJumpForwardTrigger='<tab>'
+let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 let g:UltiSnipsExpandTrigger='<Plug>(ultisnips_expand)'
 let g:ultisnips_python_style='google'
 
@@ -510,7 +513,7 @@ let g:nnn#action = {
 
 " Kedro
 xnoremap <leader>ko <esc>:'<,'>!xargs -I _ kedropipe _ <CR>
-nnoremap <leader>kn :.w !xargs -I _ kedro_new_node _ <CR>
+nnoremap <leader>kn :.w !xargs -I _ fmake _ <CR>
 nnoremap <leader>kc :.w !xargs -I _ kedro_add_catalog _ <CR>
 augroup Catalog
     autocmd BufNewFile,BufRead catalog.yml UltiSnipsAddFiletypes catalog
@@ -591,3 +594,34 @@ augroup fasd
 augroup END
 command! FASD call fzf#run(fzf#wrap({'source': 'fasd -al', 'options': '--no-sort --tac --tiebreak=index'}))
 
+" vim-test
+let test#strategy = "slimux"
+nmap <silent> <leader>tt :TestNearest<CR>
+nmap <silent> <leader>tl :TestLast<CR>
+
+" CopyMatches
+function! CopyMatches(reg)
+  let hits = []
+  %s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/gne
+  let reg = empty(a:reg) ? '+' : a:reg
+  execute 'let @'.reg.' = join(hits, "\n") . "\n"'
+endfunction
+command! -register CopyMatches call CopyMatches(<q-reg>)
+
+" Projectionist
+let src_dir = fnamemodify(getcwd(), ':t')
+let g:projectionist_heuristics = {
+      \ src_dir . "/*": {
+      \     src_dir . "/*.py":
+      \     {
+      \         "alternate": "tests/{dirname}/test_{basename}.py",
+      \         "type": "src",
+      \         "template": ["def {basename}():"]
+      \     },
+      \    "tests/**/test_*.py":
+      \     {
+      \         "alternate": [src_dir . "/{basename}.py", src_dir . "/{dirname}/{basename}.py"],
+      \         "type": "test",
+      \         "template": ["from " . src_dir . ".{dot} import *\n\n\ndef test_{underscore}():\n    pass"]
+      \     }
+      \ }}
