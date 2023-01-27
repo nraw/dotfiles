@@ -1,0 +1,16 @@
+local builtin = require("telescope.builtin")
+vim.keymap.set("n", ",,", builtin.command_history)
+vim.keymap.set("n", ",.", builtin.commands)
+vim.keymap.set("n", ",/", builtin.live_grep)
+vim.keymap.set("n", "<c-p>", builtin.find_files, {})
+vim.keymap.set("n", "<c-e>", builtin.buffers, {})
+vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
+
+-- Wiki stuff
+vim.api.nvim_create_user_command("Notes", function()
+	builtin.find_files({ cwd = vim.fn.expand("~/vimwiki") })
+end, {})
+vim.keymap.set("n", "<C-n>", ":Notes<CR>")
+vim.api.nvim_create_user_command("NNR", function()
+	builtin.live_grep({ cwd = vim.fn.expand("~/vimwiki") })
+end, {})

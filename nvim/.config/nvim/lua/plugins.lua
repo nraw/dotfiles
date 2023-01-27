@@ -7,10 +7,6 @@ return require("packer").startup(function(use)
 	use("kristijanhusak/vim-hybrid-material")
 	use("vim-airline/vim-airline")
 	use("vim-airline/vim-airline-themes")
-	-- FZF <3
-	use({ "junegunn/fzf", run = ":call fzf#install()" })
-	use("junegunn/fzf.vim")
-	use("jesseleite/vim-agriculture") -- :RgRaw
 	-- Telescope
 	use({
 		"nvim-telescope/telescope.nvim",
@@ -44,6 +40,10 @@ return require("packer").startup(function(use)
 		},
 	})
 	use("hrsh7th/cmp-cmdline")
+	-- Trouble
+	use({ "folke/trouble.nvim", requires = "nvim-tree/nvim-web-devicons" })
+	-- Formatter
+	use({ "mhartington/formatter.nvim" })
 	-- Moving around
 	use("tpope/vim-unimpaired") -- ]q ]Q cnext, ]a next, ]b bnext, ]<Space> newline
 	use("troydm/zoomwintab.vim") -- <leader>z
@@ -87,6 +87,8 @@ return require("packer").startup(function(use)
 	-- Comments and Docstrings
 	use("scrooloose/nerdcommenter") -- <leader>c<space>
 	-- Colors
+	use("rafi/awesome-vim-colorschemes")
+
 	use("mechatroner/rainbow_csv", { ft = "csv" })
 	-- Surrounding
 	use("machakann/vim-sandwich") -- saiw(, sdb and srb, sdf, saiwf

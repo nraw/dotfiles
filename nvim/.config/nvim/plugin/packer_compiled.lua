@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["awesome-vim-colorschemes"] = {
+    loaded = true,
+    path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/awesome-vim-colorschemes",
+    url = "https://github.com/rafi/awesome-vim-colorschemes"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -119,6 +124,11 @@ _G.packer_plugins = {
     path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/factorus",
     url = "https://github.com/apalmer1377/factorus"
   },
+  ["formatter.nvim"] = {
+    loaded = true,
+    path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/formatter.nvim",
+    url = "https://github.com/mhartington/formatter.nvim"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/friendly-snippets",
@@ -128,16 +138,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/fugitive-gitlab.vim",
     url = "https://github.com/shumphrey/fugitive-gitlab.vim"
-  },
-  fzf = {
-    loaded = true,
-    path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/fzf",
-    url = "https://github.com/junegunn/fzf"
-  },
-  ["fzf.vim"] = {
-    loaded = true,
-    path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/fzf.vim",
-    url = "https://github.com/junegunn/fzf.vim"
   },
   ["gv.vim"] = {
     loaded = true,
@@ -179,6 +179,11 @@ _G.packer_plugins = {
     path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
+  ["nvim-web-devicons"] = {
+    loaded = true,
+    path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    url = "https://github.com/nvim-tree/nvim-web-devicons"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -214,15 +219,15 @@ _G.packer_plugins = {
     path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["trouble.nvim"] = {
+    loaded = true,
+    path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/trouble.nvim",
+    url = "https://github.com/folke/trouble.nvim"
+  },
   undotree = {
     loaded = true,
     path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/undotree",
     url = "https://github.com/mbbill/undotree"
-  },
-  ["vim-agriculture"] = {
-    loaded = true,
-    path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/vim-agriculture",
-    url = "https://github.com/jesseleite/vim-agriculture"
   },
   ["vim-airline"] = {
     loaded = true,

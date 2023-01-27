@@ -17,7 +17,7 @@ vim.api.nvim_create_user_command("Json", function()
 end, {})
 
 -- Go to RC
-vim.api.nvim_create_user_command("RC", ":edit ~/dotfiles/nvim/.config/nvim/lua/config.lua", {})
+vim.api.nvim_create_user_command("RC", ":edit ~/dotfiles/nvim/.config/nvim/init.lua", {})
 
 -- Add current date
 vim.api.nvim_create_user_command("Date", ":r !date +'%F'", {})

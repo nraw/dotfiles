@@ -14,4 +14,8 @@ vim.g.projectionist_heuristics = {
 			template = { "from " .. src_dir .. ".{dot} import *\n\n\ndef test_{underscore}():\n    pass" },
 		},
 	},
+	["*"] = {
+		["/Users/andrej_marsic/.config/nvim/after/plugin/*.lua"] = { type = "plug" },
+		["/Users/andrej_marsic/vimwiki/*.md"] = { type = "note" },
+	},
 }

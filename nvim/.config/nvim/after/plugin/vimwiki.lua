@@ -6,16 +6,15 @@ vim.g.vimwiki_table_mappings = 0
 
 -- Vimwiki commands
 vim.api.nvim_create_user_command("Diary", "VimwikiDiaryIndex", {})
-vim.api.nvim_create_user_command("Notes", ":Files ~/vimwiki", {})
-vim.api.nvim_create_user_command("NNR", ":RgRaw -L '' ~/vimwiki", {})
 
 -- Vimwiki maps
 local vimwiki_group = vim.api.nvim_create_augroup("vimwiki", { clear = true })
 vim.api.nvim_create_autocmd(
 	{ "BufRead", "BufNewFile" },
-	{ pattern = "diary.md", group = "vimwiki", command = "VimwikiDiaryGenerateLinks" }
+	{ pattern = "diary.md", group = vimwiki_group, command = "VimwikiDiaryGenerateLinks" }
 )
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	pattern = "*/vimwiki/**",
+	group = vimwiki_group,
 	command = [[execute ':silent ! cd ~/vimwiki && nohup $(if git rev-parse --git-dir > /dev/null 2>&1 ; then git add . && git commit -m "Auto-commit: saved %" && git push; fi > /dev/null 2>&1) &']],
 })
