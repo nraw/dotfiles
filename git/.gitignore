@@ -129,3 +129,6 @@ tags/
 
 # kubesync
 .kube_sync
+
+# Mac
+.DS_Store
