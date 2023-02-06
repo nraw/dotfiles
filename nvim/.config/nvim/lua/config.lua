@@ -1,6 +1,5 @@
 local cmd = vim.cmd -- to execute Vim commands e.g. cmd('pwd')
 local fn = vim.fn -- to call Vim functions e.g. fn.bufnr()
-local g = vim.g -- a table to access global variables
 
 -- Options
 vim.o.number = true
@@ -40,3 +39,6 @@ vim.g.netrw_liststyle = 3
 vim.cmd([[
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
 ]])
+
+-- wikilocation
+vim.g.vimwiki = vim.fn.expand("~/vimwiki/")

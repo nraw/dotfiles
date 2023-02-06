@@ -25,6 +25,7 @@ vim.keymap.set("v", ">", ">gv")
 
 -- Yank
 vim.keymap.set("n", "Y", "y$")
+vim.keymap.set("n", "gy", "mzggVGy'z")
 
 -- Big Undo
 vim.keymap.set("n", "U", ":earlier 1f<CR>")

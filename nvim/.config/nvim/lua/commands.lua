@@ -21,6 +21,10 @@ vim.api.nvim_create_user_command("RC", ":edit ~/dotfiles/nvim/.config/nvim/init.
 
 -- Add current date
 vim.api.nvim_create_user_command("Date", ":r !date +'%F'", {})
+vim.api.nvim_create_user_command("Diary", function()
+	local today = os.date("%Y-%m-%d")
+	vim.cmd(":e " .. vim.g.vimwiki .. "diary/" .. today .. ".md")
+end, {})
 
 -- function write_here(text)
 --   local pos = vim.api.nvim_win_get_cursor(0)[2]
@@ -40,6 +44,7 @@ vim.api.nvim_create_user_command(
 		local next_event = command_output:read("*a")
 		next_event = string.gsub(next_event, "\n", "")
 		next_event = string.gsub(next_event, "\\#", "#")
+		next_event = string.gsub(next_event, "\\", "")
 		local pos = vim.api.nvim_win_get_cursor(0)[2]
 		local line = vim.api.nvim_get_current_line()
 		local nline = line:sub(0, pos) .. next_event .. line:sub(pos + 1)

@@ -4,7 +4,16 @@
 vim.keymap.set("n", "<leader>kn", ":.w !xargs -I _ fmake _ <CR>")
 
 -- kubesync
-vim.keymap.set("n", "<leader>ks", ":Start! ks % <CR>")
+function KubeSync()
+	vim.cmd([[Start! ks %]])
+	local kube_group = vim.api.nvim_create_augroup("kubesync", {})
+	vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+		pattern = vim.fn.expand("%:p:h:h") .. "*",
+		group = kube_group,
+		callback = KubeSync,
+	})
+end
+vim.keymap.set("n", "<leader>ks", KubeSync)
 
 -- OCR
 vim.api.nvim_create_user_command("OCR", ":r !ocr", {})
