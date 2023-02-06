@@ -11,11 +11,12 @@ vim.g.projectionist_heuristics = {
 		["tests/**/test_*.py"] = {
 			alternate = { src_dir .. "/{basename}.py", src_dir .. "/{dirname}/{basename}.py" },
 			type = "test",
-			template = { "from " .. src_dir .. ".{dot} import *\n\n\ndef test_{underscore}():\n    pass" },
+			template = { "from " .. src_dir .. ".{dot} import *\n\n\ndef test_{underscore}():\n    {underscore}()" },
 		},
 	},
 	["*"] = {
 		["/Users/andrej_marsic/.config/nvim/after/plugin/*.lua"] = { type = "plug" },
 		["/Users/andrej_marsic/vimwiki/*.md"] = { type = "note" },
+		["/Users/andrej_marsic/vimwiki/diary/*.md"] = { type = "diary" },
 	},
 }
