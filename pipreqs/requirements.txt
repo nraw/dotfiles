@@ -449,7 +449,7 @@ retype==19.9.0
 rexpy==0.0.0
 rfc3986==1.4.0
 rich==5.2.0
-rsa==4.6
+rsa==4.7
 rshell==0.0.28
 ruamel.yaml==0.16.10
 ruamel.yaml.clib==0.2.0
