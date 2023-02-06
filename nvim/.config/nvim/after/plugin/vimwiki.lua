@@ -1,18 +1,18 @@
 -- VimWiki
 -- Vimwiki options
-vim.g.vimwiki_list = { { path = "~/vimwiki/", syntax = "markdown", ext = ".md" } }
-vim.g.vimwiki_global_ext = 0 -- Removes <CR> behaviour from random md files
-vim.g.vimwiki_table_mappings = 0
+-- vim.g.vimwiki_list = { { path = "~/vimwiki/", syntax = "markdown", ext = ".md" } }
+-- vim.g.vimwiki_global_ext = 0 -- Removes <CR> behaviour from random md files
+-- vim.g.vimwiki_table_mappings = 0
 
--- Vimwiki commands
-vim.api.nvim_create_user_command("Diary", "VimwikiDiaryIndex", {})
+-- -- Vimwiki commands
+-- vim.api.nvim_create_user_command("Diary", "VimwikiDiaryIndex", {})
 
 -- Vimwiki maps
 local vimwiki_group = vim.api.nvim_create_augroup("vimwiki", { clear = true })
-vim.api.nvim_create_autocmd(
-	{ "BufRead", "BufNewFile" },
-	{ pattern = "diary.md", group = vimwiki_group, command = "VimwikiDiaryGenerateLinks" }
-)
+-- vim.api.nvim_create_autocmd(
+--   { "BufRead", "BufNewFile" },
+--   { pattern = "diary.md", group = vimwiki_group, command = "VimwikiDiaryGenerateLinks" }
+-- )
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	pattern = "*/vimwiki/**",
 	group = vimwiki_group,
