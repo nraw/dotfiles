@@ -145,7 +145,7 @@ from==0.1.0
 fsspec==0.6.3
 ftfy==5.8
 funcy==1.14
-future==0.18.2
+future==0.18.3
 gast==0.3.3
 gensim==3.8.3
 geopandas==0.8.1
