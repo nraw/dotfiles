@@ -185,7 +185,7 @@ html5lib==1.1
 htmlmin==0.1.12
 httpcore==0.9.1
 httpie==2.2.0
-httplib2==0.18.1
+httplib2==0.19.0
 httpx==0.13.3
 humanize==2.6.0
 hyper==0.7.0
