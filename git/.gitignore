@@ -126,3 +126,9 @@ dmypy.json
 
 # Gutentags
 tags/
+
+# kubesync
+.kube_sync
+
+# Mac
+.DS_Store

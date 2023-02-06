@@ -1,72 +1,56 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
-export ZSH="/Users/andrej_marsic/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="avit"
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(cp copydir copybuffer)
-
-source $ZSH/oh-my-zsh.sh
-
 # User configuration
+
+# Prompt
+
+autoload -Uz vcs_info
+precmd() { vcs_info }
+
+zstyle ':vcs_info:git:*' formats '%F{%m}%b%f '
+zstyle ':vcs_info:git:*' actionformats '%F{%m}%b%f|%a '
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+
++vi-git-untracked() {
+  if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]]
+  then
+    st=$(git status --porcelain)
+    if echo $st | grep -m 1 '^UU' &>/dev/null
+    then
+      hook_com[misc]='magenta'
+    elif echo $st | grep -m 1 '^??' &>/dev/null
+    then
+      hook_com[misc]='red'
+    elif echo $st | grep -m 1 '^ M' &>/dev/null
+    then
+      hook_com[misc]='red'
+    elif echo $st | grep -m 1 '^M' &>/dev/null
+    then
+      hook_com[misc]='yellow'
+    elif echo $st | grep -m 1 '^A' &>/dev/null
+    then
+      hook_com[misc]='yellow'
+    else
+      hook_com[misc]='green'
+    fi
+  else
+    hook_com[misc]='white'
+  fi
+}
+
+setopt PROMPT_SUBST
+PROMPT='%F{%(?.blue.red)}%~%f ${vcs_info_msg_0_}$ '
+
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=10000000
+SAVEHIST=$HISTSIZE
+# Append immediately
+setopt INC_APPEND_HISTORY
+# Add timestamps
+export HISTTIMEFORMAT="[%F %T] "
+setopt EXTENDED_HISTORY
+# No duplicates
+setopt HIST_FIND_NO_DUPS
+export HISTTIMEFORMAT="%F %T "
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -79,38 +63,28 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='nvim'
 fi
-
 export VISUAL=nvim
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+
+# locales
+
+export LC_ALL="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+export SSH_KEY_PATH="~/.ssh/rsa_id"
 
- #Auto suggestion
-#source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Auto suggestion
+# source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 #bindkey '^ ' autosuggest-accept
 
 # autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
+# Aliases
 . ~/.zsh_aliases
 
-#export nb2py=jupyter nbconvert --to script *.ipynb
-# Virtual env wrapper
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/code
-source /usr/local/bin/virtualenvwrapper.sh
 
-export AIRFLOW_HOME=~/airflow
-
+autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
 # Vault
@@ -119,19 +93,35 @@ complete -o nospace -C /usr/local/bin/vault vault
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# ALT-I - Paste the selected entry from locate output into the command line
-fzf-locate-widget() {
-  local selected
-  if selected=$(locate / | fzf -q "$LBUFFER"); then
-    LBUFFER=$selected
-  fi
-  zle redisplay
-}
-zle     -N    fzf-locate-widget
-bindkey '\ei' fzf-locate-widget
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/bin"
 
-# Created by `userpath` on 2020-03-17 13:05:08
-export PATH="$PATH:/Users/andrej_marsic/.local/bin"
+# Brew shouldn't upgrade everything every time I want to install something
+export HOMEBREW_NO_AUTO_UPDATE=1
 
 # box autocomplete setup
 BOX_AC_ZSH_SETUP_PATH=/Users/andrej_marsic/Library/Caches/@box/cli/autocomplete/zsh_setup && test -f $BOX_AC_ZSH_SETUP_PATH && source $BOX_AC_ZSH_SETUP_PATH;
+[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
+
+# Fix backspace
+bindkey -v '^?' backward-delete-char
+
+# Vi mode stuff
+
+# edit command by pressing esc + v
+autoload edit-command-line; zle -N edit-command-line
+# bindkey -M vicmd v edit-command-line
+bindkey "^X^E" edit-command-line
+bindkey -M viins '\e.' insert-last-word
+
+# Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
+export KEYTIMEOUT=1
+
+# FASD
+eval "$(fasd --init auto)"
+
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export WORKON_HOME=~/.venv
+
+# added by Snowflake SnowSQL installer v1.2
+export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH

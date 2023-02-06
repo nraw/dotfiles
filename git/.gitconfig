@@ -1,11 +1,11 @@
 [user]
-	name = nraw
-	email = marsic.andrej@gmail.com
+	name = Andrej-Marsic
+	email = andrej_marsic@mckinsey.com
 [credential]
 	helper = store
 [core]  
     editor = nvim 
-	excludesfile = /home/nraw/.gitignore
+	excludesFile = ~/.gitignore
 [alias]
     aa = add --all
     au = add -u
@@ -39,3 +39,5 @@
     autosetuprebase = always 
 [merge]
 	conflictstyle = diff3
+[safe]
+	directory = /private/tmp
