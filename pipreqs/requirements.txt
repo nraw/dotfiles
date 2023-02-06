@@ -88,7 +88,7 @@ dash-core-components==1.10.2
 dash-html-components==1.0.3
 dash-renderer==1.6.0
 dash-table==4.9.0
-dask==2.23.0
+dask==2021.10.0
 databricks==0.2
 databricks-cli==0.11.0
 datrie==0.8.2
