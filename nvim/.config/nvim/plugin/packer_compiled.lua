@@ -269,11 +269,6 @@ _G.packer_plugins = {
     path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/vim-gitgutter",
     url = "https://github.com/airblade/vim-gitgutter"
   },
-  ["vim-hybrid-material"] = {
-    loaded = true,
-    path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/vim-hybrid-material",
-    url = "https://github.com/kristijanhusak/vim-hybrid-material"
-  },
   ["vim-indent-object"] = {
     loaded = true,
     path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/vim-indent-object",
@@ -329,30 +324,15 @@ _G.packer_plugins = {
     path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator",
     url = "https://github.com/christoomey/vim-tmux-navigator"
   },
-  ["vim-toggle-quickfix"] = {
-    loaded = true,
-    path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/vim-toggle-quickfix",
-    url = "https://github.com/drmingdrmer/vim-toggle-quickfix"
-  },
   ["vim-twiggy"] = {
     loaded = true,
     path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/vim-twiggy",
     url = "https://github.com/sodapopcan/vim-twiggy"
   },
-  ["vim-ultisnips-css"] = {
-    loaded = true,
-    path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/vim-ultisnips-css",
-    url = "https://github.com/rstacruz/vim-ultisnips-css"
-  },
   ["vim-unimpaired"] = {
     loaded = true,
     path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/vim-unimpaired",
     url = "https://github.com/tpope/vim-unimpaired"
-  },
-  vimwiki = {
-    loaded = true,
-    path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/vimwiki",
-    url = "https://github.com/vimwiki/vimwiki"
   },
   ["zoomwintab.vim"] = {
     loaded = true,

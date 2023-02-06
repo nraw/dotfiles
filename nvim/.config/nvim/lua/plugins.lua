@@ -4,7 +4,7 @@ return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- UI related
-	use("kristijanhusak/vim-hybrid-material")
+	-- use("kristijanhusak/vim-hybrid-material")
 	use("vim-airline/vim-airline")
 	use("vim-airline/vim-airline-themes")
 	-- Telescope
@@ -65,7 +65,7 @@ return require("packer").startup(function(use)
 	-- Tests
 	use("tpope/vim-dispatch")
 	use("vim-test/vim-test")
-	use("drmingdrmer/vim-toggle-quickfix")
+	-- use("drmingdrmer/vim-toggle-quickfix")
 	-- Linting
 	-- use("w0rp/ale")
 	-- Autocomplete
@@ -96,18 +96,19 @@ return require("packer").startup(function(use)
 	use("christoomey/vim-tmux-navigator")
 	use("lotabout/slimux")
 	-- Vim Wiki
-	use("vimwiki/vimwiki")
+	-- use("vimwiki/vimwiki")
 	use("suan/vim-instant-markdown", { ft = "markdown" })
 	-- Json
 	use("elzr/vim-json", { ft = "json" })
 	-- Front End
 	use("mattn/emmet-vim", { ft = "html" }) -- div>ul>li*3 ,,
 	use("AndrewRadev/tagalong.vim", { ft = "html" }) -- changes ending tags
-	use("rstacruz/vim-ultisnips-css")
+	-- use("rstacruz/vim-ultisnips-css")
 	-- Better understanding
 	use("mbbill/undotree") -- F5
 	-- Profiling
-	use("dstein64/vim-startuptime")
+	use("dstein64/vim-startuptime", { command = "StartupTime" })
+	-- Pair programming
 	-- use 'junegunn/vim-peekaboo'
 	-- File manager integration
 	-- use 'mcchrish/nnn.vim'
