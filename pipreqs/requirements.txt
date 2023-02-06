@@ -389,7 +389,7 @@ pyee==7.0.2
 pyfiglet==0.8.post1
 pyflakes==2.2.0
 pyglet==1.5.7
-Pygments==2.6.1
+Pygments==2.7.4
 pygtrie==2.3.2
 pyjq==2.4.0
 PyJWT==1.7.1
