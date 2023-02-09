@@ -16,6 +16,7 @@ return require("packer").startup(function(use)
 	})
 	-- Treesitter
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+	use("nvim-treesitter/playground")
 	-- LSP
 	use({
 		"VonHeikemen/lsp-zero.nvim",
@@ -33,6 +34,8 @@ return require("packer").startup(function(use)
 			{ "hrsh7th/cmp-path" }, -- Optional
 			{ "saadparwaiz1/cmp_luasnip" }, -- Optional
 			{ "hrsh7th/cmp-nvim-lua" }, -- Optional
+			{ "petertriho/cmp-git" },
+			{ "hrsh7th/cmp-nvim-lsp-signature-help"},
 
 			-- Snippets
 			{ "L3MON4D3/LuaSnip" }, -- Required
@@ -88,6 +91,7 @@ return require("packer").startup(function(use)
 	use("scrooloose/nerdcommenter") -- <leader>c<space>
 	-- Colors
 	use("rafi/awesome-vim-colorschemes")
+	use({ "projekt0n/github-nvim-theme", tag = "v0.0.7" })
 
 	use("mechatroner/rainbow_csv", { ft = "csv" })
 	-- Surrounding

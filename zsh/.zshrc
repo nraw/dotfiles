@@ -88,7 +88,7 @@ autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
 # Vault
-export VAULT_ADDR='https://vault.prod.init.ak8s.mckinsey.com'
+export VAULT_ADDR='https://vault.dsi.mckinsey.com'
 complete -o nospace -C /usr/local/bin/vault vault
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -113,6 +113,9 @@ autoload edit-command-line; zle -N edit-command-line
 # bindkey -M vicmd v edit-command-line
 bindkey "^X^E" edit-command-line
 bindkey -M viins '\e.' insert-last-word
+
+# use ctrl-z to go back to the app
+bindkey -s "^Z" 'fg^M'
 
 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 export KEYTIMEOUT=1

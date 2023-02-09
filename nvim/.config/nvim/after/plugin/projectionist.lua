@@ -1,6 +1,9 @@
 -- Projectionist
 -- Projectionist options
 local src_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+local _, path_depth = string.gsub(vim.fn.getcwd(), "/", "")
+local string_to_root = string.rep("../", path_depth)
+local home_dir_rel = string_to_root .. vim.fn.expand("~") .. "/"
 vim.g.projectionist_heuristics = {
 	[src_dir .. "/*"] = {
 		[src_dir .. "/*.py"] = {
@@ -15,8 +18,8 @@ vim.g.projectionist_heuristics = {
 		},
 	},
 	["*"] = {
-		["/Users/andrej_marsic/.config/nvim/after/plugin/*.lua"] = { type = "plug" },
-		["/Users/andrej_marsic/vimwiki/*.md"] = { type = "note" },
-		["/Users/andrej_marsic/vimwiki/diary/*.md"] = { type = "diary" },
+		[home_dir_rel .. ".config/nvim/after/plugin/*.lua"] = { type = "plug" },
+		[home_dir_rel .. "vimwiki/*.md"] = { type = "note" },
+		[home_dir_rel .. "vimwiki/diary/*.md"] = { type = "diary" },
 	},
 }

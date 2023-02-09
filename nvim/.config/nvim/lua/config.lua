@@ -21,13 +21,6 @@ vim.o.mouse = "a"
 vim.o.clipboard = "unnamedplus"
 vim.o.lazyredraw = true
 
--- UI
-vim.o.termguicolors = true
-cmd("colorscheme sunbather")
-vim.g.enable_bold_font = 1
-vim.g.enable_italic_font = 1
-vim.g["$NVIM_TUI_ENABLE_TRUE_COLOR"] = 1
-
 -- Scrolling
 vim.o.scrolloff = 5
 vim.o.sidescrolloff = 5

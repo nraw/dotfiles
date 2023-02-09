@@ -1,35 +1,57 @@
 local lsp = require("lsp-zero")
+lsp.preset("recommended")
 
-lsp.set_preferences({
-	suggest_lsp_servers = true,
-	setup_servers_on_start = true,
-	set_lsp_keymaps = true,
-	configure_diagnostics = true,
-	cmp_capabilities = true,
-	manage_nvim_cmp = true,
-	call_servers = "local",
-	sign_icons = {
-		error = "✘",
-		warn = "▲",
-		hint = "⚑",
-		info = "",
-	},
-})
 -- (Optional) Configure lua language server for neovim
 lsp.nvim_workspace()
+-- lsp.setup_nvim_cmp({
+--   preselect = "none",
+--   completion = {
+--     completeopt = "menu,menuone,noinsert,noselect",
+--   },
+-- })
 
--- local has_words_before = function()
---   unpack = unpack or table.unpack
---   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
---   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
--- end
+lsp.on_attach(function(client, bufnr)
+	local opts = { buffer = bufnr, remap = false }
 
+	vim.keymap.set("n", "gd", function()
+		vim.lsp.buf.definition()
+	end, opts)
+	vim.keymap.set("n", "K", function()
+		vim.lsp.buf.hover()
+	end, opts)
+	vim.keymap.set("n", "<leader>vws", function()
+		vim.lsp.buf.workspace_symbol()
+	end, opts)
+	vim.keymap.set("n", "<leader>vd", function()
+		vim.diagnostic.open_float()
+	end, opts)
+	vim.keymap.set("n", "[d", function()
+		vim.diagnostic.goto_next()
+	end, opts)
+	vim.keymap.set("n", "]d", function()
+		vim.diagnostic.goto_prev()
+	end, opts)
+	vim.keymap.set("n", "<leader>vca", function()
+		vim.lsp.buf.code_action()
+	end, opts)
+	vim.keymap.set("n", "<leader>vrr", function()
+		vim.lsp.buf.references()
+	end, opts)
+	vim.keymap.set("n", "<leader>r", function()
+		vim.lsp.buf.rename()
+	end, opts)
+	vim.keymap.set("i", "<C-h>", function()
+		vim.lsp.buf.signature_help()
+	end, opts)
+end)
+
+lsp.setup()
 local luasnip = require("luasnip")
 local cmp = require("cmp")
 
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
+-- vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
-local select_opts = { behavior = cmp.SelectBehavior.Select }
+-- local select_opts = { behavior = cmp.SelectBehavior.Select }
 
 cmp.setup({
 	snippet = {
@@ -38,38 +60,46 @@ cmp.setup({
 		end,
 	},
 	sources = {
-		{ name = "nvim_lsp" },
+		{ name = "nvim_lsp_signature_help" }, -- doesn't work
+		{ name = "nvim_lsp", max_item_count = 6 },
 		{ name = "path" },
-		{ name = "buffer" },
+		{ name = "buffer", max_item_count = 6 },
 		{ name = "luasnip" },
 	},
 	window = {
 		documentation = cmp.config.window.bordered(),
 	},
 	completion = {
-		get_trigger_characters = function(trigger_characters)
-			return vim.tbl_filter(function(char)
-				return char ~= " "
-			end, trigger_characters)
-		end,
+		completeopt = "menu,menuone,noinsert,noselect",
 	},
-	formatting = {
-		fields = { "menu", "abbr", "kind" },
-		format = function(entry, item)
-			local menu_icon = {
-				nvim_lsp = "λ",
-				luasnip = "⋗",
-				buffer = "Ω",
-				path = "🖫",
-			}
+	-- completion = {
+	--   get_trigger_characters = function(trigger_characters)
+	--     return vim.tbl_filter(function(char)
+	--       return char ~= " "
+	--     end, trigger_characters)
+	--   end,
+	-- },
+	-- formatting = {
+	--   fields = { "menu", "abbr", "kind" },
+	--   format = function(entry, item)
+	--     local menu_icon = {
+	--       nvim_lsp = "λ",
+	--       luasnip = "⋗",
+	--       buffer = "Ω",
+	--       path = "🖫",
+	--     }
 
-			item.menu = menu_icon[entry.source.name]
-			return item
-		end,
+	--     item.menu = menu_icon[entry.source.name]
+	--     return item
+	--   end,
+	-- },
+	experimental = {
+		native_menu = false,
+		ghost_text = true,
 	},
 	mapping = {
-		["<tab>"] = cmp.mapping.select_prev_item(select_opts),
-		["<s-tab>"] = cmp.mapping.select_next_item(select_opts),
+		-- ["<tab>"] = cmp.mapping.select_prev_item(select_opts),
+		-- ["<s-tab>"] = cmp.mapping.select_next_item(select_opts),
 
 		["<C-u>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
@@ -78,37 +108,23 @@ cmp.setup({
 		["<CR>"] = cmp.mapping.confirm({ select = false }),
 		-- ["<CR>"] = cmp.mapping.complete(),
 
-		["<C-d>"] = cmp.mapping(function(fallback)
-			if luasnip.jumpable(1) then
-				luasnip.jump(1)
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-
-		["<C-b>"] = cmp.mapping(function(fallback)
-			if luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-
 		["<Tab>"] = cmp.mapping(function(fallback)
-			local col = vim.fn.col(".") - 1
-
-			if cmp.visible() then
-				cmp.select_next_item(select_opts)
-			elseif col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
-				fallback()
+			if luasnip.expand_or_jumpable() then
+				luasnip.expand_or_jump()
+			elseif cmp.visible() then
+				cmp.select_next_item()
+			-- elseif has_words_before() then
+			--   cmp.complete()
 			else
-				cmp.complete()
+				fallback()
 			end
 		end, { "i", "s" }),
 
 		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item(select_opts)
+			if luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			elseif cmp.visible() then
+				cmp.select_prev_item()
 			else
 				fallback()
 			end
@@ -184,34 +200,34 @@ cmp.setup({
 --   }),
 -- })
 
--- -- Set configuration for specific filetype.
--- cmp.setup.filetype("gitcommit", {
---   sources = cmp.config.sources({
---     { name = "cmp_git" }, -- You can specify the `cmp_git` source if you were installed it.
---   }, {
---     { name = "buffer" },
---   }),
--- })
+-- Set configuration for specific filetype.
+cmp.setup.filetype("gitcommit", {
+	sources = cmp.config.sources({
+		{ name = "cmp_git" }, -- You can specify the `cmp_git` source if you were installed it.
+	}, {
+		{ name = "buffer" },
+	}),
+})
 
 -- -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
--- cmp.setup.cmdline({ "/", "?" }, {
---   mapping = cmp.mapping.preset.cmdline(),
---   sources = {
---     { name = "buffer" },
---   },
--- })
+cmp.setup.cmdline({ "/", "?" }, {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = {
+		{ name = "buffer" },
+	},
+})
 
 -- -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
--- cmp.setup.cmdline(":", {
---   mapping = cmp.mapping.preset.cmdline(),
---   sources = cmp.config.sources({
---     { name = "path" },
---   }, {
---     { name = "cmdline" },
---   }),
--- })
+cmp.setup.cmdline(":", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({
+		{ name = "path" },
+	}, {
+		{ name = "cmdline" },
+	}),
+})
 
-lsp.setup()
+-- lsp.setup()
 vim.diagnostic.config({
 	virtual_text = true,
 	signs = true,
@@ -220,9 +236,3 @@ vim.diagnostic.config({
 	severity_sort = true,
 	-- float = true,
 })
--- Set up lspconfig.
--- local capabilities = require("cmp_nvim_lsp").default_capabilities()
--- -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
--- require("lspconfig")["<YOUR_LSP_SERVER>"].setup({
---   capabilities = capabilities,
--- })
