@@ -13,7 +13,7 @@ require("telescope").setup({
 	},
 	pickers = {
 		find_files = {
-			find_command = { "rg", "--ignore", "-L", "--hidden", "--files" },
+			find_command = { "rg", "--ignore", "-L", "--files" }, -- "--hidden",
 		},
 		-- Default configuration for builtin pickers goes here:
 		-- picker_name = {
@@ -57,4 +57,8 @@ end, {})
 
 vim.api.nvim_create_user_command("RCFF", function()
 	builtin.live_grep({ cwd = vim.fn.expand("~/dotfiles/nvim/.config/nvim") })
+end, {})
+
+vim.api.nvim_create_user_command("TODO", function()
+	builtin.live_grep({ cwd = vim.fn.expand("~/vimwiki"), default_text = "TODO" })
 end, {})
