@@ -1,5 +1,6 @@
 local lsp = require("lsp-zero")
-lsp.preset("recommended")
+-- https://github.com/VonHeikemen/lsp-zero.nvim/wiki/Under-the-hood
+lsp.preset({ name = "recommended", set_lsp_keymaps = false, manage_nvim_cmp = true, suggest_lsp_servers = true })
 
 -- (Optional) Configure lua language server for neovim
 lsp.nvim_workspace()
@@ -52,6 +53,13 @@ local cmp = require("cmp")
 -- vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 -- local select_opts = { behavior = cmp.SelectBehavior.Select }
+-- Luasnip
+
+luasnip.config.set_config({
+	history = true,
+	updateevents = "TextChanged,TextChangedI",
+	enable_autosnippets = false,
+})
 
 cmp.setup({
 	snippet = {
@@ -227,7 +235,6 @@ cmp.setup.cmdline(":", {
 	}),
 })
 
--- lsp.setup()
 vim.diagnostic.config({
 	virtual_text = true,
 	signs = true,

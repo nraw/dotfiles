@@ -159,6 +159,11 @@ _G.packer_plugins = {
     path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/gv.vim",
     url = "https://github.com/junegunn/gv.vim"
   },
+  ["instant.nvim"] = {
+    loaded = true,
+    path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/instant.nvim",
+    url = "https://github.com/jbyuki/instant.nvim"
+  },
   ["lsp-zero.nvim"] = {
     loaded = true,
     path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
@@ -224,6 +229,11 @@ _G.packer_plugins = {
     path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/slimux",
     url = "https://github.com/lotabout/slimux"
   },
+  ["sqlite.lua"] = {
+    loaded = true,
+    path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/sqlite.lua",
+    url = "https://github.com/kkharji/sqlite.lua"
+  },
   ["tagalong.vim"] = {
     loaded = true,
     path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/tagalong.vim",
@@ -233,6 +243,26 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/targets.vim",
     url = "https://github.com/wellle/targets.vim"
+  },
+  ["telescope-bookmarks.nvim"] = {
+    loaded = true,
+    path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/telescope-bookmarks.nvim",
+    url = "https://github.com/dhruvmanila/telescope-bookmarks.nvim"
+  },
+  ["telescope-frecency.nvim"] = {
+    loaded = true,
+    path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/telescope-frecency.nvim",
+    url = "https://github.com/nvim-telescope/telescope-frecency.nvim"
+  },
+  ["telescope-fzf-native.nvim"] = {
+    loaded = true,
+    path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
+    url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
+  },
+  ["telescope-symbols.nvim"] = {
+    loaded = true,
+    path = "/Users/andrej_marsic/.local/share/nvim/site/pack/packer/start/telescope-symbols.nvim",
+    url = "https://github.com/nvim-telescope/telescope-symbols.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,

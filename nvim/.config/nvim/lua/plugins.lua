@@ -14,6 +14,13 @@ return require("packer").startup(function(use)
 		-- or                            , branch = '0.1.x',
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
+	use("dhruvmanila/telescope-bookmarks.nvim")
+	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+	use({
+		"nvim-telescope/telescope-frecency.nvim",
+		requires = { "kkharji/sqlite.lua" },
+	})
+	use("nvim-telescope/telescope-symbols.nvim")
 	-- Treesitter
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("nvim-treesitter/playground")
@@ -35,7 +42,7 @@ return require("packer").startup(function(use)
 			{ "saadparwaiz1/cmp_luasnip" }, -- Optional
 			{ "hrsh7th/cmp-nvim-lua" }, -- Optional
 			{ "petertriho/cmp-git" },
-			{ "hrsh7th/cmp-nvim-lsp-signature-help"},
+			{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 
 			-- Snippets
 			{ "L3MON4D3/LuaSnip" }, -- Required
@@ -113,6 +120,7 @@ return require("packer").startup(function(use)
 	-- Profiling
 	use("dstein64/vim-startuptime", { command = "StartupTime" })
 	-- Pair programming
+	use("jbyuki/instant.nvim")
 	-- use 'junegunn/vim-peekaboo'
 	-- File manager integration
 	-- use 'mcchrish/nnn.vim'
