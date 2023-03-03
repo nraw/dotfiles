@@ -97,6 +97,7 @@ return require("packer").startup(function(use)
 	-- Comments and Docstrings
 	use("scrooloose/nerdcommenter") -- <leader>c<space>
 	-- Colors
+	use("norcalli/nvim-colorizer.lua")
 	use("rafi/awesome-vim-colorschemes")
 	use({ "projekt0n/github-nvim-theme", tag = "v0.0.7" })
 
@@ -111,6 +112,8 @@ return require("packer").startup(function(use)
 	use("suan/vim-instant-markdown", { ft = "markdown" })
 	-- Json
 	use("elzr/vim-json", { ft = "json" })
+	-- Helm
+	use("towolf/vim-helm")
 	-- Front End
 	use("mattn/emmet-vim", { ft = "html" }) -- div>ul>li*3 ,,
 	use("AndrewRadev/tagalong.vim", { ft = "html" }) -- changes ending tags
@@ -121,10 +124,22 @@ return require("packer").startup(function(use)
 	use("dstein64/vim-startuptime", { command = "StartupTime" })
 	-- Pair programming
 	use("jbyuki/instant.nvim")
+	-- Which key
+	use({
+		"folke/which-key.nvim",
+		config = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
+			require("which-key").setup({
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			})
+		end,
+	})
 	-- use 'junegunn/vim-peekaboo'
 	-- File manager integration
 	-- use 'mcchrish/nnn.vim'
-	-- Collaboration
 	-- Potential
 	-- use 'Yggdroot/indentLine'
 	-- use 'easymotion/vim-easymotion'
@@ -138,6 +153,4 @@ return require("packer").startup(function(use)
 	-- use 'tbabej/taskwiki'
 	-- use 'wellle/context.vim'
 	-- Tmuxinator
-	-- Personal
-	-- use '/Users/andrej_marsic/code/research/kedro/ncm2-kedro_datasets'
 end)
