@@ -12,38 +12,48 @@ lsp.nvim_workspace()
 -- })
 
 lsp.on_attach(function(client, bufnr)
-	local opts = { buffer = bufnr, remap = false }
+	local function opts(desc)
+		return { buffer = bufnr, remap = false, desc = desc }
+	end
 
 	vim.keymap.set("n", "gd", function()
 		vim.lsp.buf.definition()
-	end, opts)
+	end, opts("Go to Definition"))
 	vim.keymap.set("n", "K", function()
 		vim.lsp.buf.hover()
-	end, opts)
+	end, opts("Hover"))
 	vim.keymap.set("n", "<leader>vws", function()
 		vim.lsp.buf.workspace_symbol()
-	end, opts)
+	end, opts("Workspace Symbol"))
 	vim.keymap.set("n", "<leader>vd", function()
 		vim.diagnostic.open_float()
-	end, opts)
+	end, opts("Open Float"))
 	vim.keymap.set("n", "[d", function()
 		vim.diagnostic.goto_next()
-	end, opts)
+	end, opts("Diagnostic Next"))
 	vim.keymap.set("n", "]d", function()
 		vim.diagnostic.goto_prev()
-	end, opts)
+	end, opts("Diagnostic Prev"))
 	vim.keymap.set("n", "<leader>vca", function()
 		vim.lsp.buf.code_action()
-	end, opts)
+	end, opts("Code Action"))
 	vim.keymap.set("n", "<leader>vrr", function()
 		vim.lsp.buf.references()
-	end, opts)
+	end, opts("References"))
 	vim.keymap.set("n", "<leader>r", function()
 		vim.lsp.buf.rename()
-	end, opts)
+	end, opts("Rename"))
 	vim.keymap.set("i", "<C-h>", function()
 		vim.lsp.buf.signature_help()
-	end, opts)
+	end, opts("Signature Help"))
+
+	-- Helm charts were horrible, so using plugin
+	if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then
+		vim.diagnostic.disable(bufnr)
+		vim.defer_fn(function()
+			vim.diagnostic.reset(nil, bufnr)
+		end, 1000)
+	end
 end)
 
 lsp.setup()
@@ -117,7 +127,7 @@ cmp.setup({
 		-- ["<CR>"] = cmp.mapping.complete(),
 
 		["<Tab>"] = cmp.mapping(function(fallback)
-			if luasnip.expand_or_jumpable() then
+			if luasnip.expand_or_locally_jumpable() then
 				luasnip.expand_or_jump()
 			elseif cmp.visible() then
 				cmp.select_next_item()
@@ -129,7 +139,7 @@ cmp.setup({
 		end, { "i", "s" }),
 
 		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if luasnip.jumpable(-1) then
+			if luasnip.locally_jumpable(-1) then
 				luasnip.jump(-1)
 			elseif cmp.visible() then
 				cmp.select_prev_item()
@@ -207,6 +217,9 @@ cmp.setup({
 --     { name = "buffer" },
 --   }),
 -- })
+
+-- snippets
+require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./luasnippets" } })
 
 -- Set configuration for specific filetype.
 cmp.setup.filetype("gitcommit", {

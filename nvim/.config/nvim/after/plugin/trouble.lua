@@ -71,11 +71,10 @@ vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", { silent = t
 vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { silent = true, noremap = true })
 vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, noremap = true })
 
-
--- Move with [t and ]t 
+-- Move with [t and ]t
 vim.keymap.set("n", "]t", function()
 	require("trouble").next({ skip_groups = true, jump = true })
-end, { silent = true, noremap = true })
+end, { silent = true, noremap = true, desc = "Trouble Next" })
 vim.keymap.set("n", "[t", function()
 	require("trouble").previous({ skip_groups = true, jump = true })
-end, { silent = true, noremap = true })
+end, { silent = true, noremap = true, desc = "Trouble Prev" })
