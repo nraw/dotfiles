@@ -19,18 +19,18 @@ vim.g.ale_fixers = {
 }
 
 -- ALE Keymaps
-vim.keymap.set("n", "]e", ":ALENextWrap<CR>", { silent = true })
-vim.keymap.set("n", "[e", ":ALEPreviousWrap<CR>", { silent = true })
-vim.keymap.set("n", "[E", ":ALEFirst<CR>", { silent = true })
-vim.keymap.set("n", "]E", ":ALELast<CR>", { silent = true })
+-- vim.keymap.set("n", "]e", ":ALENextWrap<CR>", { silent = true })
+-- vim.keymap.set("n", "[e", ":ALEPreviousWrap<CR>", { silent = true })
+-- vim.keymap.set("n", "[E", ":ALEFirst<CR>", { silent = true })
+-- vim.keymap.set("n", "]E", ":ALELast<CR>", { silent = true })
 
 -- ALE Commands
-vim.api.nvim_create_user_command("ALEDisableFixers", function()
-	vim.g.ale_fix_on_save = 0
-end, {})
-vim.api.nvim_create_user_command("ALEEnableFixers", function()
-	vim.g.ale_fix_on_save = 1
-end, {})
+-- vim.api.nvim_create_user_command("ALEDisableFixers", function()
+--   vim.g.ale_fix_on_save = 0
+-- end, {})
+-- vim.api.nvim_create_user_command("ALEEnableFixers", function()
+--   vim.g.ale_fix_on_save = 1
+-- end, {})
 
 -- ALE Specific Linter options
 vim.g.ale_python_flake8_options = "--max-line-length=100"
