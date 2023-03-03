@@ -1,7 +1,7 @@
 -- Personal
 -- Perosnal maps
 -- Fmake
-vim.keymap.set("n", "<leader>kn", ":.w !xargs -I _ fmake _ <CR>")
+vim.keymap.set("n", "<leader>kn", ":.w !xargs -I _ fmake _ <CR>", { desc = "fmake" })
 
 -- kubesync
 function KubeSync()
