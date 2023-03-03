@@ -1,6 +1,7 @@
 alias n="nvim"
 alias nu="nvim -u 'no-config'"
 alias lg="git lg"
+alias st="git st"
 alias nn='nvim -c "Notes"'
 alias nni='nvim ~/vimwiki/index.md'
 alias nnd='nvim -c "Diary"'
