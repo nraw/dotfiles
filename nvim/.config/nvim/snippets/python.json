@@ -1,0 +1,6 @@
+{"from project... import ...": {
+    "prefix": "fimp",
+    "body": "from project.${1:package/module} import ${1}$0",
+    "description": "Import statement that allows individual objects from the module to be imported directly into the caller’s symbol table."
+  }
+}
