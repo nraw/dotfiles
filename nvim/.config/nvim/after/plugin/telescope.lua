@@ -57,7 +57,7 @@ vim.keymap.set("n", ",p", require("telescope").extensions.frecency.frecency, { d
 vim.keymap.set("n", ",b", require("telescope").extensions.bookmarks.bookmarks, { desc = "Bookmarks" })
 vim.keymap.set("n", "<c-p>", builtin.find_files, { desc = "Files" })
 vim.keymap.set("n", "<c-e>", builtin.buffers, { desc = "Buffers" })
-vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find Help" })
+vim.keymap.set("n", ",h", builtin.help_tags, { desc = "Find Help" })
 
 -- Wiki stuff
 vim.api.nvim_create_user_command("Notes", function()
