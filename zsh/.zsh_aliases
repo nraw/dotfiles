@@ -30,3 +30,6 @@ alias j='fasd_cd -d'
 alias v='f -e nvim'
 alias vv='f -e vim'
 alias pyenv_init='eval "$(pyenv init -)"'
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
