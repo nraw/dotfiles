@@ -153,3 +153,4 @@ complete -C /usr/bin/mc mc
 
 
 source "/home/nraw/.local/etc/bash_completion.d/dephell.bash-completion"
+. "$HOME/.cargo/env"
