@@ -56,3 +56,7 @@ vim.keymap.set("n", "Q", "@q")
 vim.keymap.set("n", "<leader>Q", ":%norm @q<CR>")
 vim.keymap.set("n", "<leader>qp", 'o<esc>"qp')
 vim.keymap.set("n", "<leader>qy", '"qdd')
+
+-- Increments
+vim.keymap.set("n", "+", "<C-a>")
+vim.keymap.set("n", "=", "<C-x>")
