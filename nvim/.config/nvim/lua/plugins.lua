@@ -1,30 +1,30 @@
 vim.cmd([[packadd packer.nvim]])
 return require("packer").startup(function(use)
 	-- Packer can manage itself
-	use("wbthomason/packer.nvim")
+	use("wbthomason/packer.nvim") -- :PackerSync
 
 	-- UI related
 	-- use("kristijanhusak/vim-hybrid-material")
 	use("vim-airline/vim-airline")
 	use("vim-airline/vim-airline-themes")
+
 	-- Telescope
 	use({
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.1",
-		-- or                            , branch = '0.1.x',
+		-- tag = "0.1.1",
 		requires = { { "nvim-lua/plenary.nvim" } },
-	})
-	use("dhruvmanila/telescope-bookmarks.nvim")
-	use("danielvolchek/tailiscope.nvim") -- Tailwind
+	}) -- T ,, ,. c-p c-e
+	use("dhruvmanila/telescope-bookmarks.nvim") -- ,b
+	use("danielvolchek/tailiscope.nvim") -- ,w
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 	use({
 		"nvim-telescope/telescope-frecency.nvim",
 		requires = { "kkharji/sqlite.lua" },
-	})
+	}) -- ,p
 	use("nvim-telescope/telescope-symbols.nvim")
 	-- Treesitter
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-	use("nvim-treesitter/playground")
+	use("nvim-treesitter/playground") -- :TSPlaygroundToggle
 	-- LSP
 	use({
 		"VonHeikemen/lsp-zero.nvim",
@@ -51,9 +51,9 @@ return require("packer").startup(function(use)
 		},
 	})
 	use("hrsh7th/cmp-cmdline")
-	use("github/copilot.vim")
+	use("github/copilot.vim") -- c-j
 	-- Trouble
-	use({ "folke/trouble.nvim", requires = "nvim-tree/nvim-web-devicons" })
+	use({ "folke/trouble.nvim", requires = "nvim-tree/nvim-web-devicons" }) -- :Trouble
 	-- Formatter
 	use({ "mhartington/formatter.nvim" })
 	-- Moving around
@@ -65,18 +65,19 @@ return require("packer").startup(function(use)
 	-- Highlighting removed after moving
 	use("romainl/vim-cool")
 	-- Git
-	use("tpope/vim-fugitive")
-	use("sodapopcan/vim-twiggy")
-	use("tpope/vim-rhubarb")
+	use("tpope/vim-fugitive") -- :G
+	use("sodapopcan/vim-twiggy") -- :Twiggy
+	use("tpope/vim-rhubarb") -- :Gbrowse
 	use("shumphrey/fugitive-gitlab.vim")
 	use("junegunn/gv.vim") -- :GV
-	use("airblade/vim-gitgutter")
+	use("airblade/vim-gitgutter") -- ]h, [h, <leader>h, vic, :GitGutterFold
 	-- Indentation
 	use("michaeljsmith/vim-indent-object") -- vai,  dii
 	use("junegunn/vim-easy-align") -- Aligning with gaip + whatever
 	-- Tests
-	use("tpope/vim-dispatch")
-	use("vim-test/vim-test")
+	use("tpope/vim-dispatch") -- :Make, :Dispatch
+	use("vim-test/vim-test") -- <leader>tt, <leader>tf
+
 	-- use("drmingdrmer/vim-toggle-quickfix")
 	-- Linting
 	-- use("w0rp/ale")
@@ -93,9 +94,9 @@ return require("packer").startup(function(use)
 	-- use("quangnguyen30192/cmp-nvim-ultisnips")
 	-- use("honza/vim-snippets")
 	use("srydell/vim-skeleton")
-	use("tpope/vim-projectionist")
+	use("tpope/vim-projectionist") -- :A
 	-- Refactoring
-	use("apalmer1377/factorus")
+	use("apalmer1377/factorus") -- :Factorus
 	-- Comments and Docstrings
 	use("scrooloose/nerdcommenter") -- <leader>c<space>
 	-- Colors
@@ -111,7 +112,7 @@ return require("packer").startup(function(use)
 	use("lotabout/slimux")
 	-- Vim Wiki
 	-- use("vimwiki/vimwiki")
-	use("suan/vim-instant-markdown", { ft = "markdown" })
+	use("suan/vim-instant-markdown", { ft = "markdown" }) -- <leader>md
 	-- Json
 	use("elzr/vim-json", { ft = "json" })
 	-- Helm
@@ -125,7 +126,7 @@ return require("packer").startup(function(use)
 	-- Profiling
 	use("dstein64/vim-startuptime", { command = "StartupTime" })
 	-- Pair programming
-	use("jbyuki/instant.nvim")
+	use("jbyuki/instant.nvim") -- :InstantStartServer
 	-- Which key
 	use({
 		"folke/which-key.nvim",
