@@ -12,6 +12,7 @@ vim.o.showmode = false
 vim.o.swapfile = false
 vim.o.inccommand = "split" -- live substitution
 vim.o.foldenable = false
+vim.o.foldmethod = "indent"
 vim.opt.diffopt:append({ context = 99999 })
 vim.o.undofile = true
 vim.o.undodir = fn.expand("~/.vim/undodir")
