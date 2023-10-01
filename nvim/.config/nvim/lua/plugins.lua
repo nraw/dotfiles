@@ -71,6 +71,13 @@ return require("packer").startup(function(use)
 	use("shumphrey/fugitive-gitlab.vim")
 	use("junegunn/gv.vim") -- :GV
 	use("airblade/vim-gitgutter") -- ]h, [h, <leader>h, vic, :GitGutterFold
+	use({
+		"akinsho/git-conflict.nvim",
+		tag = "*",
+		config = function()
+			require("git-conflict").setup()
+		end,
+	}) -- co ct \c
 	-- Indentation
 	use("michaeljsmith/vim-indent-object") -- vai,  dii
 	use("junegunn/vim-easy-align") -- Aligning with gaip + whatever
