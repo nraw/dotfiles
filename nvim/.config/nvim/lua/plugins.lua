@@ -52,6 +52,7 @@ return require("packer").startup(function(use)
 	})
 	use("hrsh7th/cmp-cmdline")
 	use("github/copilot.vim") -- c-j
+	use("gsuuon/llm.nvim")
 	-- Trouble
 	use({ "folke/trouble.nvim", requires = "nvim-tree/nvim-web-devicons" }) -- :Trouble
 	-- Formatter

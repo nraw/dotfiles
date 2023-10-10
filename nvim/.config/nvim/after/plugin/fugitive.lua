@@ -12,3 +12,16 @@ vim.api.nvim_create_autocmd(
 	{ "BufRead", "BufNewFile" },
 	{ pattern = "Fugitive://*", group = hidden_group, command = "set bufhidden=delete" }
 )
+
+local gitcommit_group = vim.api.nvim_create_augroup("gitcommit_group", {})
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = "gitcommit",
+	group = slimux_group,
+	callback = function()
+		vim.keymap.set("n", "<Leader>c", ":Llm commit<CR>", { buffer = true })
+	end,
+})
+
+-- nvim_create_autocmd to run :Twiggy when opening fugitive status buffer
+-- local twiggy_group = vim.api.nvim_create_augroup("Fugitive", { clear = true })
+-- vim.api.nvim_create_autocmd({ "FileType" }, { pattern = "fugitive", group = twiggy_group, command = "Twiggy" })
