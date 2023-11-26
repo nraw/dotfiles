@@ -157,6 +157,8 @@ return require("packer").startup(function(use)
 			})
 		end,
 	})
+	-- File Manager
+	use("stevearc/oil.nvim")
 	-- use 'junegunn/vim-peekaboo'
 	-- File manager integration
 	-- use 'mcchrish/nnn.vim'
