@@ -54,3 +54,15 @@ vim.api.nvim_create_user_command(
 	-- ":read !icalBuddy -n -li 1 -ps '/ | /' -b '# ' -nnr -ea -nc -eed -nrd -tf '%Y-%b-%d' -iep title,datetime,attendees -po title,datetime eventsToday",
 	{}
 )
+
+vim.api.nvim_create_user_command("Jin", function()
+	local line = vim.api.nvim_get_current_line()
+	line = line:gsub("TODO: ", "")
+	local buffer_name = vim.api.nvim_buf_get_name(0)
+	-- execute jin cli with line and buffer_name
+
+	-- local link = assert(io.popen([[jin -e "]] .. buffer_name .. [[" "]] .. line .. [["]]))
+	local link = vim.cmd([[Start! jin -e "]] .. buffer_name .. [[" "]] .. line .. [["]])
+	-- write the link in the line below
+	-- vim.api.nvim_buf_set_lines(0, vim.api.nvim_win_get_cursor(0)[1], vim.api.nvim_win_get_cursor(0)[1], false, { link })
+end, {})
