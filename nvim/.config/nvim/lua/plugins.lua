@@ -8,6 +8,15 @@ return require("packer").startup(function(use)
 	use("vim-airline/vim-airline")
 	use("vim-airline/vim-airline-themes")
 
+	-- Noice
+	-- use({
+	--   "folke/noice.nvim",
+	--   requires = {
+	--     "MunifTanjim/nui.nvim",
+	--     "rcarriga/nvim-notify",
+	--   },
+	-- })
+
 	-- Telescope
 	use({
 		"nvim-telescope/telescope.nvim",
