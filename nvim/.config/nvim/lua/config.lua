@@ -20,7 +20,7 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.mouse = "a"
 vim.o.clipboard = "unnamedplus"
-vim.o.lazyredraw = true
+vim.o.lazyredraw = false
 
 -- Scrolling
 vim.o.scrolloff = 5
