@@ -37,6 +37,16 @@ require("telescope").setup({
 			-- Provide the options here to override the default values.
 			-- ...
 		},
+		frecency = {
+			-- db_root = "/home/my_username/path/to/db_root",
+			show_scores = true,
+			-- show_unindexed = true,
+			ignore_patterns = { "*.git/*", "*/tmp/*", "*.DS_Store", "*.gitmodules" },
+			disable_devicons = false,
+			workspaces = {
+				["notes"] = "~/vimwiki",
+			},
+		},
 		-- Your extension configuration goes here:
 		-- extension_name = {
 		--   extension_config_key = value,
@@ -64,7 +74,8 @@ vim.keymap.set("n", ",h", builtin.help_tags, { desc = "Find Help" })
 
 -- Wiki stuff
 vim.api.nvim_create_user_command("Notes", function()
-	builtin.find_files({ cwd = vim.fn.expand("~/vimwiki") })
+	require("telescope").extensions.frecency.frecency({ workspace = "notes" })
+	-- builtin.find_files({ cwd = vim.fn.expand("~/vimwiki") })
 end, {})
 vim.keymap.set("n", "<C-n>", ":Notes<CR>")
 vim.api.nvim_create_user_command("NNR", function()
@@ -72,14 +83,15 @@ vim.api.nvim_create_user_command("NNR", function()
 end, {})
 
 -- Search through RC files
-vim.api.nvim_create_user_command("RCF", function()
+vim.api.nvim_create_user_command("Dots", function()
 	builtin.find_files({ cwd = vim.fn.expand("~/dotfiles/nvim/.config/nvim") })
 end, {})
+vim.keymap.set("n", ",d", ":Dots<CR>")
 
-vim.api.nvim_create_user_command("RCFF", function()
+vim.api.nvim_create_user_command("RCF", function()
 	builtin.live_grep({ cwd = vim.fn.expand("~/dotfiles/nvim/.config/nvim") })
 end, {})
 
 vim.api.nvim_create_user_command("TODO", function()
-	builtin.live_grep({ cwd = vim.fn.expand("~/vimwiki"), default_text = "TODO" })
+	builtin.live_grep({ cwd = vim.fn.expand("~/vimwiki"), default_text = "TODO:" })
 end, {})
