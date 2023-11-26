@@ -66,6 +66,28 @@ Reply only with the code.
 		end,
 		mode = llm.mode.BUFFER,
 	},
+	["todo"] = {
+		provider = openai,
+		builder = function(input)
+			return {
+				messages = {
+					{
+						role = "system",
+						content = [[You are a function manager.
+I will share with you some notes from a meeting. You will create 
+Use pytest instead of unittest.
+Reply only with the code.
+]],
+					},
+					{
+						role = "user",
+						content = input,
+					},
+				},
+			}
+		end,
+		mode = llm.mode.BUFFER,
+	},
 	["docstrings"] = {
 		provider = openai,
 		builder = function(input)
