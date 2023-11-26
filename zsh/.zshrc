@@ -1,6 +1,6 @@
 # User configuration
 
-# Prompt
+# Prompt theme
 
 autoload -Uz vcs_info
 precmd() { vcs_info }
@@ -52,10 +52,13 @@ setopt EXTENDED_HISTORY
 setopt HIST_FIND_NO_DUPS
 export HISTTIMEFORMAT="%F %T "
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+# Better history search
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search # Up
+bindkey "^[[B" down-line-or-beginning-search # Down
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -63,7 +66,7 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='nvim'
 fi
-export VISUAL=nvim
+export VISUAL=vim
 
 # locales
 
@@ -74,24 +77,28 @@ export LC_CTYPE="en_US.UTF-8"
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Auto suggestion
-# source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-#bindkey '^ ' autosuggest-accept
-
-# autojump
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Aliases
 . ~/.zsh_aliases
 
 
 autoload -U +X compinit && compinit
+
 autoload -U +X bashcompinit && bashcompinit
+
+# fzf tab
+source $HOME/code/random/fzf-tab/fzf-tab.zsh
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -trh $realpath'
+zstyle ':fzf-tab:*' switch-group ',' '.'
 
 # Vault
 export VAULT_ADDR='https://vault.dsi.mckinsey.com'
 complete -o nospace -C /usr/local/bin/vault vault
 
+# Fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_CTRL_T_OPTS="--preview='bat --color=always {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
 
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/bin"
@@ -110,7 +117,7 @@ bindkey -v '^?' backward-delete-char
 
 # edit command by pressing esc + v
 autoload edit-command-line; zle -N edit-command-line
-# bindkey -M vicmd v edit-command-line
+bindkey -M vicmd v edit-command-line
 bindkey "^X^E" edit-command-line
 bindkey -M viins '\e.' insert-last-word
 
