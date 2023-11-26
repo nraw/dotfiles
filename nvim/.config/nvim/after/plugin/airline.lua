@@ -4,6 +4,7 @@ vim.g.airline_theme = "hybrid"
 vim.g.airline_left_sep = ""
 vim.g.airline_right_sep = ""
 vim.g.airline_powerline_fonts = 1
+vim.g.airline_inactive_collapse = 1
 vim.g["airline#extensions#ale#enabled"] = 0
 -- vim.g["airline#extensions#ale#error_symbol"] = "🚫 "
 -- vim.g["airline#extensions#ale#warning_symbol"] = "W:"
