@@ -34,5 +34,14 @@ vim.cmd([[
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
 ]])
 
+-- Format options (no comments in new lines)
+vim.api.nvim_create_autocmd("BufEnter", {
+	callback = function()
+		vim.opt.formatoptions:remove({ "c", "r", "o" })
+	end,
+})
+
 -- wikilocation
 vim.g.vimwiki = vim.fn.expand("~/vimwiki/")
+
+-- vim.opt.formatoptions = "jql"

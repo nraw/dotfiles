@@ -1,44 +1,16 @@
-vim.cmd([[packadd packer.nvim]])
-return require("packer").startup(function(use)
-	-- Packer can manage itself
-	use("wbthomason/packer.nvim") -- :PackerSync
-
+return {
 	-- UI related
-	-- use("kristijanhusak/vim-hybrid-material")
-	use("vim-airline/vim-airline")
-	use("vim-airline/vim-airline-themes")
+	-- "kristijanhusak/vim-hybrid-material",
+	{ "vim-airline/vim-airline", lazy = false, dependencies = { "vim-airline/vim-airline-themes" } },
 
-	-- Noice
-	-- use({
-	--   "folke/noice.nvim",
-	--   requires = {
-	--     "MunifTanjim/nui.nvim",
-	--     "rcarriga/nvim-notify",
-	--   },
-	-- })
-
-	-- Telescope
-	use({
-		"nvim-telescope/telescope.nvim",
-		-- tag = "0.1.1",
-		requires = { { "nvim-lua/plenary.nvim" } },
-	}) -- T ,, ,. c-p c-e
-	use("dhruvmanila/telescope-bookmarks.nvim") -- ,b
-	use("danielvolchek/tailiscope.nvim") -- ,w
-	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-	use({
-		"nvim-telescope/telescope-frecency.nvim",
-		requires = { "kkharji/sqlite.lua" },
-	}) -- ,p
-	use("nvim-telescope/telescope-symbols.nvim")
 	-- Treesitter
-	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-	use("nvim-treesitter/playground") -- :TSPlaygroundToggle
+	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+	{ "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" }, -- :TSPlaygroundToggle
 	-- LSP
-	use({
+	{
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v1.x",
-		requires = {
+		dependencies = {
 			-- LSP Support
 			{ "neovim/nvim-lspconfig" }, -- Required
 			{ "williamboman/mason.nvim" }, -- Optional
@@ -58,95 +30,128 @@ return require("packer").startup(function(use)
 			{ "L3MON4D3/LuaSnip" }, -- Required
 			{ "rafamadriz/friendly-snippets" }, -- Optional
 		},
-	})
-	use("hrsh7th/cmp-cmdline")
-	use("github/copilot.vim") -- c-j
-	use("gsuuon/llm.nvim")
-	-- Trouble
-	use({ "folke/trouble.nvim", requires = "nvim-tree/nvim-web-devicons" }) -- :Trouble
-	-- Formatter
-	use({ "mhartington/formatter.nvim" })
+	},
+	{ "hrsh7th/cmp-cmdline", event = "VeryLazy" },
+	{ "github/copilot.vim", event = "VeryLazy" }, -- c-j
 	-- Moving around
-	use("tpope/vim-unimpaired") -- ]q ]Q cnext, ]a next, ]b bnext, ]<Space> newline
-	use("troydm/zoomwintab.vim") -- <leader>z
-	use("machakann/vim-swap") -- g<, g>, gs on parameters in functions
-	use("tpope/vim-eunuch") -- Move, Rename, Delete
-	use("wellle/targets.vim")
+	{ "tpope/vim-unimpaired", event = "VeryLazy" }, -- ]q ]Q cnext, ]a next, ]b bnext, ]<Space> newline
+	{ "troydm/zoomwintab.vim", keys = {
+		{ "<leader>z", "<cmd>ZoomWinTabToggle<cr>", desc = "NeoTree" },
+	} }, -- <leader>z
+	{
+		"machakann/vim-swap",
+		event = "VeryLazy",
+		-- keys = {
+		--   { "<leader>g<", "<Plug>(swap-prev)" },
+		--   { "<leader>g>", "<Plug>(swap-next)" },
+		--   { "<leader>gs", "<Plug>(swap-interactive)" },
+		-- },
+	},
+	{ "tpope/vim-eunuch", cmd = { "Move", "Rename", "Delete" } },
+	{ "wellle/targets.vim", event = "VeryLazy" },
 	-- Highlighting removed after moving
-	use("romainl/vim-cool")
+	{ "romainl/vim-cool", event = "VeryLazy" },
 	-- Git
-	use("tpope/vim-fugitive") -- :G
-	use("sodapopcan/vim-twiggy") -- :Twiggy
-	use("tpope/vim-rhubarb") -- :Gbrowse
-	use("shumphrey/fugitive-gitlab.vim")
-	use("junegunn/gv.vim") -- :GV
-	use("airblade/vim-gitgutter") -- ]h, [h, <leader>h, vic, :GitGutterFold
-	use({
+	{
+		"tpope/vim-fugitive",
+		event = "VeryLazy",
+		cmd = "G",
+		config = function()
+			vim.cmd("call FugitiveDetect(getcwd())") -- needed for Twiggy
+		end,
+	},
+	{
+		"pwntester/octo.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+			"nvim-tree/nvim-web-devicons",
+		},
+		-- event = "VeryLazy",
+		cmd = "Octo",
+		config = function()
+			require("octo").setup()
+		end,
+	},
+	{
+		"sindrets/diffview.nvim",
+		cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+		keys = { { "<leader>go", "DiffviewOpen" }, { "<leader>gh", "DiffviewFileHistory" } },
+	},
+	{ "sodapopcan/vim-twiggy", dependencies = { "tpope/vim-fugitive" }, cmd = "Twiggy" },
+	{ "tpope/vim-rhubarb", cmd = "GBrowse" }, -- :Gbrowse
+	{ "shumphrey/fugitive-gitlab.vim", dependencies = { "tpope/vim-fugitive" }, event = "VeryLazy" },
+	{ "junegunn/gv.vim", cmd = "GV" }, -- :GV
+	{ "airblade/vim-gitgutter", lazy = false }, -- ]h, [h, <leader>h, vic, :GitGutterFold
+	{
 		"akinsho/git-conflict.nvim",
-		tag = "*",
 		config = function()
 			require("git-conflict").setup()
 		end,
-	}) -- co ct \c
+		event = "VeryLazy",
+	}, -- co ct \c
 	-- Indentation
-	use("michaeljsmith/vim-indent-object") -- vai,  dii
-	use("junegunn/vim-easy-align") -- Aligning with gaip + whatever
+	{ "michaeljsmith/vim-indent-object", event = "VeryLazy" }, -- vai,  dii
+	{ "junegunn/vim-easy-align", event = "VeryLazy" }, -- Aligning with gaip + whatever
 	-- Tests
-	use("tpope/vim-dispatch") -- :Make, :Dispatch
-	use("vim-test/vim-test") -- <leader>tt, <leader>tf
+	{ "tpope/vim-dispatch", event = "VeryLazy" }, -- :Make, :Dispatch
+	{ "vim-test/vim-test", event = "VeryLazy" }, -- <leader>tt, <leader>tf
 
-	-- use("drmingdrmer/vim-toggle-quickfix")
 	-- Linting
-	-- use("w0rp/ale")
+	-- "w0rp/ale",
 	-- Autocomplete
-	-- use("ncm2/ncm2")
-	-- use("roxma/nvim-yarp")
-	-- use("ncm2/ncm2-bufword")
-	-- use("ncm2/ncm2-path")
-	-- use("ncm2/ncm2-jedi")
-	-- use("ncm2/ncm2-ultisnips")
-	-- use("davidhalter/jedi-vim")
 	-- Snippets
-	-- use("SirVer/ultisnips")
-	-- use("quangnguyen30192/cmp-nvim-ultisnips")
-	-- use("honza/vim-snippets")
-	use("srydell/vim-skeleton")
-	use("tpope/vim-projectionist") -- :A
+	-- "SirVer/ultisnips",
+	-- "quangnguyen30192/cmp-nvim-ultisnips",
+	-- "honza/vim-snippets",
+	"srydell/vim-skeleton",
+	"tpope/vim-projectionist", -- :A
 	-- Refactoring
-	use("apalmer1377/factorus") -- :Factorus
+	-- { "apalmer1377/factorus", event = "VeryLazy" }, -- :Factorus
+	{
+		"ThePrimeagen/refactoring.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			require("refactoring").setup()
+		end,
+	},
 	-- Comments and Docstrings
-	use("scrooloose/nerdcommenter") -- <leader>c<space>
+	{ "scrooloose/nerdcommenter", event = "VeryLazy" }, -- <leader>c<space>
 	-- Colors
-	use("norcalli/nvim-colorizer.lua")
-	use("rafi/awesome-vim-colorschemes")
-	use({ "projekt0n/github-nvim-theme", tag = "v0.0.7" })
+	{ "norcalli/nvim-colorizer.lua", event = "VeryLazy" },
+	-- "rafi/awesome-vim-colorschemes",
+	{ "projekt0n/github-nvim-theme", tag = "v0.0.7" },
 
-	use("mechatroner/rainbow_csv", { ft = "csv" })
+	{ "mechatroner/rainbow_csv", ft = "csv" },
 	-- Surrounding
-	use("machakann/vim-sandwich") -- saiw(, sdb and srb, sdf, saiwf
+	{ "machakann/vim-sandwich", event = "VeryLazy" }, -- saiw(, sdb and srb, sdf, saiwf
 	-- Tmux
-	use("christoomey/vim-tmux-navigator")
-	use("lotabout/slimux")
+	{ "christoomey/vim-tmux-navigator", event = "VeryLazy" },
+	{ "lotabout/slimux", event = "VeryLazy" },
 	-- Vim Wiki
-	-- use("vimwiki/vimwiki")
-	use("suan/vim-instant-markdown", { ft = "markdown" }) -- <leader>md
+	-- "vimwiki/vimwiki",
+	{ "suan/vim-instant-markdown", ft = "markdown" }, -- <leader>md
 	-- Json
-	use("elzr/vim-json", { ft = "json" })
+	{ "elzr/vim-json", ft = "json" },
 	-- Helm
-	use("towolf/vim-helm")
+	{ "towolf/vim-helm", ft = "yaml" },
 	-- Front End
-	use("mattn/emmet-vim", { ft = "html" }) -- div>ul>li*3 ,,
-	use("AndrewRadev/tagalong.vim", { ft = "html" }) -- changes ending tags
+	{ "mattn/emmet-vim", ft = "html" }, -- div>ul>li*3 ,,
+	{ "AndrewRadev/tagalong.vim", ft = "html" }, -- changes ending tags
 	-- use("rstacruz/vim-ultisnips-css")
 	-- Better understanding
-	use("mbbill/undotree") -- F5
+	{ "mbbill/undotree", cmd = "UndotreeToggle" }, -- F5
 	-- Profiling
-	use("dstein64/vim-startuptime", { command = "StartupTime" })
+	{ "dstein64/vim-startuptime", cmd = "StartupTime" },
 	-- Pair programming
-	use("jbyuki/instant.nvim") -- :InstantStartServer
+	{ "jbyuki/instant.nvim", cmd = { "InstantStartServer", "InstantJoinSession" } },
 	-- Which key
-	use({
+	{
 		"folke/which-key.nvim",
+		event = "VeryLazy",
 		config = function()
 			vim.o.timeout = true
 			vim.o.timeoutlen = 300
@@ -156,9 +161,10 @@ return require("packer").startup(function(use)
 				-- refer to the configuration section below
 			})
 		end,
-	})
+	},
 	-- File Manager
-	use("stevearc/oil.nvim")
+	-- { "stevearc/oil.nvim", ft = "netrw" },
+
 	-- use 'junegunn/vim-peekaboo'
 	-- File manager integration
 	-- use 'mcchrish/nnn.vim'
@@ -166,7 +172,7 @@ return require("packer").startup(function(use)
 	-- use 'Yggdroot/indentLine'
 	-- use 'easymotion/vim-easymotion'
 	-- use 'Shougo/echodoc.vim'
-	-- use 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
+	-- use 'kkoomen/vim-doge', { 'do': { -> doge#install() } },
 	-- use 'heavenshell/vim-pydocstring'  -- damn the ctrl l mapping
 	-- use 'sheerun/vim-polyglot'
 	-- LSP
@@ -175,4 +181,4 @@ return require("packer").startup(function(use)
 	-- use 'tbabej/taskwiki'
 	-- use 'wellle/context.vim'
 	-- Tmuxinator
-end)
+}
