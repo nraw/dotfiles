@@ -4,39 +4,43 @@
 [credential]
 	helper = store
 [core]  
-    editor = nvim 
+	editor = nvim 
 	excludesFile = ~/.gitignore
 [alias]
-    aa = add --all
-    au = add -u
-    bv = branch -vv
-    ba = branch -ra
-    bd = branch -d
-    ca = commit --amend
-    cb = checkout -b
-    cm = commit -a --amend -C HEAD
-    ci = commit -a -v
-    co = checkout
-    di = diff
-    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-    ld = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --graph
-    ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
-    lg = !"git lg1-specific --all"
-    lg1-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
-    mm = merge --no-ff
-    re = rebase -i HEAD~5
-    st = status --short --branch
-    tg = tag -a 
-    pu = push --tags
-    un = reset --hard HEAD  
-    uh = reset --hard HEAD^
-    root = rev-parse --show-toplevel
-   [color]  
-    diff = auto  
-    status = auto  
-    branch = auto 
-   [branch]  
-    autosetuprebase = always 
+	aa = add --all
+	au = add -u
+	ba = branch -ra -vv
+	bd = branch -d
+	ca = commit --amend
+	cb = checkout -b
+	cp = cherry-pick
+	cm = commit -a --amend -C HEAD
+	ci = commit -a -v
+	c = commit
+	co = checkout
+	di = diff
+	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	ld = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --graph
+	ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+	lg = !"git lg1-specific --all"
+	lg1-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
+	mm = merge
+	re = rebase -i HEAD~5
+	rc = rebase --continue
+	rom = rebase origin/main
+	st = status --short --branch
+	tg = tag -a 
+	pu = push --tags
+	un = reset --hard HEAD  
+	uh = reset --hard HEAD^
+	url = remote get-url origin
+	root = rev-parse --show-toplevel
+[color]  
+	diff = auto  
+	status = auto  
+	branch = auto 
+[branch]  
+	autosetuprebase = always 
 [merge]
 	conflictstyle = diff3
 	tool = fugitive
