@@ -1,6 +1,6 @@
 -- Fugitive
 -- Fugitive options
-vim.g.github_enterprise_urls = { "https://githuben.intranet.mckinsey.com" }
+-- vim.g.github_enterprise_urls = { "https://githuben.intranet.mckinsey.com" }
 vim.g.fugitive_gitlab_domains = { "https://git.msv.mckinsey.com", "https://gitlab.tools.leapx.digital" }
 -- Fugitive maps
 vim.keymap.set("n", "<leader>gd", ":Gdiffsplit!<CR>")
@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd(
 local gitcommit_group = vim.api.nvim_create_augroup("gitcommit_group", {})
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = "gitcommit",
-	group = slimux_group,
+	group = gitcommit_group,
 	callback = function()
 		vim.keymap.set("n", "<Leader>c", ":Llm commit<CR>", { buffer = true })
 	end,
