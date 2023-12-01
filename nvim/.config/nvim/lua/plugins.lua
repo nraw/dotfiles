@@ -76,7 +76,7 @@ return {
 	{
 		"sindrets/diffview.nvim",
 		cmd = { "DiffviewOpen", "DiffviewFileHistory" },
-		keys = { { "<leader>go", "DiffviewOpen" }, { "<leader>gh", "DiffviewFileHistory" } },
+		keys = { { "<leader>go", "<cmd>DiffviewOpen<cr>" }, { "<leader>gh", "<cmd>DiffviewFileHistory<cr>" } },
 	},
 	{ "sodapopcan/vim-twiggy", dependencies = { "tpope/vim-fugitive" }, cmd = "Twiggy" },
 	{ "tpope/vim-rhubarb", cmd = "GBrowse" }, -- :Gbrowse
