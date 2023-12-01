@@ -9,17 +9,23 @@ hs.loadSpoon("SpoonInstall")
 --- Reloading ---
 hs.loadSpoon("ReloadConfiguration")
 spoon.ReloadConfiguration:start()
+
 ------- Current Zoom  -------
 hs.hotkey.bind({ "alt", "shift" }, "z", function()
-	-- hs.execute("zoom", true)
-	-- huh, what, nat, last = hs.execute("zoom", true)
-	-- hs.alert.show(huh)
-	-- hs.alert.show(what)
-	-- hs.alert.show(nat)
-	-- hs.alert.show(last)
-	hs.eventtap.leftClick({ x = 1375, y = 55 }, 2000000)
-	hs.alert.show("click")
+	hs.open("/Users/Andrej_Marsic/applications/join.command")
 end)
+
+spoon.SpoonInstall:andUse("Zoom", {
+	fn = function(zoom)
+		zoom:start()
+		hs.hotkey.bind({ "cmd", "shift" }, "a", function()
+			-- TODO: If focused ether don't show or let the app handle
+			local status = zoom:toggleMute()
+			hs.alert.show(status)
+			-- hs.alert.show(zoom:getAudioStatus())
+		end)
+	end,
+})
 
 ------- ClipboardTool -------
 spoon.SpoonInstall:andUse("ClipboardTool", {
@@ -95,6 +101,9 @@ hs.hotkey.bind({ "alt" }, "4", function()
 end)
 hs.hotkey.bind({ "alt" }, "5", function()
 	hs.application.launchOrFocus("zoom.us")
+end)
+hs.hotkey.bind({ "alt" }, "6", function()
+	hs.application.launchOrFocus("Spotify")
 end)
 
 ------ HeadphoneAutoPause --------
