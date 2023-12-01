@@ -1,6 +1,3 @@
-local cmd = vim.cmd -- to execute Vim commands e.g. cmd('pwd')
-local fn = vim.fn -- to call Vim functions e.g. fn.bufnr()
-
 -- Options
 vim.o.number = true
 vim.o.updatetime = 50
@@ -15,7 +12,7 @@ vim.o.foldenable = false
 vim.o.foldmethod = "indent"
 vim.opt.diffopt:append({ context = 99999 })
 vim.o.undofile = true
-vim.o.undodir = fn.expand("~/.vim/undodir")
+vim.o.undodir = vim.fn.expand("~/.vim/undodir")
 vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.mouse = "a"

@@ -2,36 +2,11 @@ return {
 	-- UI related
 	-- "kristijanhusak/vim-hybrid-material",
 	{ "vim-airline/vim-airline", lazy = false, dependencies = { "vim-airline/vim-airline-themes" } },
+	{ "stevearc/dressing.nvim", event = "VeryLazy" },
 
 	-- Treesitter
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 	{ "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" }, -- :TSPlaygroundToggle
-	-- LSP
-	{
-		"VonHeikemen/lsp-zero.nvim",
-		branch = "v1.x",
-		dependencies = {
-			-- LSP Support
-			{ "neovim/nvim-lspconfig" }, -- Required
-			{ "williamboman/mason.nvim" }, -- Optional
-			{ "williamboman/mason-lspconfig.nvim" }, -- Optional
-
-			-- Autocompletion
-			{ "hrsh7th/nvim-cmp" }, -- Required
-			{ "hrsh7th/cmp-nvim-lsp" }, -- Required
-			{ "hrsh7th/cmp-buffer" }, -- Optional
-			{ "hrsh7th/cmp-path" }, -- Optional
-			{ "saadparwaiz1/cmp_luasnip" }, -- Optional
-			{ "hrsh7th/cmp-nvim-lua" }, -- Optional
-			{ "petertriho/cmp-git" },
-			{ "hrsh7th/cmp-nvim-lsp-signature-help" },
-
-			-- Snippets
-			{ "L3MON4D3/LuaSnip" }, -- Required
-			{ "rafamadriz/friendly-snippets" }, -- Optional
-		},
-	},
-	{ "hrsh7th/cmp-cmdline", event = "VeryLazy" },
 	{ "github/copilot.vim", event = "VeryLazy" }, -- c-j
 	-- Moving around
 	{ "tpope/vim-unimpaired", event = "VeryLazy" }, -- ]q ]Q cnext, ]a next, ]b bnext, ]<Space> newline
@@ -114,6 +89,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
 		},
+		event = "VeryLazy",
 		config = function()
 			require("refactoring").setup()
 		end,
@@ -130,7 +106,7 @@ return {
 	{ "machakann/vim-sandwich", event = "VeryLazy" }, -- saiw(, sdb and srb, sdf, saiwf
 	-- Tmux
 	{ "christoomey/vim-tmux-navigator", event = "VeryLazy" },
-	{ "lotabout/slimux", event = "VeryLazy" },
+	{ "lotabout/slimux" },
 	-- Vim Wiki
 	-- "vimwiki/vimwiki",
 	{ "suan/vim-instant-markdown", ft = "markdown" }, -- <leader>md

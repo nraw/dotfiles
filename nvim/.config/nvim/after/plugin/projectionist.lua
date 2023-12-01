@@ -19,7 +19,7 @@ vim.g.projectionist_heuristics = {
 	},
 	["*"] = {
 		[home_dir_rel .. ".config/nvim/after/plugin/*.lua"] = { type = "plug" },
-		[home_dir_rel .. "vimwiki/*.md"] = { type = "note" },
+		[home_dir_rel .. "vimwiki/*.md"] = { type = "note", template = { "# {basename}\n\n" } },
 		[home_dir_rel .. "vimwiki/diary/*.md"] = { type = "diary" },
 	},
 }

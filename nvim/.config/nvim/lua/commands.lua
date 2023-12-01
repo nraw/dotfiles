@@ -17,7 +17,7 @@ vim.api.nvim_create_user_command("Json", function()
 end, {})
 
 -- Go to RC
-vim.api.nvim_create_user_command("RC", ":edit ~/dotfiles/nvim/.config/nvim/init.lua", {})
+vim.api.nvim_create_user_command("RC", ":edit ~/dotfiles/nvim/.config/nvim/lua/plugins.lua", {})
 
 -- Add current date
 vim.api.nvim_create_user_command("Date", ":r !date +'%F'", {})
@@ -58,11 +58,11 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command("Jin", function()
 	local line = vim.api.nvim_get_current_line()
 	line = line:gsub("TODO: ", "")
-	local buffer_name = vim.api.nvim_buf_get_name(0)
+	-- local buffer_name = vim.api.nvim_buf_get_name(0)
 	-- execute jin cli with line and buffer_name
 
 	-- local link = assert(io.popen([[jin -e "]] .. buffer_name .. [[" "]] .. line .. [["]]))
-	local link = vim.cmd([[Start! jin -e "]] .. buffer_name .. [[" "]] .. line .. [["]])
+	-- local link = vim.cmd([[Start! jin -e "]] .. buffer_name .. [[" "]] .. line .. [["]])
 	-- write the link in the line below
 	-- vim.api.nvim_buf_set_lines(0, vim.api.nvim_win_get_cursor(0)[1], vim.api.nvim_win_get_cursor(0)[1], false, { link })
 end, {})
