@@ -109,7 +109,15 @@ return {
 	{ "lotabout/slimux" },
 	-- Vim Wiki
 	-- "vimwiki/vimwiki",
-	{ "suan/vim-instant-markdown", ft = "markdown" }, -- <leader>md
+	{
+		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		build = "cd app && yarn install",
+		init = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+		ft = { "markdown" },
+	},
 	-- Json
 	{ "elzr/vim-json", ft = "json" },
 	-- Helm
