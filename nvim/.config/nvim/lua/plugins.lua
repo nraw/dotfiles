@@ -54,10 +54,17 @@ return {
 		keys = { { "<leader>go", "<cmd>DiffviewOpen<cr>" }, { "<leader>gh", "<cmd>DiffviewFileHistory<cr>" } },
 	},
 	{ "sodapopcan/vim-twiggy", dependencies = { "tpope/vim-fugitive" }, cmd = "Twiggy" },
-	{ "tpope/vim-rhubarb", cmd = "GBrowse" }, -- :Gbrowse
+	{ "tpope/vim-rhubarb" }, -- :Gbrowse
 	{ "shumphrey/fugitive-gitlab.vim", dependencies = { "tpope/vim-fugitive" }, event = "VeryLazy" },
 	{ "junegunn/gv.vim", cmd = "GV" }, -- :GV
-	{ "airblade/vim-gitgutter", lazy = false }, -- ]h, [h, <leader>h, vic, :GitGutterFold
+	-- { "airblade/vim-gitgutter", lazy = false }, -- ]h, [h, <leader>h, vic, :GitGutterFold
+	{
+		"lewis6991/gitsigns.nvim",
+		lazy = false,
+		config = function()
+			require("gitsigns").setup()
+		end,
+	}, -- ]h, [h, <leader>h, vic, :GitGutterFold
 	{
 		"akinsho/git-conflict.nvim",
 		config = function()
