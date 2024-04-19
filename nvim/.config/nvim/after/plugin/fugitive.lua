@@ -1,6 +1,6 @@
 -- Fugitive
 -- Fugitive options
--- vim.g.github_enterprise_urls = { "https://githuben.intranet.mckinsey.com" }
+vim.g.github_enterprise_urls = { "org-62409820@github.com:" }
 vim.g.fugitive_gitlab_domains = { "https://git.msv.mckinsey.com", "https://gitlab.tools.leapx.digital" }
 -- Fugitive maps
 vim.keymap.set("n", "<leader>gd", ":Gdiffsplit!<CR>")
