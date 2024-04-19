@@ -3,6 +3,9 @@
 
 module.exports = {
     defaultBrowser: "Google Chrome",
+    options: {
+		    hideIcon: true,
+		},
     handlers: [
         {
             match: ["zoom.us/j/*", "*.zoom.us/j/*"],
