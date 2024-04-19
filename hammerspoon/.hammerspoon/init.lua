@@ -15,17 +15,19 @@ hs.hotkey.bind({ "alt", "shift" }, "z", function()
 	hs.open("/Users/Andrej_Marsic/applications/join.command")
 end)
 
-spoon.SpoonInstall:andUse("Zoom", {
-	fn = function(zoom)
-		zoom:start()
-		hs.hotkey.bind({ "cmd", "shift" }, "a", function()
-			-- TODO: If focused ether don't show or let the app handle
-			local status = zoom:toggleMute()
-			hs.alert.show(status)
-			-- hs.alert.show(zoom:getAudioStatus())
-		end)
-	end,
-})
+-- Broke for some reason
+
+-- spoon.SpoonInstall:andUse("Zoom", {
+--   fn = function(zoom)
+--     zoom:start()
+--     hs.hotkey.bind({ "cmd", "shift" }, "a", function()
+--       -- TODO: If focused ether don't show or let the app handle
+--       local status = zoom:toggleMute()
+--       hs.alert.show(status)
+--       -- hs.alert.show(zoom:getAudioStatus())
+--     end)
+--   end,
+-- })
 
 ------- ClipboardTool -------
 spoon.SpoonInstall:andUse("ClipboardTool", {
