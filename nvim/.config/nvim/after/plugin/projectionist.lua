@@ -9,7 +9,7 @@ vim.g.projectionist_heuristics = {
 		[src_dir .. "/*.py"] = {
 			alternate = "tests/{dirname}/test_{basename}.py",
 			type = "src",
-			template = { "def {basename}():" },
+			-- template = { "def {basename}():" }, -- This doesn't play nicely when other functions trigger new files
 		},
 		["tests/**/test_*.py"] = {
 			alternate = { src_dir .. "/{basename}.py", src_dir .. "/{dirname}/{basename}.py" },
