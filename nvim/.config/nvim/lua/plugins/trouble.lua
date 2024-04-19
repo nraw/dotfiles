@@ -2,7 +2,7 @@
 return {
 	"folke/trouble.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons", "nvim-telescope/telescope.nvim" },
-	cmd = "Trouble",
+	-- cmd = "Trouble",
 
 	config = function()
 		-- Trouble
