@@ -1,18 +1,21 @@
 return {
 	-- UI related
 	-- "kristijanhusak/vim-hybrid-material",
-	{ "vim-airline/vim-airline", lazy = false, dependencies = { "vim-airline/vim-airline-themes" } },
-	{ "stevearc/dressing.nvim", event = "VeryLazy" },
+	{ "vim-airline/vim-airline",         lazy = false,              dependencies = { "vim-airline/vim-airline-themes" } },
+	{ "stevearc/dressing.nvim",          event = "VeryLazy" },
 
 	-- Treesitter
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-	{ "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" }, -- :TSPlaygroundToggle
-	{ "github/copilot.vim", event = "VeryLazy" }, -- c-j
+	{ "nvim-treesitter/playground",      cmd = "TSPlaygroundToggle" }, -- :TSPlaygroundToggle
+	{ "github/copilot.vim",              event = "VeryLazy" },   -- c-j
 	-- Moving around
-	{ "tpope/vim-unimpaired", event = "VeryLazy" }, -- ]q ]Q cnext, ]a next, ]b bnext, ]<Space> newline
-	{ "troydm/zoomwintab.vim", keys = {
-		{ "<leader>z", "<cmd>ZoomWinTabToggle<cr>", desc = "NeoTree" },
-	} }, -- <leader>z
+	{ "tpope/vim-unimpaired",            event = "VeryLazy" },   -- ]q ]Q cnext, ]a next, ]b bnext, ]<Space> newline
+	{
+		"troydm/zoomwintab.vim",
+		keys = {
+			{ "<leader>z", "<cmd>ZoomWinTabToggle<cr>", desc = "NeoTree" },
+		}
+	},  -- <leader>z
 	{
 		"machakann/vim-swap",
 		event = "VeryLazy",
@@ -22,10 +25,10 @@ return {
 		--   { "<leader>gs", "<Plug>(swap-interactive)" },
 		-- },
 	},
-	{ "tpope/vim-eunuch", cmd = { "Move", "Rename", "Delete" } },
+	{ "tpope/vim-eunuch",   cmd = { "Move", "Rename", "Delete" } },
 	{ "wellle/targets.vim", event = "VeryLazy" },
 	-- Highlighting removed after moving
-	{ "romainl/vim-cool", event = "VeryLazy" },
+	{ "romainl/vim-cool",   event = "VeryLazy" },
 	-- Git
 	{
 		"tpope/vim-fugitive",
@@ -53,10 +56,10 @@ return {
 		cmd = { "DiffviewOpen", "DiffviewFileHistory" },
 		keys = { { "<leader>go", "<cmd>DiffviewOpen<cr>" }, { "<leader>gh", "<cmd>DiffviewFileHistory<cr>" } },
 	},
-	{ "sodapopcan/vim-twiggy", dependencies = { "tpope/vim-fugitive" }, cmd = "Twiggy" },
-	{ "tpope/vim-rhubarb" }, -- :Gbrowse
+	{ "sodapopcan/vim-twiggy",         dependencies = { "tpope/vim-fugitive" }, cmd = "Twiggy" },
+	{ "tpope/vim-rhubarb" },          -- :Gbrowse
 	{ "shumphrey/fugitive-gitlab.vim", dependencies = { "tpope/vim-fugitive" }, event = "VeryLazy" },
-	{ "junegunn/gv.vim", cmd = "GV" }, -- :GV
+	{ "junegunn/gv.vim",               cmd = "GV" }, -- :GV
 	-- { "airblade/vim-gitgutter", lazy = false }, -- ]h, [h, <leader>h, vic, :GitGutterFold
 	{
 		"lewis6991/gitsigns.nvim",
@@ -71,13 +74,13 @@ return {
 			require("git-conflict").setup()
 		end,
 		event = "VeryLazy",
-	}, -- co ct \c
+	},                                                        -- co ct \c
 	-- Indentation
 	{ "michaeljsmith/vim-indent-object", event = "VeryLazy" }, -- vai,  dii
-	{ "junegunn/vim-easy-align", event = "VeryLazy" }, -- Aligning with gaip + whatever
+	{ "junegunn/vim-easy-align",         event = "VeryLazy" }, -- Aligning with gaip + whatever
 	-- Tests
-	{ "tpope/vim-dispatch", event = "VeryLazy" }, -- :Make, :Dispatch
-	{ "vim-test/vim-test", event = "VeryLazy" }, -- <leader>tt, <leader>tf
+	{ "tpope/vim-dispatch",              event = "VeryLazy" }, -- :Make, :Dispatch
+	{ "vim-test/vim-test",               event = "VeryLazy" }, -- <leader>tt, <leader>tf
 
 	-- Linting
 	-- "w0rp/ale",
@@ -102,15 +105,15 @@ return {
 		end,
 	},
 	-- Comments and Docstrings
-	{ "scrooloose/nerdcommenter", event = "VeryLazy" }, -- <leader>c<space>
+	{ "scrooloose/nerdcommenter",       event = "VeryLazy" }, -- <leader>c<space>
 	-- Colors
-	{ "norcalli/nvim-colorizer.lua", event = "VeryLazy" },
+	{ "norcalli/nvim-colorizer.lua",    event = "VeryLazy" },
 	-- "rafi/awesome-vim-colorschemes",
-	{ "projekt0n/github-nvim-theme", tag = "v0.0.7" },
+	{ "projekt0n/github-nvim-theme",    tag = "v0.0.7",    priority = 100 },
 
-	{ "mechatroner/rainbow_csv", ft = "csv" },
+	{ "mechatroner/rainbow_csv",        ft = "csv" },
 	-- Surrounding
-	{ "machakann/vim-sandwich", event = "VeryLazy" }, -- saiw(, sdb and srb, sdf, saiwf
+	{ "machakann/vim-sandwich",         event = "VeryLazy" }, -- saiw(, sdb and srb, sdf, saiwf
 	-- Tmux
 	{ "christoomey/vim-tmux-navigator", event = "VeryLazy" },
 	{ "lotabout/slimux" },
@@ -126,19 +129,19 @@ return {
 		ft = { "markdown" },
 	},
 	-- Json
-	{ "elzr/vim-json", ft = "json" },
+	{ "elzr/vim-json",            ft = "json" },
 	-- Helm
-	{ "towolf/vim-helm", ft = "yaml" },
+	{ "towolf/vim-helm",          ft = "yaml" },
 	-- Front End
-	{ "mattn/emmet-vim", ft = "html" }, -- div>ul>li*3 ,,
+	{ "mattn/emmet-vim",          ft = "html" }, -- div>ul>li*3 ,,
 	{ "AndrewRadev/tagalong.vim", ft = "html" }, -- changes ending tags
 	-- use("rstacruz/vim-ultisnips-css")
 	-- Better understanding
-	{ "mbbill/undotree", cmd = "UndotreeToggle" }, -- F5
+	{ "mbbill/undotree",          cmd = "UndotreeToggle" }, -- F5
 	-- Profiling
 	{ "dstein64/vim-startuptime", cmd = "StartupTime" },
 	-- Pair programming
-	{ "jbyuki/instant.nvim", cmd = { "InstantStartServer", "InstantJoinSession" } },
+	{ "jbyuki/instant.nvim",      cmd = { "InstantStartServer", "InstantJoinSession" } },
 	-- Which key
 	{
 		"folke/which-key.nvim",
