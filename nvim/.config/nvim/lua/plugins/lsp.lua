@@ -73,7 +73,7 @@ return {
 				vim.keymap.set("n", "<leader>vrr", function()
 					vim.lsp.buf.references()
 				end, opts("References"))
-				vim.keymap.set("n", "<leader>r", function()
+				vim.keymap.set("n", "<leader>rr", function()
 					vim.lsp.buf.rename()
 				end, opts("Rename"))
 				vim.keymap.set("i", "<C-h>", function()
@@ -87,7 +87,36 @@ return {
 						vim.diagnostic.reset(nil, bufnr)
 					end, 1000)
 				end
+
+				-- format on save
+				local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+				vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+				vim.api.nvim_create_autocmd("BufWritePre", {
+					group = augroup,
+					buffer = bufnr,
+					callback = function()
+						vim.lsp.buf.format()
+					end,
+				})
 			end)
+
+			-- Mason stuff --
+			require('mason').setup({})
+			require('mason-lspconfig').setup()
+			require("mason-lspconfig").setup_handlers {
+					-- The first entry (without a key) will be the default handler
+					-- and will be called for each installed server that doesn't have
+					-- a dedicated handler.
+					function (server_name) -- default handler (optional)
+							require("lspconfig")[server_name].setup {}
+					end,
+					-- Next, you can provide a dedicated handler for specific servers.
+					-- For example, a handler override for the `rust_analyzer`:
+					-- ["ruff"] = function ()
+					--     require("ruff").setup {}
+					-- end
+			}
+
 
 			lsp.setup()
 			local luasnip = require("luasnip")
