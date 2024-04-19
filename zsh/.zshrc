@@ -130,8 +130,10 @@ export KEYTIMEOUT=1
 # FASD
 eval "$(fasd --init auto)"
 
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export VIRTUALENVWRAPPER_PYTHON=/Users/Andrej_Marsic/.pyenv/versions/3.11.3/bin/python3
 export WORKON_HOME=~/.venv
+export VIRTUALENVWRAPPER_SCRIPT=/Users/Andrej_Marsic/.pyenv/versions/3.11.3/bin/virtualenvwrapper.sh
+source /Users/Andrej_Marsic/.pyenv/versions/3.11.3/bin/virtualenvwrapper_lazy.sh
 
 # added by Snowflake SnowSQL installer v1.2
 export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
