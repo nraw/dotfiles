@@ -98,7 +98,7 @@ complete -o nospace -C /usr/local/bin/vault vault
 
 # Fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_CTRL_T_OPTS="--preview='bat --color=always {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
+export FZF_CTRL_T_OPTS="--preview='bat --color=always {} || ls {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
 
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/bin"
