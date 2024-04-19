@@ -126,15 +126,17 @@ return {
 		dependencies = { "kkharji/sqlite.lua", "nvim-telescope/telescope.nvim" },
 		-- event = "VeryLazy",
 		cmd = { "Notes" },
+		keys = { { ",p", desc = "Frecency" }, { "<C-n>", desc = "Notes" } },
 		config = function()
 			require("telescope").load_extension("frecency")
 			vim.keymap.set("n", ",p", require("telescope").extensions.frecency.frecency, { desc = "Frecency" })
 			-- Wiki stuff
 			vim.api.nvim_create_user_command("Notes", function()
-				require("telescope").extensions.frecency.frecency({ workspace = "notes" })
-				-- builtin.find_files({ cwd = vim.fn.expand("~/vimwiki") })
+				-- require("telescope").extensions.frecency.frecency({ workspace = "notes" })
+				require("telescope.builtin").find_files({ cwd = vim.fn.expand("~/vimwiki") })
 			end, {})
 			vim.keymap.set("n", "<C-n>", ":Notes<CR>")
+			-- vim.keymap.set("n", "<C-n>", ":Telescope frecency workspace=notes<CR>")
 		end,
 	}, -- ,p
 	{
