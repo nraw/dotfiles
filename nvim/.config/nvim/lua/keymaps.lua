@@ -63,3 +63,6 @@ vim.keymap.set("n", "=", "<C-x>")
 
 -- Diffthis
 vim.keymap.set("n", "<leader>wd", ":windo diffthis<CR>")
+
+-- Git
+vim.keymap.set({ "n", "v" }, "gb", ":GBrowse<CR>")
