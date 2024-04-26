@@ -21,10 +21,10 @@ return {
 			},
 		})
 
-		--   local formatter_group = vim.api.nvim_create_augroup("formatter", { clear = true })
-		--   vim.api.nvim_create_autocmd(
-		--     { "BufWritePost" },
-		--     { pattern = "*", group = formatter_group, command = "FormatWrite" }
-		--   )
+		local formatter_group = vim.api.nvim_create_augroup("formatter", { clear = true })
+		vim.api.nvim_create_autocmd(
+			{ "BufWritePost" },
+			{ pattern = "*", group = formatter_group, command = "FormatWrite" }
+		)
 	end,
 } -- Format
