@@ -7,15 +7,16 @@ return {
 		cmd = { "Telescope", "NNR", "Dots", "RCF", "TODO" },
 		-- keys = { "T", ",,", ",.", ",/", ",k", "<c-p>", "<c-e>", ",h", ",d" },
 		keys = {
-			{ "T", desc = "Trouble" },
-			{ ",,", desc = "Command History" },
-			{ ",.", desc = "Commands" },
-			{ ",/", desc = "Grep" },
-			{ ",k", desc = "Keymaps" },
+			{ "T",     desc = "Trouble" },
+			{ ",,",    desc = "Command History" },
+			{ ",.",    desc = "Commands" },
+			{ ",/",    desc = "Grep" },
+			{ ",k",    desc = "Keymaps" },
 			{ "<c-p>", desc = "Files" },
 			{ "<c-e>", desc = "Buffers" },
-			{ ",h", desc = "Find Help" },
-			{ ",d", desc = "Dotfiles" },
+			{ ",h",    desc = "Find Help" },
+			{ ",d",    desc = "Dotfiles" },
+			{ ",?",    desc = "Help tags" },
 		},
 		config = function()
 			require("telescope").setup({
@@ -46,7 +47,7 @@ return {
 				},
 				extensions = {
 					fzf = {
-						fuzzy = true, -- false will only do exact matching
+						fuzzy = true,             -- false will only do exact matching
 						override_generic_sorter = true, -- override the generic sorter
 						override_file_sorter = true, -- override the file sorter
 						case_mode = "smart_case", -- or "ignore_case" or "respect_case"
@@ -96,7 +97,7 @@ return {
 			vim.keymap.set("n", ",k", builtin.keymaps, { desc = "Keymaps" })
 			vim.keymap.set("n", "<c-p>", builtin.find_files, { desc = "Files" })
 			vim.keymap.set("n", "<c-e>", builtin.buffers, { desc = "Buffers" })
-			vim.keymap.set("n", ",h", builtin.help_tags, { desc = "Find Help" })
+			vim.keymap.set("n", ",?", builtin.help_tags, { desc = "Find Help" })
 			vim.keymap.set("n", ",d", ":Dots<CR>", { desc = "Dotfiles" })
 		end,
 	}, -- T ,, ,. c-p c-e

@@ -7,6 +7,7 @@ return {
 		local null_ls = require("null-ls")
 		require("mason").setup()
 		require("mason-null-ls").setup({
+			-- Providing an empty handlers will cause all sources to be automatically registered in null-ls
 			handlers = {},
 		})
 
