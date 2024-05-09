@@ -1,7 +1,11 @@
 return {
 	-- UI related
 	-- "kristijanhusak/vim-hybrid-material",
-	{ "vim-airline/vim-airline",         lazy = false,              dependencies = { "vim-airline/vim-airline-themes" } },
+	{
+		"vim-airline/vim-airline",
+		lazy = false,
+		dependencies = { "vim-airline/vim-airline-themes" },
+	},
 	{ "stevearc/dressing.nvim",          event = "VeryLazy" },
 
 	-- Treesitter
@@ -14,8 +18,8 @@ return {
 		"troydm/zoomwintab.vim",
 		keys = {
 			{ "<leader>z", "<cmd>ZoomWinTabToggle<cr>", desc = "NeoTree" },
-		}
-	},  -- <leader>z
+		},
+	}, -- <leader>z
 	{
 		"machakann/vim-swap",
 		event = "VeryLazy",
@@ -133,7 +137,7 @@ return {
 	-- Helm
 	{ "towolf/vim-helm",          ft = "yaml" },
 	-- Front End
-	{ "mattn/emmet-vim",          ft = "html" }, -- div>ul>li*3 ,,
+	{ "mattn/emmet-vim",          ft = "html,css" }, -- div>ul>li*3 ,,
 	{ "AndrewRadev/tagalong.vim", ft = "html" }, -- changes ending tags
 	-- use("rstacruz/vim-ultisnips-css")
 	-- Better understanding
