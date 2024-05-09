@@ -10,6 +10,7 @@ return {
 			-- https://github.com/CopilotC-Nvim/CopilotChat.nvim?tab=readme-ov-file#configuration
 			debug = true, -- Enable debugging
 			model = "gpt-4",
+			window = { layout = "horizontal" },
 			-- model = "gpt-4-turbo",
 
 			prompts = {
@@ -26,7 +27,7 @@ return {
 			mappings = { reset = { normal = "<C-x>" } },
 		},
 		keys = {
-			{ "<leader>cc", "<cmd>CopilotChat<CR>", mode = { "n", "v" }, desc = "Copilot Chat" },
+			{ "<leader>a", "<cmd>CopilotChat<CR>", mode = { "n", "v" }, desc = "Copilot Chat" },
 			{
 				",c",
 				function()
