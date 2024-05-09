@@ -93,22 +93,27 @@ return {
 			vim.keymap.set("n", "T", builtin.builtin, { desc = "Telescope" })
 			vim.keymap.set("n", ",,", builtin.command_history, { desc = "Command History" })
 			vim.keymap.set("n", ",.", builtin.commands, { desc = "Commands" })
-			vim.keymap.set("n", ",/", builtin.live_grep, { desc = "Grep" })
 			vim.keymap.set("n", ",k", builtin.keymaps, { desc = "Keymaps" })
 			vim.keymap.set("n", "<c-p>", builtin.find_files, { desc = "Files" })
 			vim.keymap.set("n", "<c-e>", builtin.buffers, { desc = "Buffers" })
 			vim.keymap.set("n", ",?", builtin.help_tags, { desc = "Find Help" })
 			vim.keymap.set("n", ",d", ":Dots<CR>", { desc = "Dotfiles" })
+			vim.keymap.set("n", ",/", builtin.live_grep, { desc = "Grep" })
+			vim.keymap.set("n", ",r", ":RCF<CR>", { desc = "RCF" })
 		end,
 	}, -- T ,, ,. c-p c-e
 	{
 		"dhruvmanila/telescope-bookmarks.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim" },
 		-- event = "VeryLazy",
-		cmd = { "Telescope bookmarks" },
+		-- cmd = { "Telescope bookmarks" },
 		keys = { { ",b", desc = "Bookmarks" } },
 		config = function()
-			require("telescope").load_extension("bookmarks")
+			require("browser_bookmarks").setup({
+				full_path = false,
+				selected_browser = "chrome",
+			})
+			-- require("telescope").load_extension("bookmarks")	require("telescope").load_extension("bookmarks")
 			vim.keymap.set("n", ",b", require("telescope").extensions.bookmarks.bookmarks, { desc = "Bookmarks" })
 		end,
 	}, -- ,b
@@ -116,7 +121,7 @@ return {
 		"danielvolchek/tailiscope.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim" },
 		-- event = "VeryLazy",
-		cmd = { "Telescope tailiscope" },
+		-- cmd = { "Telescope tailiscope" },
 		config = function()
 			require("telescope").load_extension("tailiscope")
 			vim.keymap.set("n", ",w", require("telescope").extensions.tailiscope.tailiscope, { desc = "Tailwind css" })
@@ -143,7 +148,7 @@ return {
 	{
 		"nvim-telescope/telescope-symbols.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim" },
-		cmd = { "Telescope symbols" },
+		-- cmd = { "Telescope symbols" },
 		-- event = "VeryLazy",
 	}, -- ,s
 }
