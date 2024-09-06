@@ -7,6 +7,7 @@
 	editor = nvim 
 	excludesFile = ~/.gitignore
 [alias]
+	a = !"git add . && git st"
 	aa = add --all
 	au = add -u
 	ba = branch -ra -vv
@@ -19,6 +20,7 @@
 	c = commit
 	co = checkout
 	di = diff
+	gd = diff --name-only HEAD^
 	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
 	ld = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --graph
 	ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
@@ -41,10 +43,20 @@
 	branch = auto 
 [branch]  
 	autosetuprebase = always 
+	autosetupmerge = always
 [merge]
 	conflictstyle = diff3
-	tool = fugitive
+	tool = DiffviewOpen
+[push]
+	autoSetupRemote = true
 [safe]
 	directory = /private/tmp
 [mergetool "fugitive"]
 	cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
+[mergetool "DiffviewOpen"]
+	cmd = nvim -f -c \"DiffviewOpen\" \"$MERGED\"
+[rebase]
+	instructionFormat = "%an, %ar : %s"
+[blame]
+	date = relative
+	coloring = highlightRecent
