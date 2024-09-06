@@ -8,13 +8,7 @@ return {
 		require("mason").setup()
 		require("mason-null-ls").setup({
 			-- Providing an empty handlers will cause all sources to be automatically registered in null-ls
-			handlers = {
-				-- mypy = function(source_name, methods)
-				--   null_ls.builtins.diagnostics.mypy.with({
-				--     extra_args = { "--ignore-missing-imports" },
-				--   })
-				-- end,
-			},
+			handlers = {},
 		})
 
 		null_ls.setup({
