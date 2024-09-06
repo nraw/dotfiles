@@ -1,7 +1,6 @@
 -- Trouble
 return {
 	"folke/trouble.nvim",
-	branch = "dev",
 	dependencies = { "nvim-tree/nvim-web-devicons", "nvim-telescope/telescope.nvim" },
 	-- cmd = "Trouble",
 	config = function()
@@ -22,6 +21,7 @@ return {
 			},
 		})
 	end,
+	cmd = "Trouble",
 	keys = {
 		{
 			"<leader>xx",
