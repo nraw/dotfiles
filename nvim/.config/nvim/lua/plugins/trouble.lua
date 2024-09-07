@@ -54,7 +54,7 @@ return {
 			desc = "Quickfix List (Trouble)",
 		},
 		{
-			"gR",
+			"gr",
 			"<cmd>Trouble lsp_references toggle focus=true<cr>",
 			desc = "Quickfix List (Trouble)",
 		},
