@@ -36,8 +36,8 @@ return {
 	-- Git
 	{
 		"tpope/vim-fugitive",
-		event = "VeryLazy",
-		cmd = "G",
+		-- event = "VeryLazy", -- needs to be not lazy for airline :(
+		-- cmd = "G",
 		config = function()
 			vim.cmd("call FugitiveDetect(getcwd())") -- needed for Twiggy
 		end,
