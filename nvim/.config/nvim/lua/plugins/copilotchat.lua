@@ -1,7 +1,7 @@
 return {
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
-		branch = "canary",
+		-- branch = "canary",
 		dependencies = {
 			{ "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
 			{ "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
@@ -9,7 +9,7 @@ return {
 		opts = {
 			-- https://github.com/CopilotC-Nvim/CopilotChat.nvim?tab=readme-ov-file#configuration
 			debug = true, -- Enable debugging
-			model = "gpt-4",
+			model = "gpt-4o",
 			window = { layout = "horizontal" },
 			-- model = "gpt-4-turbo",
 
@@ -33,7 +33,7 @@ return {
 				function()
 					local actions = require("CopilotChat.actions")
 					local prompt_actions = actions.prompt_actions() or {}
-					local help_actions = actions.help_actions() or {}
+					local help_actions = actions.help_actions and actions.help_actions() or {}
 					local combined = vim.tbl_deep_extend("force", prompt_actions, help_actions)
 					require("CopilotChat.integrations.telescope").pick(combined)
 				end,
