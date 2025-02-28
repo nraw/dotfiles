@@ -3,7 +3,7 @@
 
 local function fasd_update()
 	if (vim.o.buftype == "") or (vim.o.filetype == "dirvish") then
-		io.popen("fasd -A " .. vim.fn.expand("%:p"))
+		io.popen("fasd -A " .. vim.fn.shellescape(vim.fn.expand("%:p")))
 	end
 end
 
