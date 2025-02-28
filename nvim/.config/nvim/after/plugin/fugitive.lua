@@ -5,6 +5,7 @@ vim.g.fugitive_gitlab_domains = { "https://git.msv.mckinsey.com", "https://gitla
 -- Fugitive maps
 vim.keymap.set("n", "<leader>gd", ":Gdiffsplit!<CR>")
 vim.keymap.set("n", "<leader>P", ":Git push<CR>")
+vim.keymap.set("n", "<leader>FP", ":Git push --force<CR>")
 vim.keymap.set("n", "<leader>p", ":Git pull<CR>")
 
 local hidden_group = vim.api.nvim_create_augroup("Hidden", { clear = true })
