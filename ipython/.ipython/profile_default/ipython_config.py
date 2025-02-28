@@ -64,6 +64,13 @@ c.TerminalInteractiveShell.editor = "vi"
 #  in addition to the F2 binding, which is always enabled.
 c.TerminalInteractiveShell.extra_open_editor_shortcuts = True
 
+# Nicer font color
+c.TerminalInteractiveShell.highlighting_style = "monokai"
+# changed highlight color
+from IPython.core import ultratb
+
+ultratb.VerboseTB.tb_highlight = "bg:ansired"
+
 
 ## Highlight matching brackets.
 c.TerminalInteractiveShell.highlight_matching_brackets = True

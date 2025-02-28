@@ -31,6 +31,7 @@
 	rc = rebase --continue
 	rom = rebase origin/main
 	st = status --short --branch
+	sha = log --pretty=format:'%h' -n 1
 	tg = tag -a 
 	pu = push --tags
 	un = reset --hard HEAD  
@@ -43,11 +44,12 @@
 	branch = auto 
 [branch]  
 	autosetuprebase = always 
-	autosetupmerge = always
+	autosetupmerge = simple
 [merge]
 	conflictstyle = diff3
 	tool = DiffviewOpen
 [push]
+	default = current
 	autoSetupRemote = true
 [safe]
 	directory = /private/tmp
