@@ -86,6 +86,12 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 			":call SlimuxSendCommand(expand('<cword>') . '.iloc[0]')<CR>",
 			{ buffer = true }
 		)
+		vim.keymap.set(
+			"n",
+			"<Leader>em",
+			":call SlimuxSendCommand(expand('<cword>') . '.model_dump()')<CR>",
+			{ buffer = true }
+		)
 		vim.keymap.set("n", "<Leader>e_", ":call SlimuxSendCommand(expand('<cword>') . ' = _')<CR>", { buffer = true })
 		vim.keymap.set("n", "<Leader>eF", ":norm V[[O][ s<CR>", { buffer = true })
 		vim.keymap.set("n", "<Leader>ef", ":norm V[[%jO][k s<CR>", { buffer = true })
