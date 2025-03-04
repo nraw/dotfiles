@@ -37,6 +37,11 @@ return {
 						find_command = { "rg", "--ignore", "-L", "--files" }, -- "--hidden",
 						follow = true,
 					},
+					live_grep = {
+						mappings = {
+							i = { ["<c-f>"] = require("telescope.actions").to_fuzzy_refine },
+						},
+					},
 					-- Default configuration for builtin pickers goes here:
 					-- picker_name = {
 					--   picker_config_key = value,
@@ -64,9 +69,9 @@ return {
 						-- show_unindexed = true,
 						ignore_patterns = { "*.git/*", "*/tmp/*", "*.DS_Store", "*.gitmodules" },
 						disable_devicons = false,
-						workspaces = {
-							["notes"] = "~/vimwiki",
-						},
+						-- workspaces = {
+						--   ["notes"] = "~/vimwiki",
+						-- },
 					},
 					-- Your extension configuration goes here:
 					-- extension_name = {
@@ -151,4 +156,12 @@ return {
 		-- cmd = { "Telescope symbols" },
 		-- event = "VeryLazy",
 	}, -- ,s
+	{
+		"nvim-telescope/telescope-fzf-native.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim" },
+		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
+		config = function()
+			require("telescope").load_extension("fzf")
+		end,
+	},
 }
