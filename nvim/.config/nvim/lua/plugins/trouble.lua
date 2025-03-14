@@ -5,7 +5,10 @@ return {
 	-- cmd = "Trouble",
 	config = function()
 		require("trouble").setup({
-			focus = true,
+			defaults = {
+				focus = true,
+				follow = false,
+			},
 		})
 
 		local telescope = require("telescope")
