@@ -17,7 +17,7 @@ function ParseLoguruError(error)
 	local message = parts[#parts]
 	local msg_parts = vim.fn.split(message, ":")
 	local file = msg_parts[1]
-	local module = msg_parts[2]
+	local module = msg_parts[2] or ""
 	local line = msg_parts[3]
 	line = vim.fn.split(line, " ")[1]
 	file = string.gsub(file, "%.", "/")
@@ -43,9 +43,9 @@ vim.keymap.set("n", "<leader>cp", function()
 		if CheckLoguru(error) then
 			error = ParseLoguruError(error)
 		end
-		error = string.gsub(error, "/home/runner/work/.-/", parent_dir, 1)                 -- Github Actions
+		error = string.gsub(error, "/home/runner/work/.-/", parent_dir, 1) -- Github Actions
 		error = string.gsub(error, "/app/src/", parent_dir .. current_folder_name .. "/", 1) -- Splunk
-		error = string.gsub(error, "^File", "  File", 1)                                   -- 2 spaces at beginning
+		error = string.gsub(error, "^File", "  File", 1) -- 2 spaces at beginning
 		qf_list[i] = error
 	end
 	-- vim.fn.setqflist(qf_list)
