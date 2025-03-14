@@ -1,0 +1,134 @@
+[[keyboard.bindings]]
+chars = "\u0001c"
+key = "T"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0001&"
+key = "W"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0001n"
+key = "Tab"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u0001p"
+key = "Tab"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+chars = "\u00011"
+key = "Key1"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00012"
+key = "Key2"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00013"
+key = "Key3"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00014"
+key = "Key4"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00015"
+key = "Key5"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00016"
+key = "Key6"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00017"
+key = "Key7"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00018"
+key = "Key8"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00019"
+key = "Key9"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0001["
+key = "Escape"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0001\u0005"
+key = "E"
+mods = "Command"
+
+[colors.bright]
+black = "#484c52"
+blue = "#96b1c9"
+cyan = "#9fc9c3"
+green = "#dffebe"
+magenta = "#bfa5c7"
+red = "#d27c7b"
+white = "#fcf7e2"
+yellow = "#f0d189"
+
+[colors.normal]
+black = "#35383b"
+blue = "#7693ac"
+cyan = "#749e99"
+green = "#769972"
+magenta = "#977ba0"
+red = "#b05655"
+white = "#848b92"
+yellow = "#e1a574"
+
+[colors.primary]
+foreground = "#d0d2d1"
+
+[cursor]
+unfocused_hollow = true
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 10.0
+
+[font.bold]
+family = "Hasklug NFM"
+style = "Bold"
+
+[font.bold_italic]
+family = "Hasklug NFM"
+style = "Bold Italic"
+
+[font.italic]
+family = "Hasklug NFM"
+style = "Italic"
+
+[font.normal]
+family = "Hasklug NFM"
+
+[font.offset]
+x = 1
+y = 1
+
+# [mouse.hints.launcher]
+# program = "open"
+
+[window]
+decorations = "none"
+startup_mode = "Maximized"
+
+[keyboard]
