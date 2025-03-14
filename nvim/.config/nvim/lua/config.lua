@@ -18,6 +18,7 @@ vim.o.splitright = true
 vim.o.mouse = "a"
 vim.o.clipboard = "unnamedplus"
 vim.o.lazyredraw = false
+vim.o.textwidth = 0
 
 -- Scrolling
 vim.o.scrolloff = 5
