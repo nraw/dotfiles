@@ -14,7 +14,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = "python",
 	group = slimux_group,
 	callback = function()
+		-- ee should drop the : if it's the last character
 		vim.keymap.set("n", "<Leader>ee", ":norm ^viW s<CR>", { buffer = true })
+
 		vim.keymap.set("n", "<Leader>e?", ":call SlimuxSendCommand(expand('<cword>') . '??')<CR>", { buffer = true })
 		vim.keymap.set(
 			"n",
@@ -72,7 +74,12 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 			":call SlimuxSendCommand('print(' . expand('<cword>') . ')')<CR>",
 			{ buffer = true }
 		)
-		vim.keymap.set("n", "<Leader>eR", ":call SlimuxSendCommand('%run ' . expand('%'))<CR>", { buffer = true })
+		vim.keymap.set(
+			"n",
+			"<Leader>eR",
+			":call SlimuxSendCommand('safe_load_functions_and_imports(\"' . expand('%:t:r') . '.' . expand('%:e') . '\")')<CR>",
+			{ buffer = true, desc = "Magic reload by Marek" }
+		)
 		vim.keymap.set(
 			"n",
 			"<Leader>es",
