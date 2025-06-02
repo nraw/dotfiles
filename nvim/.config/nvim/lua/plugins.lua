@@ -9,11 +9,22 @@ return {
 	{ "stevearc/dressing.nvim",          event = "VeryLazy" },
 
 	-- Treesitter
+
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 	{ "nvim-treesitter/playground",      cmd = "TSPlaygroundToggle" }, -- :TSPlaygroundToggle
-	{ "github/copilot.vim",              event = "VeryLazy" },   -- c-j
+	{
+		"folke/snacks.nvim",
+		---@type snacks.Config
+		opts = {
+			bigfile = {
+				size = 0.9 * 1024 * 1024, -- 0.9MB
+				line_length = 1000,   -- average line length (useful for minified files)
+			},
+		},
+	},
+	{ "github/copilot.vim",   event = "VeryLazy" }, -- c-j
 	-- Moving around
-	{ "tpope/vim-unimpaired",            event = "VeryLazy" },   -- ]q ]Q cnext, ]a next, ]b bnext, ]<Space> newline
+	{ "tpope/vim-unimpaired", event = "VeryLazy" }, -- ]q ]Q cnext, ]a next, ]b bnext, ]<Space> newline
 	{
 		"troydm/zoomwintab.vim",
 		keys = {
