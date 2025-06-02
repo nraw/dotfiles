@@ -8,7 +8,7 @@ return {
 			-- LSP Support
 			{ "neovim/nvim-lspconfig" },
 			{ "williamboman/mason.nvim" },
-			{ "williamboman/mason-lspconfig.nvim" },
+			-- { "williamboman/mason-lspconfig.nvim" }, -- Temporarily disabled due to compatibility issues
 
 			-- Autocompletion
 			{ "hrsh7th/nvim-cmp" },
@@ -94,20 +94,13 @@ return {
 				})
 			end)
 
-			-- Mason setup
+			-- Mason setup (without mason-lspconfig)
 			require("mason").setup({})
 
-			-- Bypass the problematic automatic_enable feature
-			require("mason-lspconfig").setup({
-				ensure_installed = {
-					"lua_ls",
-					"pyright",
-					-- add other servers you need
-				},
-				automatic_installation = false, -- Disable automatic features
-			})
+			-- Note: You'll need to manually install LSP servers through Mason
+			-- Run :Mason and install: lua-language-server, pyright, etc.
 
-			-- Manual server setup to avoid the 'enable' field error
+			-- Manual server setup - this bypasses all mason-lspconfig issues
 			local lspconfig = require("lspconfig")
 
 			-- Setup servers manually
