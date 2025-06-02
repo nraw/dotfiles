@@ -2,43 +2,34 @@ return {
 	-- LSP
 	{
 		"VonHeikemen/lsp-zero.nvim",
-		branch = "v1.x",
+		branch = "v3.x",
 		event = "VeryLazy",
 		dependencies = {
 			-- LSP Support
-			{ "neovim/nvim-lspconfig" },          -- Required
-			{ "williamboman/mason.nvim" },        -- Optional
-			{ "williamboman/mason-lspconfig.nvim" }, -- Optional
+			{ "neovim/nvim-lspconfig" },
+			{ "williamboman/mason.nvim" },
+			{ "williamboman/mason-lspconfig.nvim" },
 
 			-- Autocompletion
-			{ "hrsh7th/nvim-cmp" },      -- Required
-			{ "hrsh7th/cmp-nvim-lsp" },  -- Required
-			{ "hrsh7th/cmp-buffer" },    -- Optional
-			{ "hrsh7th/cmp-path" },      -- Optional
-			{ "hrsh7th/cmp-cmdline" },   -- Optional
-			{ "saadparwaiz1/cmp_luasnip" }, -- Optional
-			{ "hrsh7th/cmp-nvim-lua" },  -- Optional
+			{ "hrsh7th/nvim-cmp" },
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "hrsh7th/cmp-buffer" },
+			{ "hrsh7th/cmp-path" },
+			{ "hrsh7th/cmp-cmdline" },
+			{ "saadparwaiz1/cmp_luasnip" },
+			{ "hrsh7th/cmp-nvim-lua" },
 			{ "petertriho/cmp-git" },
 			{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 
 			-- Snippets
-			{ "L3MON4D3/LuaSnip" },          -- Required
-			{ "rafamadriz/friendly-snippets" }, -- Optional
+			{ "L3MON4D3/LuaSnip" },
+			{ "rafamadriz/friendly-snippets" },
 		},
 		config = function()
-			local lsp = require("lsp-zero")
-			-- https://github.com/VonHeikemen/lsp-zero.nvim/wiki/Under-the-hood
-			lsp.preset({
-				name = "recommended",
-				set_lsp_keymaps = false,
-				manage_nvim_cmp = true,
-				suggest_lsp_servers = true,
-			})
+			local lsp_zero = require("lsp-zero")
 
-			-- (Optional) Configure lua language server for neovim
-			lsp.nvim_workspace()
-
-			lsp.on_attach(function(client, bufnr)
+			-- lsp_zero v3.x setup
+			lsp_zero.on_attach(function(client, bufnr)
 				local function opts(desc)
 					return { buffer = bufnr, remap = false, desc = desc }
 				end
@@ -103,31 +94,42 @@ return {
 				})
 			end)
 
-			-- Mason stuff --
+			-- Mason setup
 			require("mason").setup({})
-			require("mason-lspconfig").setup()
-			require("mason-lspconfig").setup_handlers({
-				-- The first entry (without a key) will be the default handler
-				-- and will be called for each installed server that doesn't have
-				-- a dedicated handler.
-				function(server_name) -- default handler (optional)
-					require("lspconfig")[server_name].setup({})
-				end,
-				-- Next, you can provide a dedicated handler for specific servers.
-				-- For example, a handler override for the `rust_analyzer`:
-				-- ["ruff"] = function ()
-				--     require("ruff").setup {}
-				-- end
+
+			-- Bypass the problematic automatic_enable feature
+			require("mason-lspconfig").setup({
+				ensure_installed = {
+					"lua_ls",
+					"pyright",
+					-- add other servers you need
+				},
+				automatic_installation = false, -- Disable automatic features
 			})
 
-			lsp.setup()
-			local luasnip = require("luasnip")
+			-- Manual server setup to avoid the 'enable' field error
+			local lspconfig = require("lspconfig")
+
+			-- Setup servers manually
+			lspconfig.lua_ls.setup({
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" },
+						},
+					},
+				},
+			})
+
+			lspconfig.pyright.setup({})
+
+			-- Add other servers as needed
+			-- lspconfig.tsserver.setup({})
+			-- lspconfig.rust_analyzer.setup({})
+
+			-- Completion setup
 			local cmp = require("cmp")
-
-			-- vim.opt.completeopt = { "menu", "menuone", "noselect" }
-
-			-- local select_opts = { behavior = cmp.SelectBehavior.Select }
-			-- Luasnip
+			local luasnip = require("luasnip")
 
 			luasnip.config.set_config({
 				history = true,
@@ -142,10 +144,10 @@ return {
 					end,
 				},
 				sources = {
-					{ name = "nvim_lsp_signature_help" }, -- doesn't work
+					{ name = "nvim_lsp_signature_help" },
 					{ name = "nvim_lsp" },
 					{ name = "path" },
-					{ name = "buffer",                 max_item_count = 6 },
+					{ name = "buffer", max_item_count = 6 },
 					{ name = "luasnip" },
 				},
 				window = {
@@ -158,14 +160,11 @@ return {
 					native_menu = false,
 					ghost_text = true,
 				},
-				mapping = {
-
+				mapping = cmp.mapping.preset.insert({
 					["<C-u>"] = cmp.mapping.scroll_docs(-4),
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
-
 					["<C-e>"] = cmp.mapping.abort(),
 					["<CR>"] = cmp.mapping.confirm({ select = false }),
-
 					["<Tab>"] = cmp.mapping(function(fallback)
 						if luasnip.expand_or_locally_jumpable() then
 							luasnip.expand_or_jump()
@@ -175,7 +174,6 @@ return {
 							fallback()
 						end
 					end, { "i", "s" }),
-
 					["<S-Tab>"] = cmp.mapping(function(fallback)
 						if luasnip.locally_jumpable(-1) then
 							luasnip.jump(-1)
@@ -185,22 +183,22 @@ return {
 							fallback()
 						end
 					end, { "i", "s" }),
-				},
+				}),
 			})
 
-			-- snippets
+			-- Load snippets
 			require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./luasnippets" } })
 
-			-- Set configuration for specific filetype.
+			-- Git completion
 			cmp.setup.filetype("gitcommit", {
 				sources = cmp.config.sources({
-					{ name = "cmp_git" }, -- You can specify the `cmp_git` source if you were installed it.
+					{ name = "cmp_git" },
 				}, {
 					{ name = "buffer" },
 				}),
 			})
 
-			-- -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+			-- Command line completion
 			cmp.setup.cmdline({ "/", "?" }, {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = {
@@ -208,7 +206,6 @@ return {
 				},
 			})
 
-			-- -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 			cmp.setup.cmdline(":", {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
@@ -218,13 +215,13 @@ return {
 				}),
 			})
 
+			-- Diagnostic configuration
 			vim.diagnostic.config({
 				virtual_text = true,
 				signs = true,
 				update_in_insert = false,
 				underline = true,
 				severity_sort = true,
-				-- float = true,
 			})
 		end,
 	},
