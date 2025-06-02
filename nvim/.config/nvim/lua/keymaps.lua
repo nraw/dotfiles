@@ -12,8 +12,8 @@ vim.keymap.set("v", "H", "^")
 vim.keymap.set("v", "L", "$")
 
 -- Move through longer texts
-vim.keymap.set({ "n", "v" }, "k", vim.v.count and "gk" or "k")
-vim.keymap.set({ "n", "v" }, "j", vim.v.count and "gj" or "j")
+vim.keymap.set({ "n", "v" }, "k", vim.v.count and "gk" or "k", { silent = true })
+vim.keymap.set({ "n", "v" }, "j", vim.v.count and "gj" or "j", { silent = true })
 
 -- Keep central next
 vim.keymap.set("n", "n", "nzzzv")
