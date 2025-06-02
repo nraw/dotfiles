@@ -15,7 +15,7 @@ return {
 
 			prompts = {
 				Test =
-				"Create tests for this code. Reply only with the test code. Assume that an import * from this module has already been done. Use the pytest module instead of unittest. Do not mock.",
+				"Create tests for this code. Reply only with the test code. Assume that an import * from this module has already been done. Use the pytest module instead of unittest.",
 				Refactor = "Refactor the code to improve clarity and readability. Reply only with the new code.",
 				Docstring =
 				"Create Google format docstring and add typing to the signature. Reply only with the signature and docstring.",
