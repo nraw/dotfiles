@@ -18,6 +18,12 @@ vim.g["airline#extensions#tabline#left_alt_sep"] = "|"
 vim.g["airline#extensions#tabline#show_tab_type"] = 1
 vim.g["airline#extensions#tabline#current_first"] = 1
 
+-- let g:airline#extensions#whitespace#enabled = 0
+vim.g["airline#extensions#whitespace#enabled"] = 0
+
+-- let g:airline#extensions#whitespace#symbol = '!'
+vim.g["airline#exentions#whitespace#symbol"] = "!"
+
 -- let g:airline#extensions#branch#enabled = 0
 vim.g["airline#extensions#hunks#enabled"] = 0
 
