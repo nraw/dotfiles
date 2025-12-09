@@ -132,3 +132,11 @@ tags/
 
 # Mac
 .DS_Store
+
+# Claude
+CLAUDE.md
+.claude/
+
+# Node
+node_modules
+
