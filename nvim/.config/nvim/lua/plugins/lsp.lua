@@ -8,7 +8,7 @@ return {
 			-- LSP Support
 			{ "neovim/nvim-lspconfig" },
 			{ "williamboman/mason.nvim" },
-			-- { "williamboman/mason-lspconfig.nvim" }, -- Temporarily disabled due to compatibility issues
+			{ "williamboman/mason-lspconfig.nvim" }, -- Temporarily disabled due to compatibility issues
 
 			-- Autocompletion
 			{ "hrsh7th/nvim-cmp" },
@@ -100,11 +100,12 @@ return {
 			-- Note: You'll need to manually install LSP servers through Mason
 			-- Run :Mason and install: lua-language-server, pyright, etc.
 
-			-- Manual server setup - this bypasses all mason-lspconfig issues
-			local lspconfig = require("lspconfig")
-
-			-- Setup servers manually
-			lspconfig.lua_ls.setup({
+			-- Manual server setup using vim.lsp.config (nvim 0.11+)
+			-- Configure lua_ls
+			vim.lsp.config("lua_ls", {
+				cmd = { "lua-language-server" },
+				filetypes = { "lua" },
+				root_markers = { ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml", ".git" },
 				settings = {
 					Lua = {
 						diagnostics = {
@@ -113,12 +114,30 @@ return {
 					},
 				},
 			})
+			vim.lsp.enable("lua_ls")
 
-			lspconfig.pyright.setup({})
+			-- Configure pyright
+			vim.lsp.config("pyright", {
+				cmd = { "pyright-langserver", "--stdio" },
+				filetypes = { "python" },
+				root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", "pyrightconfig.json", ".git" },
+			})
+			vim.lsp.enable("pyright")
 
 			-- Add other servers as needed
-			-- lspconfig.tsserver.setup({})
-			-- lspconfig.rust_analyzer.setup({})
+			-- vim.lsp.config("tsserver", {
+			--     cmd = { "typescript-language-server", "--stdio" },
+			--     filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+			--     root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
+			-- })
+			-- vim.lsp.enable("tsserver")
+			--
+			-- vim.lsp.config("rust_analyzer", {
+			--     cmd = { "rust-analyzer" },
+			--     filetypes = { "rust" },
+			--     root_markers = { "Cargo.toml", "rust-project.json" },
+			-- })
+			-- vim.lsp.enable("rust_analyzer")
 
 			-- Completion setup
 			local cmp = require("cmp")
