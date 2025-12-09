@@ -89,6 +89,12 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 		vim.keymap.set("n", "<Leader>e1", ":call SlimuxSendCommand(expand('<cword>') . '[0]')<CR>", { buffer = true })
 		vim.keymap.set(
 			"n",
+			"<Leader>eM",
+			":call SlimuxSendCommand('with ms_graph_module.with_scope(email):\\n  with request_cycle_context(context):\\n    ' . getline('.'))<CR>",
+			{ buffer = true }
+		)
+		vim.keymap.set(
+			"n",
 			"<Leader>e2",
 			":call SlimuxSendCommand(expand('<cword>') . '.iloc[0]')<CR>",
 			{ buffer = true }
