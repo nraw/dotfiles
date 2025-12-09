@@ -30,6 +30,7 @@
 	ra = rebase --abort
 	re = rebase -i HEAD~5
 	rc = rebase --continue
+	rb = "!f() { git rebase -i $(git merge-base ${1:-main} HEAD); }; f"
 	rom = rebase origin/main
 	st = status --short --branch
 	sha = log --pretty=format:'%h' -n 1
