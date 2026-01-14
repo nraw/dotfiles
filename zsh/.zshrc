@@ -149,4 +149,4 @@ source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
 export ANDROID_HOME=$HOME/Library/Android/sdk && export PATH=$PATH:$ANDROID_HOME/emulator && export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 eval 
-EAS_AC_ZSH_SETUP_PATH=/Users/Andrej_Marsic/Library/Caches/eas-cli/autocomplete/zsh_setup && test -f $EAS_AC_ZSH_SETUP_PATH && source $EAS_AC_ZSH_SETUP_PATH; # eas autocomplete setup
+EAS_AC_ZSH_SETUP_PATH=/Users/Andrej_Marsic/Library/Caches/eas-cli/autocomplete/zsh_setup && test -f $EAS_AC_ZSH_SETUP_PATH && source $EAS_AC_ZSH_SETUP_PATH; # eas autocomplete setupexport PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
