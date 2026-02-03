@@ -89,24 +89,8 @@ hs.hotkey.bind({ "alt", "shift", "cmd", "ctrl" }, "j", function()
 end)
 
 --------- Apps focus -----------
-hs.hotkey.bind({ "alt" }, "1", function()
-	hs.application.launchOrFocus("Alacritty")
-end)
-hs.hotkey.bind({ "alt" }, "2", function()
-	hs.application.launchOrFocus("Google Chrome")
-end)
-hs.hotkey.bind({ "alt" }, "3", function()
-	hs.application.launchOrFocus("Slack")
-end)
-hs.hotkey.bind({ "alt" }, "4", function()
-	hs.application.launchOrFocus("Microsoft Outlook")
-end)
-hs.hotkey.bind({ "alt" }, "5", function()
-	hs.application.launchOrFocus("zoom.us")
-end)
-hs.hotkey.bind({ "alt" }, "6", function()
-	hs.application.launchOrFocus("Spotify")
-end)
+-- Moved to Karabiner-Elements (Option+1 through Option+6)
+-- macOS intercepts Option+number as dead keys before Hammerspoon can register them
 
 ------ HeadphoneAutoPause --------
 spoon.SpoonInstall:andUse("HeadphoneAutoPause", {

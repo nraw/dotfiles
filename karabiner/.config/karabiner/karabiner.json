@@ -5,6 +5,41 @@
                 "parameters": { "basic.to_if_alone_timeout_milliseconds": 500 },
                 "rules": [
                     {
+                        "description": "Option+number to launch/focus apps",
+                        "manipulators": [
+                            {
+                                "from": { "key_code": "1", "modifiers": { "mandatory": ["option"] } },
+                                "to": [{ "shell_command": "open -a 'Alacritty'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "2", "modifiers": { "mandatory": ["option"] } },
+                                "to": [{ "shell_command": "open -a 'Google Chrome'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "3", "modifiers": { "mandatory": ["option"] } },
+                                "to": [{ "shell_command": "open -a 'Slack'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "4", "modifiers": { "mandatory": ["option"] } },
+                                "to": [{ "shell_command": "osascript -e 'tell application \"Microsoft Outlook\" to activate'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "5", "modifiers": { "mandatory": ["option"] } },
+                                "to": [{ "shell_command": "open -a 'zoom.us'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "6", "modifiers": { "mandatory": ["option"] } },
+                                "to": [{ "shell_command": "open -a 'Spotify'" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Change right_command+hjkl to arrow keys",
                         "manipulators": [
                             {
