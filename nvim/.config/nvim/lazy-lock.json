@@ -29,6 +29,7 @@
   "plenary.nvim": { "branch": "master", "commit": "b9fd5226c2f76c951fc8ed5923d85e4de065e509" },
   "rainbow_csv": { "branch": "master", "commit": "3dbbfd7d17536aebfb80f571255548495574c32b" },
   "refactoring.nvim": { "branch": "master", "commit": "6784b54587e6d8a6b9ea199318512170ffb9e418" },
+  "render-markdown.nvim": { "branch": "main", "commit": "fcea0776a3019f49360b7aaec3318630633c522d" },
   "slimux": { "branch": "master", "commit": "3ec44ebf1c1eeb74d131cdf61e26688f7cc8fb24" },
   "snacks.nvim": { "branch": "main", "commit": "fe7cfe9800a182274d0f868a74b7263b8c0c020b" },
   "sqlite.lua": { "branch": "master", "commit": "50092d60feb242602d7578398c6eb53b4a8ffe7b" },

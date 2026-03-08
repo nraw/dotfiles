@@ -14,6 +14,37 @@ return {
 			severity_sort = true,
 		})
 
+		-- Get blink.cmp capabilities for LSP
+		local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+		require("mason-lspconfig").setup({
+			ensure_installed = {
+				"lua_ls",
+				"pyright",
+				"ts_ls",
+			},
+			handlers = {
+				-- Default handler: sets up any installed server with blink.cmp capabilities
+				function(server_name)
+					require("lspconfig")[server_name].setup({
+						capabilities = capabilities,
+					})
+				end,
+				-- Custom lua_ls config to suppress the "undefined global vim" warning
+				["lua_ls"] = function()
+					require("lspconfig").lua_ls.setup({
+						capabilities = capabilities,
+						settings = {
+							Lua = {
+								diagnostics = { globals = { "vim" } },
+								workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+							},
+						},
+					})
+				end,
+			},
+		})
+
 		-- LSP keybindings on attach
 		vim.api.nvim_create_autocmd("LspAttach", {
 			callback = function(args)
