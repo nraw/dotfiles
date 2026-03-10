@@ -83,7 +83,14 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 . ~/.zsh_aliases
 
 
-autoload -U +X compinit && compinit
+# Only regenerate compdump once per day
+autoload -Uz compinit
+setopt local_options extendedglob
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
 
 autoload -U +X bashcompinit && bashcompinit
 
@@ -108,7 +115,12 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 
 # box autocomplete setup
 BOX_AC_ZSH_SETUP_PATH=/Users/andrej_marsic/Library/Caches/@box/cli/autocomplete/zsh_setup && test -f $BOX_AC_ZSH_SETUP_PATH && source $BOX_AC_ZSH_SETUP_PATH;
-[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
+# Lazy-load kubectl completions
+kubectl() {
+  unfunction kubectl
+  source <(command kubectl completion zsh)
+  command kubectl "$@"
+}
 
 # Fix backspace
 bindkey -v '^?' backward-delete-char
@@ -127,8 +139,8 @@ bindkey -s "^Z" 'fg^M'
 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 export KEYTIMEOUT=1
 
-# FASD
-eval "$(fasd --init auto)"
+# Zoxide (directory jumper, replaces fasd)
+eval "$(zoxide init zsh --cmd j)"
 
 export VIRTUALENVWRAPPER_PYTHON=/Users/Andrej_Marsic/.pyenv/versions/3.11.3/bin/python3
 export WORKON_HOME=~/.venv
@@ -139,17 +151,19 @@ source /Users/Andrej_Marsic/.pyenv/versions/3.11.3/bin/virtualenvwrapper_lazy.sh
 export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-# GCloud
-source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
-source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+# Cached pyenv init (rm ~/.pyenv-init-cache after upgrading pyenv)
+_pyenv_cache="$HOME/.pyenv-init-cache"
+if [[ ! -s "$_pyenv_cache" || ~/.pyenv/versions -nt "$_pyenv_cache" ]]; then
+  pyenv init - --no-rehash > "$_pyenv_cache"
+fi
+source "$_pyenv_cache"
+unset _pyenv_cache
 
 # Android
 export ANDROID_HOME=$HOME/Library/Android/sdk && export PATH=$PATH:$ANDROID_HOME/emulator && export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-eval 
-EAS_AC_ZSH_SETUP_PATH=/Users/Andrej_Marsic/Library/Caches/eas-cli/autocomplete/zsh_setup && test -f $EAS_AC_ZSH_SETUP_PATH && source $EAS_AC_ZSH_SETUP_PATH; # eas autocomplete setupexport PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+EAS_AC_ZSH_SETUP_PATH=/Users/Andrej_Marsic/Library/Caches/eas-cli/autocomplete/zsh_setup && test -f $EAS_AC_ZSH_SETUP_PATH && source $EAS_AC_ZSH_SETUP_PATH;
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc'; fi
