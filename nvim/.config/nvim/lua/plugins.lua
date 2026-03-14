@@ -41,7 +41,6 @@ return {
 		-- },
 	},
 	{ "tpope/vim-eunuch",   cmd = { "Move", "Rename", "Delete" } },
-	{ "wellle/targets.vim", event = "VeryLazy" },
 	-- Highlighting removed after moving
 	{ "romainl/vim-cool",   event = "VeryLazy" },
 	-- Git
@@ -79,7 +78,6 @@ return {
 		event = "VeryLazy",
 	},                                                        -- co ct \c
 	-- Indentation
-	{ "michaeljsmith/vim-indent-object", event = "VeryLazy" }, -- vai,  dii
 	{ "junegunn/vim-easy-align",         event = "VeryLazy" }, -- Aligning with gaip + whatever
 	-- Tests
 	{ "tpope/vim-dispatch",              event = "VeryLazy" }, -- :Make, :Dispatch
