@@ -130,5 +130,6 @@ y = 1
 [window]
 decorations = "none"
 startup_mode = "Maximized"
+option_as_alt = "Both"
 
 [keyboard]
