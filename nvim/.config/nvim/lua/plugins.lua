@@ -1,11 +1,7 @@
 return {
 	-- UI related
 	-- "kristijanhusak/vim-hybrid-material",
-	{
-		"vim-airline/vim-airline",
-		lazy = false,
-		dependencies = { "vim-airline/vim-airline-themes" },
-	},
+	-- lualine: configured in lua/plugins/lualine.lua
 	{ "stevearc/dressing.nvim",          event = "VeryLazy" },
 
 	-- Treesitter
@@ -46,7 +42,7 @@ return {
 	-- Git
 	{
 		"tpope/vim-fugitive",
-		-- event = "VeryLazy", -- needs to be not lazy for airline :(
+		-- event = "VeryLazy",
 		-- cmd = "G",
 		config = function()
 			vim.cmd("call FugitiveDetect(getcwd())") -- needed for Twiggy
