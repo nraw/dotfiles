@@ -139,4 +139,10 @@ require("github-theme").setup({
 	},
 })
 
+-- Flash.nvim highlights
+vim.api.nvim_set_hl(0, "FlashLabel", { fg = col.DeepBlue900, bg = col.AmberYellow500, bold = true })
+vim.api.nvim_set_hl(0, "FlashMatch", { fg = col.Cyan200, bg = col.DeepBlue700 })
+vim.api.nvim_set_hl(0, "FlashCurrent", { fg = col.White, bg = col.DeepBlue600 })
+vim.api.nvim_set_hl(0, "FlashBackdrop", { fg = col.Gray54 })
+
 require("colorizer").setup()
