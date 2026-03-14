@@ -102,7 +102,7 @@ return {
 		end,
 	},
 	-- Comments and Docstrings
-	{ "scrooloose/nerdcommenter",       event = "VeryLazy" }, -- <leader>c<space>
+	-- native commenting (gcc, gc) since nvim 0.10
 	-- Colors
 	{ "norcalli/nvim-colorizer.lua",    event = "VeryLazy" },
 	-- "rafi/awesome-vim-colorschemes",
