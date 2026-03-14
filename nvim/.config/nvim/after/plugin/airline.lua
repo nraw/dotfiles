@@ -1,1 +1,0 @@
--- Replaced by lualine.nvim - configured in lua/plugins.lua

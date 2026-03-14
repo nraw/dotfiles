@@ -55,6 +55,32 @@ vim.api.nvim_create_user_command(
 	{}
 )
 
+-- fasd integration
+local function fasd_update()
+	if (vim.o.buftype == "") or (vim.o.filetype == "dirvish") then
+		io.popen("fasd -A " .. vim.fn.shellescape(vim.fn.expand("%:p")))
+	end
+end
+
+local fasd_group = vim.api.nvim_create_augroup("fasd", {})
+vim.api.nvim_create_autocmd({ "BufWinEnter", "BufFilePost" }, {
+	pattern = "*",
+	group = fasd_group,
+	callback = fasd_update,
+})
+
+vim.api.nvim_create_user_command("FASD", function()
+	vim.fn["fzf#run"](vim.fn["fzf#wrap"]({ source = "fasd -al", options = "--no-sort --tac --tiebreak=index" }))
+end, {})
+
+-- Vimwiki auto-commit
+local vimwiki_group = vim.api.nvim_create_augroup("vimwiki", { clear = true })
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+	pattern = "*/vimwiki/**",
+	group = vimwiki_group,
+	command = [[execute ':silent ! cd ~/vimwiki && nohup $(if git rev-parse --git-dir > /dev/null 2>&1 ; then git add . && git commit -m "Auto-commit: saved %" && git push; fi > /dev/null 2>&1) &']],
+})
+
 vim.api.nvim_create_user_command("Jin", function()
 	local line = vim.api.nvim_get_current_line()
 	line = line:gsub("TODO: ", "")

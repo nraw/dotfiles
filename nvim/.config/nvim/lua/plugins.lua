@@ -6,7 +6,21 @@ return {
 
 	-- Treesitter
 
-	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				ensure_installed = { "lua", "vim", "python", "markdown", "markdown_inline" },
+				sync_install = false,
+				auto_install = true,
+				highlight = {
+					enable = true,
+					additional_vim_regex_highlighting = false,
+				},
+			})
+		end,
+	},
 	{ "nvim-treesitter/playground",      cmd = "TSPlaygroundToggle" }, -- :TSPlaygroundToggle
 	{
 		"folke/snacks.nvim",
@@ -18,7 +32,19 @@ return {
 			},
 		},
 	},
-	{ "github/copilot.vim",   event = "VeryLazy" }, -- c-j
+	{
+		"github/copilot.vim",
+		event = "VeryLazy",
+		init = function()
+			vim.g.copilot_no_tab_map = true
+			vim.g.copilot_filetypes = { markdown = true }
+		end,
+		keys = {
+			{ "<Right>", 'copilot#Accept("<CR>")', mode = "i", expr = true, silent = true },
+			{ "<Down>", "<Plug>(copilot-next)", mode = "i" },
+			{ "<Up>", "<Plug>(copilot-previous)", mode = "i" },
+		},
+	},
 	-- Moving around
 	{ "tpope/vim-unimpaired", event = "VeryLazy" }, -- ]q ]Q cnext, ]a next, ]b bnext, ]<Space> newline
 	{
@@ -39,15 +65,7 @@ return {
 	{ "tpope/vim-eunuch",   cmd = { "Move", "Rename", "Delete" } },
 	-- Highlighting removed after moving
 	{ "romainl/vim-cool",   event = "VeryLazy" },
-	-- Git
-	{
-		"tpope/vim-fugitive",
-		-- event = "VeryLazy",
-		-- cmd = "G",
-		config = function()
-			vim.cmd("call FugitiveDetect(getcwd())") -- needed for Twiggy
-		end,
-	},
+	-- Git (fugitive + related: lua/plugins/fugitive.lua)
 	{
 		"pwntester/octo.nvim",
 		dependencies = {
@@ -55,16 +73,11 @@ return {
 			"nvim-telescope/telescope.nvim",
 			"nvim-tree/nvim-web-devicons",
 		},
-		-- event = "VeryLazy",
 		cmd = "Octo",
 		config = function()
 			require("octo").setup()
 		end,
 	},
-	{ "sodapopcan/vim-twiggy",         dependencies = { "tpope/vim-fugitive" }, cmd = "Twiggy" },
-	{ "tpope/vim-rhubarb" },          -- :Gbrowse
-	{ "shumphrey/fugitive-gitlab.vim", dependencies = { "tpope/vim-fugitive" }, event = "VeryLazy" },
-	{ "junegunn/gv.vim",               cmd = "GV" }, -- :GV
 	-- { "airblade/vim-gitgutter", lazy = false }, -- ]h, [h, <leader>h, vic, :GitGutterFold
 	{
 		"akinsho/git-conflict.nvim",
@@ -75,9 +88,7 @@ return {
 	},                                                        -- co ct \c
 	-- Indentation
 	{ "junegunn/vim-easy-align",         event = "VeryLazy" }, -- Aligning with gaip + whatever
-	-- Tests
-	{ "tpope/vim-dispatch",              event = "VeryLazy" }, -- :Make, :Dispatch
-	{ "vim-test/vim-test",               event = "VeryLazy" }, -- <leader>tt, <leader>tf
+	-- Tests (vim-dispatch: lua/plugins/dispatch.lua, vim-test: lua/plugins/vimtest.lua)
 
 	-- Linting
 	-- "w0rp/ale",
@@ -87,20 +98,8 @@ return {
 	-- "quangnguyen30192/cmp-nvim-ultisnips",
 	-- "honza/vim-snippets",
 	"srydell/vim-skeleton",
-	"tpope/vim-projectionist", -- :A
-	-- Refactoring
-	-- { "apalmer1377/factorus", event = "VeryLazy" }, -- :Factorus
-	{
-		"ThePrimeagen/refactoring.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
-		},
-		event = "VeryLazy",
-		config = function()
-			require("refactoring").setup()
-		end,
-	},
+	-- projectionist: lua/plugins/projectionist.lua
+	-- Refactoring: lua/plugins/refactoring.lua
 	-- Comments and Docstrings
 	-- native commenting (gcc, gc) since nvim 0.10
 	-- Colors
@@ -110,10 +109,17 @@ return {
 
 	{ "mechatroner/rainbow_csv",        ft = "csv" },
 	-- Surrounding
-	{ "machakann/vim-sandwich",         event = "VeryLazy" }, -- saiw(, sdb and srb, sdf, saiwf
+	{
+		"machakann/vim-sandwich",
+		event = "VeryLazy",
+		config = function()
+			vim.keymap.set("x", "s", '"_d')
+			vim.keymap.set("n", "ss", '"_dd')
+		end,
+	},
 	-- Tmux
 	{ "christoomey/vim-tmux-navigator", event = "VeryLazy" },
-	{ "lotabout/slimux" },
+	-- slimux: lua/plugins/slimux.lua
 	-- Vim Wiki
 	-- "vimwiki/vimwiki",
 	{
@@ -124,21 +130,46 @@ return {
 			vim.g.mkdp_filetypes = { "markdown" }
 		end,
 		ft = { "markdown" },
+		keys = {
+			{ "<leader>md", ":MarkdownPreview<CR>", desc = "Markdown Preview" },
+		},
 	},
 	-- Json
 	{ "elzr/vim-json",            ft = "json" },
 	-- Helm
 	{ "towolf/vim-helm",          ft = "yaml" },
 	-- Front End
-	{ "mattn/emmet-vim",          ft = "html,css" }, -- div>ul>li*3 ,,
+	{
+		"mattn/emmet-vim",
+		ft = { "html", "css" },
+		init = function()
+			vim.g.user_emmet_install_global = 0
+			vim.g.user_emmet_leader_key = ","
+			vim.g.tagalong_verbose = 1
+		end,
+		config = function()
+			vim.api.nvim_create_autocmd({ "FileType" }, { pattern = "html,css", command = "EmmetInstall" })
+		end,
+	},
 	{ "AndrewRadev/tagalong.vim", ft = "html" }, -- changes ending tags
 	-- use("rstacruz/vim-ultisnips-css")
 	-- Better understanding
-	{ "mbbill/undotree",          cmd = "UndotreeToggle" }, -- F5
+	{
+		"mbbill/undotree",
+		keys = {
+			{ "<F5>", ":UndotreeToggle<CR>", desc = "Undotree" },
+		},
+	},
 	-- Profiling
 	{ "dstein64/vim-startuptime", cmd = "StartupTime" },
 	-- Pair programming
-	{ "jbyuki/instant.nvim",      cmd = { "InstantStartServer", "InstantJoinSession" } },
+	{
+		"jbyuki/instant.nvim",
+		cmd = { "InstantStartServer", "InstantJoinSession" },
+		init = function()
+			vim.g.instant_username = "andrej"
+		end,
+	},
 	-- Which key
 	{
 		"folke/which-key.nvim",

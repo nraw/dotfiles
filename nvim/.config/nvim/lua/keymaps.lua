@@ -66,3 +66,7 @@ vim.keymap.set("n", "<leader>wd", ":windo diffthis<CR>")
 
 -- Git
 vim.keymap.set({ "n", "v" }, "gb", ":GBrowse<CR>")
+
+-- Native commenting (nvim 0.10+) remaps
+vim.keymap.set("n", "<leader>c<space>", "gcc", { remap = true, silent = true })
+vim.keymap.set("v", "<leader>c<space>", "gc", { remap = true, silent = true })
