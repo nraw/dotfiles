@@ -144,7 +144,7 @@ return {
 			-- Wiki stuff
 			vim.api.nvim_create_user_command("Notes", function()
 				-- require("telescope").extensions.frecency.frecency({ workspace = "notes" })
-				require("telescope.builtin").find_files({ cwd = vim.fn.expand("~/vimwiki") })
+				require("telescope.builtin").find_files({ cwd = vim.fn.expand("~/vimwiki"), no_ignore = true })
 			end, {})
 			vim.keymap.set("n", "<C-n>", ":Notes<CR>")
 			-- vim.keymap.set("n", "<C-n>", ":Telescope frecency workspace=notes<CR>")
