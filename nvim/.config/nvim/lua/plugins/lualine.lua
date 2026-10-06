@@ -17,7 +17,9 @@ return {
 				{
 					function()
 						local wc = vim.fn.wordcount()
-						return wc.visual_words or wc.words .. " words"
+						local words = wc.visual_words or wc.words
+						local chars = wc.visual_chars or wc.chars
+						return words .. " words, " .. chars .. " chars"
 					end,
 					cond = function()
 						return vim.bo.filetype == "markdown"
