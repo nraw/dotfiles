@@ -140,7 +140,8 @@ bindkey -s "^Z" 'fg^M'
 export KEYTIMEOUT=1
 
 # Zoxide (directory jumper, replaces fasd)
-eval "$(zoxide init zsh --cmd j)"
+eval "$(zoxide init zsh)"
+alias j=z
 
 export VIRTUALENVWRAPPER_PYTHON=/Users/Andrej_Marsic/.pyenv/versions/3.11.3/bin/python3
 export WORKON_HOME=~/.venv
@@ -170,3 +171,8 @@ if [ -f '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/home
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc'; fi
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
+# cres 0.1.0
+export CRES_DIR="/Users/Andrej_Marsic/.cres/shell"
+source "/Users/Andrej_Marsic/.cres/shell/cres.sh"
